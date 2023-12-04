@@ -4,15 +4,17 @@ Widget defaultButton({
   double width=double.infinity,
   double height=50.0,
   Color background=const Color(0xFFFDCCC5),
+  Color TextColor= Colors.white,
   final Function()? function,
   required String text,
-  double fontSize=20.0,
+  double fontSize=18.0,
   double borderRadius=0.0,
 })=>Container(
   width: width,
   height: height,
   decoration: BoxDecoration(
       borderRadius: BorderRadiusDirectional.circular(borderRadius),
+    border: Border.all(color: Color(0xFFFDCCC5) ),
     color: background ,
   ),
   clipBehavior: Clip.antiAlias,
@@ -23,9 +25,8 @@ Widget defaultButton({
       text,
       style: TextStyle(
         fontWeight: FontWeight.w400,
-        color: Colors.white,
+        color: TextColor,
         fontSize: fontSize,
-        fontFamily: 'Muli',
       ),
     ),
   ),
@@ -45,7 +46,7 @@ Widget defaultFormField({
   bool isPassword=false,
   Function()?suffixonPressed,
   bool isClickable=true,
-})=>Container(
+})=>SizedBox(
   width: 350.0,
   height: 80.0,
   child: TextFormField(
@@ -55,7 +56,7 @@ Widget defaultFormField({
     onChanged:onChanged,
     validator:validator,
     obscureText:isPassword,
-    style: TextStyle(
+    style:const TextStyle(
     ),
     onTap:onTap ,
     enabled:isClickable ,
@@ -87,3 +88,64 @@ double widthOrHeight0(BuildContext context,int number){
     return MediaQuery.of(context).size.height;
   }
 }
+
+Widget drawerButton({
+required IconData icon,
+required String text,
+required Function()? function,
+})=>Row(
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  children: [
+       Row(
+      children: [
+        Icon(icon),
+        const SizedBox(width:10),
+        Text(
+          text,
+          style:const TextStyle(
+            fontSize: 15,
+          ),
+        ),
+      ],
+    ),
+    IconButton(
+        onPressed: function,
+        icon:const Icon(
+          Icons.arrow_forward_ios,
+          size: 17,
+        ))
+  ],
+);
+
+Widget ContentButton({
+  required String text,
+  required Function()? function,
+  double width=double.infinity,
+  d
+})=>GestureDetector(
+  onTap:function ,
+  child: Container(
+    padding: EdgeInsets.all(10),
+    width:width ,
+    height: 60,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(20),
+      border: Border.all(color: Colors.black)
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          text,
+          style:const TextStyle(
+            fontSize: 20,
+          ),
+        ),
+        const Icon(
+          Icons.arrow_forward_ios,
+          size: 20,
+        ),
+      ],
+    ),
+  ),
+);
