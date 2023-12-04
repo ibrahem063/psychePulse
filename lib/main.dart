@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:psychepulse/view/onboarding_screen.dart';
+import 'package:psychepulse/view/screen/onboarding_screen.dart';
 
 void main() {
   runApp(const MyApp());
