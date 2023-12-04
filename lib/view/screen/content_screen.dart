@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:psychepulse/view/screen/home_screen.dart';
-import 'package:psychepulse/view/screen/onboarding_screen.dart';
+import 'package:psychepulse/view/screen/splash_screen.dart';
+
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
 class ContentScreen extends StatefulWidget {
@@ -55,7 +56,7 @@ class _ContentScreenState extends State<ContentScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const OnBoardingScreen(),
+                      builder: (context) => const splash(),
                     ));
               }),
             ],
