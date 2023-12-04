@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:psychepulse/view/screen/home_layout.dart';
+import 'package:psychepulse/view/screen/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
         primaryColor: const Color(0xfffdccc5),
       ),
         debugShowCheckedModeBanner: false,
-       home: HomeLayout(),
+        debugShowMaterialGrid: false,
+       home: splash(),
     );
   }
 }
