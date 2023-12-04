@@ -65,7 +65,7 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         CircleAvatar(
                           foregroundImage:
-                              const AssetImage('assets/images.jpg'),
+                              const AssetImage('assets/images/images.jpg'),
                           backgroundColor: const Color(0xff337180),
                           radius: widthOrHeight0(context, 0) * 0.04,
                         ),
@@ -124,7 +124,7 @@ class ProfileScreen extends StatelessWidget {
           const PostWidget(
             comment: 32,
             like: 16,
-            path: 'assets/images.jpg',
+            path: 'assets/images/images.jpg',
             name: 'Ola',
             postText: 'Is this drug useful for anxiety?',
             postImage: 'assets/drug.jpg',
