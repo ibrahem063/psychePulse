@@ -27,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
+      body: ListView(
         children: [
           //Profile widget
           Container(
@@ -42,9 +42,10 @@ class ProfileScreen extends StatelessWidget {
                     Expanded(
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Theme.of(context).primaryColor,
-                          borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(15),bottomRight: Radius.circular(15))
-                        ),
+                            color: Theme.of(context).primaryColor,
+                            borderRadius: const BorderRadius.only(
+                                bottomLeft: Radius.circular(15),
+                                bottomRight: Radius.circular(15))),
                       ),
                     ),
                     const Expanded(
@@ -61,8 +62,8 @@ class ProfileScreen extends StatelessWidget {
                           height: widthOrHeight0(context, 0) * 0.11,
                         ),
                         CircleAvatar(
-                          foregroundImage: const AssetImage(
-                              'assets/images.jpg'),
+                          foregroundImage:
+                              const AssetImage('assets/images.jpg'),
                           backgroundColor: const Color(0xff337180),
                           radius: widthOrHeight0(context, 0) * 0.04,
                         ),
@@ -80,7 +81,9 @@ class ProfileScreen extends StatelessWidget {
                                 'Add frind',
                                 Icons.person_add_alt_1,
                                 widthOrHeight0(context, 1) * 0.15,
-                                widthOrHeight0(context, 0) * 0.05),
+                                widthOrHeight0(context, 0) * 0.05,
+                                Theme.of(context).primaryColor,
+                                Theme.of(context).scaffoldBackgroundColor),
                             SizedBox(
                               width: widthOrHeight0(context, 1) * 0.01,
                             ),
@@ -89,7 +92,9 @@ class ProfileScreen extends StatelessWidget {
                                 'Message',
                                 Icons.send,
                                 widthOrHeight0(context, 1) * 0.15,
-                                widthOrHeight0(context, 0) * 0.05),
+                                widthOrHeight0(context, 0) * 0.05,
+                                Theme.of(context).primaryColor,
+                                Theme.of(context).scaffoldBackgroundColor),
                             SizedBox(
                               width: widthOrHeight0(context, 1) * 0.01,
                             ),
@@ -98,7 +103,9 @@ class ProfileScreen extends StatelessWidget {
                                 '',
                                 Icons.more_vert,
                                 widthOrHeight0(context, 1) * 0.03,
-                                widthOrHeight0(context, 0) * 0.05)
+                                widthOrHeight0(context, 0) * 0.05,
+                                Theme.of(context).primaryColor,
+                                Theme.of(context).scaffoldBackgroundColor)
                           ],
                         )
                       ],
@@ -112,24 +119,45 @@ class ProfileScreen extends StatelessWidget {
             thickness: widthOrHeight0(context, 0) * 0.01,
           ),
 
-          const PostWidget(path: 'assets/images.jpg',name: 'Ola',postText: 'Is this drug useful for anxiety?',postImage: 'assets/drug.jpg',)
+          const PostWidget(
+            comment: 32,
+            like: 16,
+            path: 'assets/images.jpg',
+            name: 'Ola',
+            postText: 'Is this drug useful for anxiety?',
+            postImage: 'assets/drug.jpg',
+          ),
+          const PostWidget(
+            comment: 32,
+            like: 16,
+            path: 'assets/images.jpg',
+            name: 'Ola',
+            postText: 'Is this drug useful for anxiety?',
+            postImage: 'assets/drug.jpg',
+          ),
         ],
       ),
     );
   }
-
-
 }
 
 class PostWidget extends StatelessWidget {
   const PostWidget({
-    super.key, required this.path, required this.name, required this.postText, required this.postImage,
+    super.key,
+    required this.path,
+    required this.name,
+    required this.postText,
+    required this.postImage,
+    required this.like,
+    required this.comment,
   });
 
   final String path;
   final String name;
   final String postText;
   final String postImage;
+  final int like;
+  final int comment;
 
   @override
   Widget build(BuildContext context) {
@@ -149,8 +177,7 @@ class PostWidget extends StatelessWidget {
                         children: [
                           CircleAvatar(
                             radius: widthOrHeight0(context, 0) * 0.03,
-                            foregroundImage: AssetImage(
-                                path),
+                            foregroundImage: AssetImage(path),
                           ),
                           SizedBox(
                             width: widthOrHeight0(context, 1) * 0.03,
@@ -169,7 +196,9 @@ class PostWidget extends StatelessWidget {
                           '',
                           Icons.more_vert,
                           widthOrHeight0(context, 1) * 0.03,
-                          widthOrHeight0(context, 0) * 0.05)
+                          widthOrHeight0(context, 0) * 0.05,
+                          Theme.of(context).scaffoldBackgroundColor,
+                          Colors.black)
                     ],
                   )),
               Expanded(
@@ -186,15 +215,14 @@ class PostWidget extends StatelessWidget {
                                   SizedBox(
                                     width: widthOrHeight0(context, 1) * 0.05,
                                   ),
-                                  Text(
-                                      postText)
+                                  Text(postText)
                                 ],
                               ))),
                       Expanded(
                           flex: 8,
                           child: Container(
                             alignment: Alignment.center,
-                            child: Image.network(
+                            child: Image.asset(
                               postImage,
                               fit: BoxFit.cover,
                             ),
@@ -214,15 +242,14 @@ class PostWidget extends StatelessWidget {
                                         shape: BoxShape.circle),
                                     child: Icon(
                                       Icons.favorite,
-                                      size:
-                                      widthOrHeight0(context, 0) * 0.015,
+                                      size: widthOrHeight0(context, 0) * 0.015,
                                       color: Theme.of(context)
                                           .scaffoldBackgroundColor,
                                     ),
                                   ),
-                                  const Text(
-                                    '16',
-                                    style: TextStyle(
+                                  Text(
+                                    like.toString(),
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Color(0xff808080)),
                                   )
@@ -231,9 +258,9 @@ class PostWidget extends StatelessWidget {
                               SizedBox(),
                               Row(
                                 children: [
-                                  const Text(
-                                    '32',
-                                    style: TextStyle(
+                                  Text(
+                                    comment.toString(),
+                                    style: const TextStyle(
                                         color: Color(0xff808080),
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -262,17 +289,32 @@ class PostWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Column(
-                        children: [Icon(Icons.favorite_border,color: Color(0xff808080),), Text('Like',style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xff808080)),)],
+                        children: [
+                          Icon(
+                            Icons.favorite_border,
+                            color: Color(0xff808080),
+                          ),
+                          Text(
+                            'Like',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xff808080)),
+                          )
+                        ],
                       ),
                       SizedBox(),
                       Column(
                         children: [
-                          Icon(Icons.chat_bubble_outline,color: Color(0xff808080),),
-                          Text('COMMENT',style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff808080)),)
+                          Icon(
+                            Icons.chat_bubble_outline,
+                            color: Color(0xff808080),
+                          ),
+                          Text(
+                            'COMMENT',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xff808080)),
+                          )
                         ],
                       )
                     ],
@@ -281,19 +323,20 @@ class PostWidget extends StatelessWidget {
           ),
         ),
         Divider(
-          thickness: widthOrHeight0(context, 0)*0.005,
+          thickness: widthOrHeight0(context, 0) * 0.005,
         )
       ],
     );
   }
 }
+
 Container buildContainer(BuildContext context, String text, IconData iconData,
-    double width, double height) {
+    double width, double height, Color color, Color iconColor) {
   return Container(
     width: width,
     height: height,
     decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor,
+        color: color,
         borderRadius: const BorderRadius.all(Radius.circular(10))),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -308,7 +351,7 @@ Container buildContainer(BuildContext context, String text, IconData iconData,
         ],
         Icon(
           iconData,
-          color: Theme.of(context).scaffoldBackgroundColor,
+          color: iconColor,
         )
       ],
     ),
