@@ -9,22 +9,24 @@ Widget defaultButton({
   required String text,
   double fontSize=18.0,
   double borderRadius=0.0,
+  TextStyle? textStyle,
+  FontWeight fontWeight = FontWeight.w400,
+  Color borderColor =const Color(0xFFFDCCC5),
 })=>Container(
   width: width,
   height: height,
   decoration: BoxDecoration(
       borderRadius: BorderRadiusDirectional.circular(borderRadius),
-    border: Border.all(color: Color(0xFFFDCCC5) ),
+    border: Border.all(color: borderColor ),
     color: background ,
   ),
   clipBehavior: Clip.antiAlias,
   child: MaterialButton(
-
     onPressed:function,
     child: Text(
       text,
       style: TextStyle(
-        fontWeight: FontWeight.w400,
+        fontWeight: fontWeight,
         color: TextColor,
         fontSize: fontSize,
       ),
@@ -41,14 +43,17 @@ Widget defaultFormField({
   final String? text,
   final String? label,
   Function()? onTap,
+  final double? width ,
+  final double? height ,
   double radius=0.0,
   IconData? suffixIcon,
+  IconData? pref,
   bool isPassword=false,
   Function()?suffixonPressed,
   bool isClickable=true,
 })=>SizedBox(
-  width: 350.0,
-  height: 80.0,
+  width: width,
+  height: height,
   child: TextFormField(
     controller: controller,
     keyboardType: tybe,
@@ -61,6 +66,7 @@ Widget defaultFormField({
     onTap:onTap ,
     enabled:isClickable ,
     decoration: InputDecoration(
+      prefixIcon: Icon(pref),
      hintText: text,
       labelText: label,
       labelStyle: const TextStyle(

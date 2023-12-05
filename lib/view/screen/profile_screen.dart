@@ -8,10 +8,9 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ElevationOverlay.applyOverlay(
-        context, Theme.of(context).scaffoldBackgroundColor, 4);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         actions: [
           Text(
             'PsychePulse',
