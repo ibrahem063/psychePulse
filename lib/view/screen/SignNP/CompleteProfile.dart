@@ -42,11 +42,15 @@ class _CompleteState extends State<Complete> {
                         height: widthOrHeight0(context, 1) * 0.009,
                       ),
                       Container(
-                        child: Text(
-                          "Complete your details or \ncontinue with social media",
-                          style:
-                              TextStyle(fontSize: 16, color: Colors.grey[600]),
-                          textAlign: TextAlign.center,
+                        child: Container(
+                          height: widthOrHeight0(context, 1)*0.05,
+                          width: widthOrHeight0(context, 0)*0.5,
+                          child: Text(
+                            "Complete your details or \ncontinue with social media",
+                            style:
+                                TextStyle(fontSize: 16, color: Colors.grey[600]),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                     ],
