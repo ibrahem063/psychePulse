@@ -1,23 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:psychepulse/controller/signup_controller.dart';
 import 'package:psychepulse/view/screen/SignNP/SignUp.dart';
-import 'package:psychepulse/view/screen/home_screen.dart';
-import 'package:psychepulse/view/widget/profile/CircularProfilePicture.dart';
 import 'package:psychepulse/view/widget/profile/Multi.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 import 'package:psychepulse/view/widget/profile/defaultFormField%20copy.dart';
-import 'package:psychepulse/view/widget/defaultFormField.dart';
 import 'package:psychepulse/view/widget/profile/gender.dart';
-import 'package:flutter/material.dart';
-import 'package:psychepulse/controller/signup_controller.dart';
-import 'package:psychepulse/view/screen/SignNP/SignUp.dart';
-import 'package:psychepulse/view/screen/home_screen.dart';
-import 'package:psychepulse/view/widget/profile/CircularProfilePicture.dart';
-import 'package:psychepulse/view/widget/profile/Multi.dart';
-import 'package:psychepulse/view/widget/compoents/components.dart';
-import 'package:psychepulse/view/widget/profile/defaultFormField copy.dart';
-import 'package:psychepulse/view/widget/defaultFormField.dart';
-import 'package:psychepulse/view/widget/profile/gender.dart';
+import 'package:file_picker/file_picker.dart';
 
 class Profile_user extends StatefulWidget {
   const Profile_user({super.key});
