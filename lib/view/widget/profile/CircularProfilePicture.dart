@@ -13,8 +13,8 @@ class CircularProfilePicture extends StatelessWidget {
     return ClipOval(
       child: Image.asset(
         imagePath,
-        width: 2 * radius,
-        height: 2 * radius,
+        width: 5 * radius,
+        height: 5 * radius,
         fit: BoxFit.cover,
       ),
     );

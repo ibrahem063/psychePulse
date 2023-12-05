@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       ),
         debugShowCheckedModeBanner: false,
         debugShowMaterialGrid: false,
-       home: Profile_user(),
+       home: HomeLayout(),
     );
   }
 }
