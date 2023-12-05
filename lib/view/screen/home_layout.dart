@@ -1,5 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:psychepulse/view/screen/ChatsScreen.dart';
 import 'package:psychepulse/view/screen/call_screen.dart';
 import 'package:psychepulse/view/screen/Profile_page_user/Profile_user.dart';
@@ -23,29 +24,44 @@ class _HomeLayoutState extends State<HomeLayout> {
     const HomeScreen(),
     const ContentScreen(),
     const CallScreen(),
-    const ProfileScreen(),
+    const DoctorScreen(),
     const ChatsScreen(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  spreadRadius: 0.3,
+                  blurRadius: 5,
+                  offset: const Offset(0,1),
+                ),
+              ]
+          ),
+        ),
+        systemOverlayStyle:SystemUiOverlayStyle(statusBarColor: Colors.grey.shade400),
         title: Padding(
           padding:  EdgeInsets.only(left: widthOrHeight0(context, 1)*0.2),
-          child: const Text(
+          child:  Text(
             'PsychePulse',
             style: TextStyle(
               fontSize: 25,
-              color:Color(0xFFFDCCC5),
+              color:Theme.of(context).primaryColor,
               fontWeight: FontWeight.w900
             ),
           ),
         ),
       ),
-      drawer:const DrawerScreen() ,
+      drawer: DrawerScreen() ,
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-            color: Colors.transparent,
+            color: Colors.white,
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.4),

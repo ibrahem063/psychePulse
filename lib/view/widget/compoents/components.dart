@@ -46,9 +46,11 @@ Widget defaultFormField({
   bool isPassword=false,
   Function()?suffixonPressed,
   bool isClickable=true,
+  final double? width ,
+  final double? height ,
 })=>SizedBox(
-  width: 350.0,
-  height: 80.0,
+  width: width,
+  height: height,
   child: TextFormField(
     controller: controller,
     keyboardType: tybe,

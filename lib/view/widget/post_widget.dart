@@ -12,6 +12,7 @@ class PostWidget extends StatelessWidget {
     required this.postImage,
     required this.like,
     required this.comment,
+    required this.callback,
   });
 
   final String path;
@@ -20,6 +21,7 @@ class PostWidget extends StatelessWidget {
   final String postImage;
   final int like;
   final int comment;
+  final Function() callback;
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +46,14 @@ class PostWidget extends StatelessWidget {
                           SizedBox(
                             width: widthOrHeight0(context, 1) * 0.03,
                           ),
-                          Text(
-                            name,
-                            style: TextStyle(
-                                fontSize: widthOrHeight0(context, 0) * 0.04,
-                                fontWeight: FontWeight.bold),
+                          GestureDetector(
+                            onTap: callback,
+                            child: Text(
+                              name,
+                              style: TextStyle(
+                                  fontSize: widthOrHeight0(context, 0) * 0.04,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ],
                       ),
@@ -184,9 +189,6 @@ class PostWidget extends StatelessWidget {
             ],
           ),
         ),
-        Divider(
-          thickness: widthOrHeight0(context, 0) * 0.005,
-        )
       ],
     );
   }

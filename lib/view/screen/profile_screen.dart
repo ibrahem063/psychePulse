@@ -121,7 +121,10 @@ class ProfileScreen extends StatelessWidget {
             thickness: widthOrHeight0(context, 0) * 0.01,
           ),
 
-          const PostWidget(
+           PostWidget(
+            callback: () {
+
+            },
             comment: 32,
             like: 16,
             path: 'assets/images/something.jpg',
@@ -129,7 +132,10 @@ class ProfileScreen extends StatelessWidget {
             postText: 'Is this drug useful for anxiety?',
             postImage: 'assets/images/drug.jpg',
           ),
-          const PostWidget(
+           PostWidget(
+             callback: () {
+
+             },
             comment: 32,
             like: 16,
             path: 'assets/images/something.jpg',

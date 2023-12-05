@@ -15,6 +15,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: Colors.white,
       elevation: 10,
       width: widthOrHeight0(context, 1) * 0.36,
       child: Padding(
@@ -60,32 +61,26 @@ class _DrawerScreenState extends State<DrawerScreen> {
             SizedBox(
               height: widthOrHeight0(context, 1) * 0.002,
             ),
-
-
-          Container(
-  width: widthOrHeight0(context, 1) * 0.182,
-  height: widthOrHeight0(context, 1) * 0.05,
-  decoration: BoxDecoration(
-    color: Colors.blue,
-    borderRadius: BorderRadius.circular(10),
-  ),
-  child: TextButton(
-    onPressed: () {
-      // Navigator.push(
-      //   context,
-      //  MaterialPageRoute(builder: (context) => Profile_user()),
-      // );
-    },
-    child: Text(
-      'Edit Profile',
-      style: TextStyle(color: Colors.white),
-    ),
-  ),
-)
-,
-
-
-
+            Container(
+              width: widthOrHeight0(context, 1) * 0.182,
+              height: widthOrHeight0(context, 1) * 0.05,
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                   MaterialPageRoute(builder: (context) => Profile_user()),
+                  );
+                },
+                child:const Text(
+                  'Edit Profile',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
             SizedBox(
               height: widthOrHeight0(context, 1) * 0.03,
             ),
@@ -166,13 +161,11 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(4.0),
-                      child: FloatingActionButton(
-                        elevation: isSelected ? 5 : 0,
-                        onPressed: () {
+                      child: GestureDetector(
+                        onTap: (){
                           setState(() {
                             isSelected = true;
                           }
-                          
                           );
                         },
                         child: Container(
@@ -206,9 +199,8 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(4.0),
-                      child: FloatingActionButton(
-                        elevation: isSelected ? 0 : 5,
-                        onPressed: () {
+                      child: GestureDetector(
+                        onTap: (){
                           setState(() {
                             isSelected = false;
                           });
@@ -225,17 +217,17 @@ class _DrawerScreenState extends State<DrawerScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Icon(
+                               Icon(
                                 Icons.nightlight_outlined,
-                                color: Colors.white,
+                                color:isSelected?  Colors.black:Colors.white,
                               ),
                               SizedBox(
                                 width: widthOrHeight0(context, 1) * 0.01,
                               ),
-                              const Text(
+                              Text(
                                 'Night',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color:isSelected?  Colors.black:Colors.white,
                                 ),
                               )
                             ],

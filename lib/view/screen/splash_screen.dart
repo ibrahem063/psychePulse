@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:psychepulse/view/screen/SignNP/Login.dart';
 import 'package:psychepulse/view/screen/SignNP/SignUp.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
@@ -16,7 +15,7 @@ class _OnBoardingScreenState extends State<splash> {
   @override
   void initState() {
     Timer(
-      const Duration(seconds: 5),
+      const Duration(seconds: 2),
       () => Navigator.push(
           context,
           MaterialPageRoute(
