@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:psychepulse/view/screen/Profile_page_user/Profile_user.dart';
 import 'package:psychepulse/view/screen/home_layout.dart';
+import 'package:psychepulse/view/screen/profile_screen.dart';
 import 'package:psychepulse/view/screen/splash_screen.dart';
 
 void main() {
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       ),
         debugShowCheckedModeBanner: false,
         debugShowMaterialGrid: false,
-       home: splash(),
+       home: HomeLayout(),
     );
   }
 }

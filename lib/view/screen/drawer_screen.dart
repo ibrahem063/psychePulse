@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:psychepulse/view/screen/Profile_page_user/Profile_user.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
 class DrawerScreen extends StatefulWidget {
@@ -9,19 +10,19 @@ class DrawerScreen extends StatefulWidget {
 }
 
 class _DrawerScreenState extends State<DrawerScreen> {
-  bool isSelected= true;
+  bool isSelected = true;
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
       elevation: 10,
-      width: widthOrHeight0(context, 1)*0.36,
+      width: widthOrHeight0(context, 1) * 0.36,
       child: Padding(
-        padding:  EdgeInsets.only(
-          top: widthOrHeight0(context, 1)*0.08,
-          left:widthOrHeight0(context, 1)*0.02,
+        padding: EdgeInsets.only(
+          top: widthOrHeight0(context, 1) * 0.08,
+          left: widthOrHeight0(context, 1) * 0.02,
         ),
-        child:  Column(
+        child: Column(
           children: [
             Row(
               children: [
@@ -32,79 +33,119 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   ),
                 ),
                 SizedBox(
-                  width: widthOrHeight0(context, 1)*0.02,
+                  width: widthOrHeight0(context, 1) * 0.02,
                 ),
-                 Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
                       'Name',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18
-
-                      ),),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
                     SizedBox(
-                      height: widthOrHeight0(context, 1)*0.002,
+                      height: widthOrHeight0(context, 1) * 0.002,
                     ),
                     const Text(
                       'Email@gmail.com',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 13,
-                        color: Colors.grey
-
-                      ),),
+                          color: Colors.grey),
+                    ),
                   ],
                 ),
               ],
             ),
             SizedBox(
-              height: widthOrHeight0(context, 1)*0.002,
+              height: widthOrHeight0(context, 1) * 0.002,
             ),
-            defaultButton(
-              width: widthOrHeight0(context, 1)*0.182,
-              height: widthOrHeight0(context, 1)*0.05,
-              text: 'Edite Profile',
-              borderRadius: 10,
-              background: Colors.blue
-            ),
+
+
+          Container(
+  width: widthOrHeight0(context, 1) * 0.182,
+  height: widthOrHeight0(context, 1) * 0.05,
+  decoration: BoxDecoration(
+    color: Colors.blue,
+    borderRadius: BorderRadius.circular(10),
+  ),
+  child: TextButton(
+    onPressed: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Profile_user()),
+      );
+    },
+    child: Text(
+      'Edit Profile',
+      style: TextStyle(color: Colors.white),
+    ),
+  ),
+)
+,
+
+
+
             SizedBox(
-              height: widthOrHeight0(context, 1)*0.03,
+              height: widthOrHeight0(context, 1) * 0.03,
             ),
-            drawerButton(icon: Icons.forum_outlined, text: 'My post', function: (){}),
-            drawerButton(icon: Icons.quiz_outlined, text: 'consultations', function: (){}),
-            drawerButton(icon: Icons.date_range_outlined, text: 'Dates & visits', function: (){}),
-            drawerButton(icon: Icons.drag_indicator_sharp, text: 'Drug stimulant', function: (){}),
-            drawerButton(icon: Icons.interests_outlined, text: 'My interest', function: (){}),
-            drawerButton(icon: Icons.star_border_outlined, text: 'Rate application', function: (){}),
-            drawerButton(icon: Icons.settings_outlined, text: 'Settings', function: (){}),
-            drawerButton(icon: Icons.wallet_outlined, text: 'Subscription information', function: (){}),
+            drawerButton(
+                icon: Icons.forum_outlined, text: 'My post', function: () {}),
+            drawerButton(
+                icon: Icons.quiz_outlined,
+                text: 'consultations',
+                function: () {}),
+            drawerButton(
+                icon: Icons.date_range_outlined,
+                text: 'Dates & visits',
+                function: () {}),
+            drawerButton(
+                icon: Icons.drag_indicator_sharp,
+                text: 'Drug stimulant',
+                function: () {}),
+            drawerButton(
+                icon: Icons.interests_outlined,
+                text: 'My interest',
+                function: () {}),
+            drawerButton(
+                icon: Icons.star_border_outlined,
+                text: 'Rate application',
+                function: () {}),
+            drawerButton(
+                icon: Icons.settings_outlined,
+                text: 'Settings',
+                function: () {}),
+            drawerButton(
+                icon: Icons.wallet_outlined,
+                text: 'Subscription information',
+                function: () {}),
             Padding(
-              padding: EdgeInsets.only(top: widthOrHeight0(context, 1)*0.1),
+              padding: EdgeInsets.only(top: widthOrHeight0(context, 1) * 0.1),
               child: Divider(height: 1, color: Colors.grey.shade300),
             ),
             Padding(
               padding: EdgeInsets.only(
-                top:widthOrHeight0(context, 1)*0.04 ,
-                left:widthOrHeight0(context, 1)*0.02,
+                top: widthOrHeight0(context, 1) * 0.04,
+                left: widthOrHeight0(context, 1) * 0.02,
               ),
               child: Row(
                 children: [
                   Container(
-                    padding: EdgeInsetsDirectional.all(widthOrHeight0(context, 1)*0.001),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      border: Border.all(color: Colors.black)
-                    ),
-                      child: const Icon(Icons.priority_high,
+                      padding: EdgeInsetsDirectional.all(
+                          widthOrHeight0(context, 1) * 0.001),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(40),
+                          border: Border.all(color: Colors.black)),
+                      child: const Icon(
+                        Icons.priority_high,
                         size: 15,
                       )),
                   SizedBox(
-                    width: widthOrHeight0(context, 1)*0.01,
+                    width: widthOrHeight0(context, 1) * 0.01,
                   ),
-                  const Text('Colour Scheme',
-                    style:TextStyle(
+                  const Text(
+                    'Colour Scheme',
+                    style: TextStyle(
                       fontSize: 16,
                     ),
                   ),
@@ -112,43 +153,48 @@ class _DrawerScreenState extends State<DrawerScreen> {
               ),
             ),
             SizedBox(
-              height: widthOrHeight0(context, 1)*0.03,
+              height: widthOrHeight0(context, 1) * 0.03,
             ),
             Container(
-              width: widthOrHeight0(context, 1)*0.3,
-              height:widthOrHeight0(context, 1)*0.05,
+              width: widthOrHeight0(context, 1) * 0.3,
+              height: widthOrHeight0(context, 1) * 0.05,
               decoration: BoxDecoration(
-                color: Colors.grey.shade300,
-                borderRadius: BorderRadius.circular(30)
-              ),
+                  color: Colors.grey.shade300,
+                  borderRadius: BorderRadius.circular(30)),
               child: Row(
                 children: [
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: FloatingActionButton(
-                        elevation:isSelected? 5:0,
+                        elevation: isSelected ? 5 : 0,
                         onPressed: () {
                           setState(() {
-                            isSelected=true;
+                            isSelected = true;
                           });
                         },
                         child: Container(
-                          width: widthOrHeight0(context, 1)*0.14,
+                          width: widthOrHeight0(context, 1) * 0.14,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            color:isSelected? Colors.white:Colors.grey.shade300,
+                            color: isSelected
+                                ? Colors.white
+                                : Colors.grey.shade300,
                             borderRadius: BorderRadius.circular(30),
                           ),
-                          child:  Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const Icon(Icons.sunny, color: Colors.black),
-                              SizedBox(width:widthOrHeight0(context, 1)*0.01 ,),
-                              const Text('Light',
+                              SizedBox(
+                                width: widthOrHeight0(context, 1) * 0.01,
+                              ),
+                              const Text(
+                                'Light',
                                 style: TextStyle(
                                   color: Colors.black,
-                                ),),
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -159,30 +205,37 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: FloatingActionButton(
-                        elevation:isSelected? 0:5,
+                        elevation: isSelected ? 0 : 5,
                         onPressed: () {
                           setState(() {
-                            isSelected=false;
+                            isSelected = false;
                           });
                         },
                         child: Container(
-                          width: widthOrHeight0(context, 1)*0.14,
+                          width: widthOrHeight0(context, 1) * 0.14,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            color:isSelected? Colors.grey.shade300 : Colors.black,
+                            color: isSelected
+                                ? Colors.grey.shade300
+                                : Colors.black,
                             borderRadius: BorderRadius.circular(30),
                           ),
-                          child:  Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Icon(Icons.nightlight_outlined,
-                              color: Colors.white ,
-                              ),
-                              SizedBox(width:widthOrHeight0(context, 1)*0.01 ,),
-                              const Text('Night',
-                              style: TextStyle(
+                              const Icon(
+                                Icons.nightlight_outlined,
                                 color: Colors.white,
-                              ),)
+                              ),
+                              SizedBox(
+                                width: widthOrHeight0(context, 1) * 0.01,
+                              ),
+                              const Text(
+                                'Night',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              )
                             ],
                           ),
                         ),

@@ -7,7 +7,9 @@ class SignUpController{
 
    TextEditingController _email = TextEditingController();
    TextEditingController _firstName = TextEditingController();
+      TextEditingController _secondName = TextEditingController();
    TextEditingController _country = TextEditingController();
+      TextEditingController _birth = TextEditingController();
    TextEditingController _password = TextEditingController();
    TextEditingController _phone = TextEditingController();
    GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -17,12 +19,21 @@ class SignUpController{
   set formKey(value) {
     _formKey = value;
   }
+  TextEditingController get birth => _birth;
 
-
+  set birth(TextEditingController value) {
+    _birth = value;
+  }
   TextEditingController get phone => _phone;
 
   set phone(TextEditingController value) {
     _phone = value;
+  }
+
+  TextEditingController get secondname => _secondName;
+
+  set secondname(TextEditingController value) {
+    _secondName = value;
   }
 
   TextEditingController get password => _password;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:psychepulse/controller/login_controller.dart';
 import 'package:psychepulse/view/screen/SignNP/Login.dart';
+import 'package:psychepulse/view/screen/home_layout.dart';
 import 'package:psychepulse/view/screen/home_screen.dart';
 import 'package:psychepulse/view/screen/splash_screen.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
@@ -175,7 +176,7 @@ class _SignUPState extends State<SignUP> {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (_) => const HomeScreen()));
+                                                builder: (_) => const HomeLayout()));
                                       }
                                     },
                                                         
@@ -226,7 +227,10 @@ class _SignUPState extends State<SignUP> {
                         
                         
                ],)
-                
+                //
+
+
+
                 ],
               ),
             ),
