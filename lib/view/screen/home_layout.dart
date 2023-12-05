@@ -25,7 +25,7 @@ class _HomeLayoutState extends State<HomeLayout> {
     CallScreen(),
     const CallScreen(),
     const ProfileScreen(),
-    const ChatsScreen(),
+    const Profile_user(),
   ];
 
   @override

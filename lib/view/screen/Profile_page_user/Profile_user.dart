@@ -47,28 +47,7 @@ class _ChatsScreenState extends State<Profile_user> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: SizedBox(
-            width: widthOrHeight0(context, 0) * 0.09,
-            height: widthOrHeight0(context, 1) * 0.09,
-            child: Icon(Icons.arrow_back),
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        title: Padding(
-          padding: EdgeInsets.only(left: widthOrHeight0(context, 1) * 0.2),
-          child: const Text(
-            'PsychePulse',
-            style: TextStyle(
-                fontSize: 25,
-                color: Color(0xFFFDCCC5),
-                fontWeight: FontWeight.w900),
-          ),
-        ),
-      ),
+      
       body: SingleChildScrollView(
         child: Container(
           child: Column(
