@@ -2,7 +2,6 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:psychepulse/view/screen/ChatsScreen.dart';
 import 'package:psychepulse/view/screen/call_screen.dart';
-import 'package:psychepulse/view/screen/Profile_page_user/Profile_user.dart';
 import 'package:psychepulse/view/screen/content_screen.dart';
 import 'package:psychepulse/view/screen/doctor_screen.dart';
 import 'package:psychepulse/view/screen/drawer_screen.dart';

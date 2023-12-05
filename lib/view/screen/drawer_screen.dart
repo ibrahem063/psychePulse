@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:psychepulse/view/screen/Profile_page_user/Profile_user.dart';
+import 'package:psychepulse/view/screen/profile_screen.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
 class DrawerScreen extends StatefulWidget {
@@ -60,37 +61,33 @@ class _DrawerScreenState extends State<DrawerScreen> {
             SizedBox(
               height: widthOrHeight0(context, 1) * 0.002,
             ),
-
-
-          Container(
-  width: widthOrHeight0(context, 1) * 0.182,
-  height: widthOrHeight0(context, 1) * 0.05,
-  decoration: BoxDecoration(
-    color: Colors.blue,
-    borderRadius: BorderRadius.circular(10),
-  ),
-  child: TextButton(
-    onPressed: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => Profile_user()),
-      );
-    },
-    child: Text(
-      'Edit Profile',
-      style: TextStyle(color: Colors.white),
-    ),
-  ),
-)
-,
-
-
-
+            Container(
+              width: widthOrHeight0(context, 1) * 0.182,
+              height: widthOrHeight0(context, 1) * 0.05,
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Profile_user()),
+                  );
+                },
+                child: Text(
+                  'Edit Profile',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
             SizedBox(
               height: widthOrHeight0(context, 1) * 0.03,
             ),
             drawerButton(
-                icon: Icons.forum_outlined, text: 'My post', function: () {}),
+                icon: Icons.forum_outlined, text: 'My post', function: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen(),));
+            }),
             drawerButton(
                 icon: Icons.quiz_outlined,
                 text: 'consultations',
