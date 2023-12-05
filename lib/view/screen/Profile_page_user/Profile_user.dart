@@ -1,22 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:psychepulse/controller/signup_controller.dart';
 import 'package:psychepulse/view/screen/SignNP/SignUp.dart';
-import 'package:psychepulse/view/screen/home_screen.dart';
-import 'package:psychepulse/view/widget/profile/CircularProfilePicture.dart';
 import 'package:psychepulse/view/widget/profile/Multi.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 import 'package:psychepulse/view/widget/profile/defaultFormField%20copy.dart';
-import 'package:psychepulse/view/widget/defaultFormField.dart';
-import 'package:psychepulse/view/widget/profile/gender.dart';
-import 'package:flutter/material.dart';
-import 'package:psychepulse/controller/signup_controller.dart';
-import 'package:psychepulse/view/screen/SignNP/SignUp.dart';
-import 'package:psychepulse/view/screen/home_screen.dart';
-import 'package:psychepulse/view/widget/profile/CircularProfilePicture.dart';
-import 'package:psychepulse/view/widget/profile/Multi.dart';
-import 'package:psychepulse/view/widget/compoents/components.dart';
-import 'package:psychepulse/view/widget/profile/defaultFormField copy.dart';
-import 'package:psychepulse/view/widget/defaultFormField.dart';
 import 'package:psychepulse/view/widget/profile/gender.dart';
 import 'package:file_picker/file_picker.dart';
 
@@ -47,28 +34,7 @@ class _ChatsScreenState extends State<Profile_user> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: SizedBox(
-            width: widthOrHeight0(context, 0) * 0.09,
-            height: widthOrHeight0(context, 1) * 0.09,
-            child: Icon(Icons.arrow_back),
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        title: Padding(
-          padding: EdgeInsets.only(left: widthOrHeight0(context, 1) * 0.2),
-          child: const Text(
-            'PsychePulse',
-            style: TextStyle(
-                fontSize: 25,
-                color: Color(0xFFFDCCC5),
-                fontWeight: FontWeight.w900),
-          ),
-        ),
-      ),
+      
       body: SingleChildScrollView(
         child: Container(
           child: Column(

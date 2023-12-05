@@ -33,10 +33,10 @@ class _SignUPState extends State<SignUP> {
             child: Form(
                 key: textController.formField,
               child: Column(
-                // crossAxisAlignment: CrossAxisAlignment.center,
+              
                 children: [
                   Column(
-                    //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    
                     children: [
                       Container(
                         child: Text(
@@ -45,10 +45,14 @@ class _SignUPState extends State<SignUP> {
                         ),
                       ),
                       Container(
-                        child: Text(
-                          "welcome bake.. Sign in with your email and password or continue with social\n media",
-                          style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-                          textAlign: TextAlign.center,
+                        child: Container(
+                            height: widthOrHeight0(context, 1)*0.068,
+                          width: widthOrHeight0(context, 0)*0.5,
+                          child: Text(
+                            "welcome bake.. Sign in with your email \nand password or continue with social\n media",
+                            style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                     ],
@@ -57,17 +61,7 @@ class _SignUPState extends State<SignUP> {
                     height: widthOrHeight0(context, 1) * 0.03,
                   ),
                   Stack(
-                    //  child: Container(
-                    //     height: widthOrHeight0(context, 1)*0.50,
-                    //     width: double.infinity,
-                    //     decoration: BoxDecoration(
-                        
-                    //       shape: BoxShape.rectangle,
-                    //       color: Color(0xffFDCCC5),
-                    //       borderRadius: BorderRadius.circular(90)
-                    //     ),
-                    //    ),
-                        
+                
                     children: [
                       Container(
                         height: widthOrHeight0(context, 1) * 0.50,

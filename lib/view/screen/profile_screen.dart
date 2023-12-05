@@ -8,10 +8,9 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ElevationOverlay.applyOverlay(
-        context, Theme.of(context).scaffoldBackgroundColor, 4);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         actions: [
           Text(
             'PsychePulse',
@@ -65,7 +64,8 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         CircleAvatar(
                           foregroundImage:
-                              const AssetImage('assets/images/something.jpg'),
+                              const AssetImage('assets/images.jpg'),
+
                           backgroundColor: const Color(0xff337180),
                           radius: widthOrHeight0(context, 0) * 0.04,
                         ),
@@ -127,7 +127,7 @@ class ProfileScreen extends StatelessWidget {
             },
             comment: 32,
             like: 16,
-            path: 'assets/images/something.jpg',
+            path: 'assets/images.jpg',
             name: 'Ola',
             postText: 'Is this drug useful for anxiety?',
             postImage: 'assets/images/drug.jpg',
