@@ -71,10 +71,10 @@ class _DrawerScreenState extends State<DrawerScreen> {
   ),
   child: TextButton(
     onPressed: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => Profile_user()),
-      );
+      // Navigator.push(
+      //   context,
+      //  MaterialPageRoute(builder: (context) => Profile_user()),
+      // );
     },
     child: Text(
       'Edit Profile',
@@ -171,7 +171,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         onPressed: () {
                           setState(() {
                             isSelected = true;
-                          });
+                          }
+                          
+                          );
                         },
                         child: Container(
                           width: widthOrHeight0(context, 1) * 0.14,

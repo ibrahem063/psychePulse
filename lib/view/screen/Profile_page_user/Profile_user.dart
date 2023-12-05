@@ -8,6 +8,17 @@ import 'package:psychepulse/view/widget/compoents/components.dart';
 import 'package:psychepulse/view/widget/profile/defaultFormField%20copy.dart';
 import 'package:psychepulse/view/widget/defaultFormField.dart';
 import 'package:psychepulse/view/widget/profile/gender.dart';
+import 'package:flutter/material.dart';
+import 'package:psychepulse/controller/signup_controller.dart';
+import 'package:psychepulse/view/screen/SignNP/SignUp.dart';
+import 'package:psychepulse/view/screen/home_screen.dart';
+import 'package:psychepulse/view/widget/profile/CircularProfilePicture.dart';
+import 'package:psychepulse/view/widget/profile/Multi.dart';
+import 'package:psychepulse/view/widget/compoents/components.dart';
+import 'package:psychepulse/view/widget/profile/defaultFormField copy.dart';
+import 'package:psychepulse/view/widget/defaultFormField.dart';
+import 'package:psychepulse/view/widget/profile/gender.dart';
+import 'package:file_picker/file_picker.dart';
 
 class Profile_user extends StatefulWidget {
   const Profile_user({super.key});
@@ -18,6 +29,20 @@ class Profile_user extends StatefulWidget {
 
 class _ChatsScreenState extends State<Profile_user> {
   SignUpController signUpController6 = SignUpController();
+  String? pickedFilePath;
+
+  Future<void> _pickPDF() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+    );
+
+    if (result != null) {
+      setState(() {
+        pickedFilePath = result.files.single.path;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +97,7 @@ class _ChatsScreenState extends State<Profile_user> {
                   ),
                   Container(
                     alignment: Alignment.center,
-                 height: widthOrHeight0(context, 1)*0.013,
+                    height: widthOrHeight0(context, 1) * 0.013,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -187,7 +212,7 @@ class _ChatsScreenState extends State<Profile_user> {
                                 ),
                                 TextFormFieldWidget2(
                                   passToggle: false,
-                                  passController: signUpController6.email,
+                                  passController: signUpController6.doctor,
                                   labelText: '',
                                   validator: (value) {
                                     if (value!.isEmpty) {
@@ -219,6 +244,23 @@ class _ChatsScreenState extends State<Profile_user> {
                                   labelText: '',
                                   validator: (value) {},
                                   str: 'your id',
+                                ),
+                                SizedBox(
+                                  height: widthOrHeight0(context, 1) * 0.015
+                                  ,
+                                ),
+                                Row(
+                                  children: [
+                                    IconButton(
+                                      icon: Icon(Icons.upload_file),
+                                      onPressed: _pickPDF,
+                                      tooltip: 'Upload PDF',
+                                    ),
+                                    Text(
+                                      "Enter your new certificate ",
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(
                                   height: widthOrHeight0(context, 1) * 0.04,

@@ -7,6 +7,7 @@ import 'package:psychepulse/view/screen/content_screen.dart';
 import 'package:psychepulse/view/screen/doctor_screen.dart';
 import 'package:psychepulse/view/screen/drawer_screen.dart';
 import 'package:psychepulse/view/screen/home_screen.dart';
+import 'package:psychepulse/view/screen/profile_screen.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
 class HomeLayout extends StatefulWidget {
@@ -22,7 +23,7 @@ class _HomeLayoutState extends State<HomeLayout> {
     const HomeScreen(),
     const ContentScreen(),
     const CallScreen(),
-    const DoctorScreen(),
+    const ProfileScreen(),
     const ChatsScreen(),
   ];
   @override
