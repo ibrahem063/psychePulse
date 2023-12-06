@@ -60,24 +60,26 @@ class _HomeScreenState extends State<HomeScreen> {
               Expanded(
                 child: ListView.separated(
                   separatorBuilder: (context, index) => SizedBox(height:widthOrHeight0(context, 1)*0.01 ,),
-                  itemBuilder: (context, index) => Container(
-                    color: Colors.white,
-                    child: Padding(
-                      padding:  EdgeInsets.only(top: widthOrHeight0(context, 1)*0.02),
-                      child:  PostWidget(
-                        callback: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ProfileScreen(),
-                              ));
-                        },
-                        comment: 32,
-                        like: 16,
-                        path: 'assets/images/something.jpg',
-                        name: 'Ola',
-                        postText: 'Is this drug useful for anxiety?',
-                        postImage: 'assets/images/drug.jpg',
+                  itemBuilder: (context, index) => Expanded(
+                    child: Container(
+                      color: Colors.white,
+                      child: Padding(
+                        padding:  EdgeInsets.only(top: widthOrHeight0(context, 1)*0.02),
+                        child:  PostWidget(
+                          callback: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const ProfileScreen(),
+                                ));
+                          },
+                          comment: 32,
+                          like: 16,
+                          path: 'assets/images/something.jpg',
+                          name: 'Ola',
+                          postText: 'Is this drug useful for anxiety?',
+                          postImage: 'assets/images/drug.jpg',
+                        ),
                       ),
                     ),
                   ),

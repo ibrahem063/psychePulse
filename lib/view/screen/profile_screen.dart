@@ -64,7 +64,7 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         CircleAvatar(
                           foregroundImage:
-                              const AssetImage('assets/images.jpg'),
+                              const AssetImage('assets/images/something.jpg'),
 
                           backgroundColor: const Color(0xff337180),
                           radius: widthOrHeight0(context, 0) * 0.04,
@@ -100,14 +100,17 @@ class ProfileScreen extends StatelessWidget {
                             SizedBox(
                               width: widthOrHeight0(context, 1) * 0.01,
                             ),
-                            buildContainer(
-                                context,
-                                '',
-                                Icons.more_vert,
-                                widthOrHeight0(context, 1) * 0.03,
-                                widthOrHeight0(context, 0) * 0.05,
-                                Theme.of(context).primaryColor,
-                                Theme.of(context).scaffoldBackgroundColor)
+                            Container(
+                              width:widthOrHeight0(context, 1) * 0.035 ,
+                              child: buildContainer(
+                                  context,
+                                  '',
+                                  Icons.more_vert,
+                                  widthOrHeight0(context, 1) * 0.03,
+                                  widthOrHeight0(context, 0) * 0.05,
+                                  Theme.of(context).primaryColor,
+                                  Theme.of(context).scaffoldBackgroundColor),
+                            )
                           ],
                         )
                       ],
@@ -127,7 +130,7 @@ class ProfileScreen extends StatelessWidget {
             },
             comment: 32,
             like: 16,
-            path: 'assets/images.jpg',
+            path: 'assets/images/something.jpg',
             name: 'Ola',
             postText: 'Is this drug useful for anxiety?',
             postImage: 'assets/images/drug.jpg',

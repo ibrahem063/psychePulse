@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:psychepulse/view/screen/Profile_page_user/Profile_user.dart';
+import 'package:psychepulse/view/screen/Profile_page/Profile_dr_screen.dart';
+import 'package:psychepulse/view/screen/Profile_page/profile_user_Screen.dart';
 import 'package:psychepulse/view/screen/profile_screen.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
@@ -21,7 +22,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
       width: widthOrHeight0(context, 1) * 0.36,
       child: Padding(
         padding: EdgeInsets.only(
-          top: widthOrHeight0(context, 1) * 0.08,
+          top: widthOrHeight0(context, 1) * 0.1,
           left: widthOrHeight0(context, 1) * 0.02,
         ),
         child: Column(
@@ -74,10 +75,10 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   Navigator.push(
                     context,
 
-                    MaterialPageRoute(builder: (context) => Profile_user()),
+                    MaterialPageRoute(builder: (context) => const ProfileUserScreen()),
                   );
                 },
-                child: Text(
+                child:const Text(
                   'Edit Profile',
                   style: TextStyle(color: Colors.white),
                 ),
@@ -128,7 +129,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
             ),
             Padding(
               padding: EdgeInsets.only(
-                top: widthOrHeight0(context, 1) * 0.04,
+                top: widthOrHeight0(context, 1) * 0.02,
                 left: widthOrHeight0(context, 1) * 0.02,
               ),
               child: Row(

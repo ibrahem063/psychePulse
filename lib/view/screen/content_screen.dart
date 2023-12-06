@@ -25,7 +25,7 @@ class _ContentScreenState extends State<ContentScreen> {
                 children: [
                   defaultButton(
                       text: 'Psychotherapy',
-                      width: widthOrHeight0(context, 1)*0.18,
+                      width: widthOrHeight0(context, 1)*0.2,
                       borderRadius: 10,
                       function: (){
                         setState(() {
@@ -35,12 +35,9 @@ class _ContentScreenState extends State<ContentScreen> {
                     background:isSelected? Color(0xFFFDCCC5) :Colors.white,
                     TextColor:isSelected? Colors.white:Color(0xFFFDCCC5),
                   ),
-                  SizedBox(
-                    width: widthOrHeight0(context, 1)*0.04,
-                  ),
                   defaultButton(
                     text: 'Psychological disorders',
-                    width: widthOrHeight0(context, 1)*0.18,
+                    width: widthOrHeight0(context, 1)*0.2,
                     borderRadius: 10,
                     function: (){
                       setState(() {

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:psychepulse/view/screen/Profile_page/Profile_dr_screen.dart';
+import 'package:psychepulse/view/screen/Profile_page/profile_user_Screen.dart';
+import 'package:psychepulse/view/screen/home_screen.dart';
+import 'package:psychepulse/view/screen/splash_screen.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
 import '../../model/doctor_details_model.dart';
@@ -30,8 +34,8 @@ class _DoctorScreenState extends State<DoctorScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(
-          width: double.infinity,
+         SizedBox(
+          height:widthOrHeight0(context, 0)*0.02,
         ),
         defaultFormField(
             controller: _controller,
@@ -39,9 +43,9 @@ class _DoctorScreenState extends State<DoctorScreen> {
             validator:(p0) {
               return null;
             },
-            radius: 15,
+            radius: 10,
             pref: Icons.search,
-            label: 'Search',
+            text: 'Search',
             width: widthOrHeight0(context, 1) * 0.4,
             height: widthOrHeight0(context, 0) * 0.05),
         SizedBox(
@@ -51,6 +55,24 @@ class _DoctorScreenState extends State<DoctorScreen> {
           child: ListView.separated(
             separatorBuilder: (context, index) => Divider(thickness: widthOrHeight0(context, 0)*0.01,),
             itemBuilder: (context, index) => DoctorDetailsWidget(
+              functionBotton1: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const splash()),
+                );
+              },
+              functionBotton2: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ProfileDRScreen()),
+                );
+              },
+              function: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ProfileUserScreen()),
+                );
+              },
             doctorDetails: doctorDetails,
             path: 'assets/images/doctor.jpg',
             name: 'DR. Omar Jalal',
