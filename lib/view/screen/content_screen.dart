@@ -56,7 +56,7 @@ class _ContentScreenState extends State<ContentScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const splash(),
+                      builder: (context) => const Splash(),
                     ));
               }),
             ],

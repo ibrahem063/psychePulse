@@ -5,14 +5,14 @@ import 'package:psychepulse/view/screen/SignNP/Login.dart';
 import 'package:psychepulse/view/screen/SignNP/SignUp.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
-class splash extends StatefulWidget {
-  const splash({super.key});
+class Splash extends StatefulWidget {
+  const Splash({super.key});
 
   @override
-  State<splash> createState() => _OnBoardingScreenState();
+  State<Splash> createState() => _OnBoardingScreenState();
 }
 
-class _OnBoardingScreenState extends State<splash> {
+class _OnBoardingScreenState extends State<Splash> {
   @override
   void initState() {
     Timer(

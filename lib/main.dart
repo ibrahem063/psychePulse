@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       ),
         debugShowCheckedModeBanner: false,
         debugShowMaterialGrid: false,
-       home: SignUP(),
+       home: const Splash(),
     );
   }
 }
