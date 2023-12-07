@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
+import 'package:psychepulse/main.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
 class LanguageSelection extends StatefulWidget {
+  const LanguageSelection({super.key});
+
   @override
   _GenderSelectionState createState() => _GenderSelectionState();
 }
 
 class _GenderSelectionState extends State<LanguageSelection> {
   String selectedGender = '';
+  final FlutterLocalization localization = FlutterLocalization.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +26,12 @@ class _GenderSelectionState extends State<LanguageSelection> {
           onChanged: (value) {
             setState(() {
               selectedGender = value.toString();
+              localization.translate('en');
+              appLang = 'en';
             });
           },
         ),
-        Text(
+        const Text(
           'English',
           style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
         ),
@@ -36,10 +43,12 @@ class _GenderSelectionState extends State<LanguageSelection> {
           onChanged: (value) {
             setState(() {
               selectedGender = value.toString();
+              localization.translate('ar');
+              appLang = 'ar';
             });
           },
         ),
-        Text('Arabic',
+        const Text('Arabic',
             style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
 
             

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
+import 'package:psychepulse/conf/app_locale.dart';
 import 'package:psychepulse/controller/login_controller.dart';
+import 'package:psychepulse/main.dart';
 import 'package:psychepulse/view/screen/SignNP/register_screen.dart';
 import 'package:psychepulse/view/screen/home_layout.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
@@ -14,9 +17,19 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  @override
+  void initState() {
+    if(appLang.contains('ar')) {
+      FlutterLocalization.instance.translate('ar');
+    }
+    super.initState();
+  }
+
     bool? isChecked = false;
   bool passToggle = true;
   TextController textController = TextController();
+    final FlutterLocalization localization = FlutterLocalization.instance;
   @override
   Widget build(BuildContext context) {
     
@@ -35,15 +48,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 Column(
 
                   children: [
-                    const Text(
-                      "Login",
-                      style: TextStyle(fontSize: 37, fontWeight: FontWeight.bold),
+                    Text(
+                      AppLocale.login.getString(context),
+                      style: const TextStyle(fontSize: 37, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
                         height: widthOrHeight0(context, 1)*0.068,
                       width: widthOrHeight0(context, 0)*0.5,
                       child: Text(
-                        "welcome bake.. Sign in with your email \nand password or continue with social\n media",
+                        AppLocale.subTitle.getString(context),
                         style: TextStyle(fontSize: 16, color: Colors.grey[600]),
                         textAlign: TextAlign.center,
                       ),
@@ -79,8 +92,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text(
-                                    "email",
+                                  Text(
+                                    AppLocale.emailLogin.getString(context),
                                     style: TextStyle(fontWeight: FontWeight.bold),
                                   ),
                                   SizedBox(
@@ -113,9 +126,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text(
-                                    "Password",
-                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                  Text(
+                                    AppLocale.passwordLogin.getString(context),
+                                    style: const TextStyle(fontWeight: FontWeight.bold),
                                   ),
                                   SizedBox(
                                     height: widthOrHeight0(context, 1) * .015,
@@ -142,9 +155,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               TextButton(
                                   onPressed: () {},
-                                  child: const Text(
-                                    "Forget Password?",
-                                    style: TextStyle(
+                                  child: Text(
+                                    AppLocale.forgotPass.getString(context),
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black),
                                   )),
@@ -176,10 +189,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                     decoration: BoxDecoration(
                                         color: Colors.black,
                                         borderRadius: BorderRadius.circular(5)),
-                                    child: const Center(
+                                    child: Center(
                                       child: Text(
-                                        "LOGIN",
-                                        style: TextStyle(
+                                        AppLocale.bottomLogin.getString(context),
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 20,
                                             fontFamily: 'Kadwa',
@@ -200,8 +213,7 @@ class _LoginScreenState extends State<LoginScreen> {
              , Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
-              const Text("You don't have an account?",style: TextStyle(fontWeight: FontWeight.w700), ),
+                Text(AppLocale.doNotHaveAccount.getString(context),style: const TextStyle(fontWeight: FontWeight.w700), ),
               TextButton(
                 onPressed: (){
                   Navigator.push(
@@ -211,9 +223,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   );
                 },
                 child:
-                const Text(
-                  "Register now",
-                  style: TextStyle(
+                Text(
+                  AppLocale.registerNow.getString(context),
+                  style: const TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 15,
                       color: Color(0xffFDCCC5,),
