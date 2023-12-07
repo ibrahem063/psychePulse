@@ -31,10 +31,10 @@ class _CallScreenState extends State<CallScreen> {
                     children: [
                       CircleAvatar(
                         radius: 30,
-                        backgroundColor: Color(0xffC2EAFF),
+                        backgroundColor:const Color(0xffC2EAFF),
                         child: IconButton(
                           onPressed: () {},
-                          icon: Icon(Icons.phone_in_talk),
+                          icon:const  Icon(Icons.phone_in_talk),
                           color: Colors.white,
                         ),
                       ),
@@ -67,10 +67,10 @@ class _CallScreenState extends State<CallScreen> {
                     children: [
                       CircleAvatar(
                         radius: 30,
-                        backgroundColor: Color(0xffC2EAFF),
+                        backgroundColor: const Color(0xffC2EAFF),
                         child: IconButton(
                           onPressed: () {},
-                          icon: Icon(Icons.message),
+                          icon:const Icon(Icons.message),
                           color: Colors.white,
                         ),
                       ),

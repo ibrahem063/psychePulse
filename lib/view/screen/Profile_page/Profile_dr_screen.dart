@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:psychepulse/controller/signup_controller.dart';
-import 'package:psychepulse/view/screen/SignNP/SignUp.dart';
+import 'package:psychepulse/view/screen/SignNP/login_screen.dart';
 import 'package:psychepulse/view/widget/profile/Multi.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 import 'package:psychepulse/view/widget/profile/defaultFormField%20copy.dart';
@@ -56,7 +56,7 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                     Container(
                       height: widthOrHeight0(context, 1) * 0.15,
                       width: double.infinity,
-                      color: Color(0xffFEF0ED),
+                      color: const Color(0xffFEF0ED),
                     ),
                     Padding(
                       padding: EdgeInsets.only(
@@ -82,8 +82,7 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xff2D9BF0),
-                          onPrimary: Colors.white,
+                          foregroundColor: Colors.white, backgroundColor: const Color(0xff2D9BF0),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
                           ),
@@ -91,10 +90,10 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.camera_alt_sharp),
+                            const Icon(Icons.camera_alt_sharp),
                             SizedBox(
                                 width: widthOrHeight0(context, 0) * 0.016),
-                            Text(
+                            const Text(
                               'Add Image',
                               style: TextStyle(fontWeight: FontWeight.w700),
                             ),
@@ -104,14 +103,14 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                     ),
                     IconButton(
                       onPressed: () {},
-                      icon: Icon(Icons.restore_from_trash),
+                      icon: const Icon(Icons.restore_from_trash),
                       iconSize: widthOrHeight0(context, 1) * 0.03,
                     ),
                   ],
                 ),
                 Padding(
                   padding: EdgeInsets.all(widthOrHeight0(context, 1) * 0.02),
-                  child: Container(
+                  child: SizedBox(
                     width: widthOrHeight0(context, 0) * 0.5,
                     child: Form(
                       key: signUpController6.formKey,
@@ -121,7 +120,7 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 "First Name",
                                 style: TextStyle(color: Colors.black),
                               ),
@@ -132,13 +131,15 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                                 passToggle: false,
                                 passController: signUpController6.firstName,
                                 labelText: '',
-                                validator: (value) {},
+                                validator: (value) {
+                                  return null;
+                                },
                                 str: 'Ibrahim',
                               ),
                               SizedBox(
                                 height: widthOrHeight0(context, 1) * 0.02,
                               ),
-                              Text(
+                              const Text(
                                 "Last Name",
                                 style: TextStyle(color: Colors.black),
                               ),
@@ -149,7 +150,9 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                                 passToggle: false,
                                 passController: signUpController6.secondname,
                                 labelText: '',
-                                validator: (value) {},
+                                validator: (value) {
+                                  return null;
+                                },
                                 str: 'Khald',
                               ),
                             ],
@@ -158,7 +161,7 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 "Birth day",
                                 style: TextStyle(color: Colors.black),
                               ),
@@ -169,7 +172,9 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                                 passToggle: false,
                                 passController: signUpController6.birth,
                                 labelText: '',
-                                validator: (value) {},
+                                validator: (value) {
+                                  return null;
+                                },
                                 str: '06/02/2001',
                               ),
                               SizedBox(
@@ -179,7 +184,7 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                               SizedBox(
                                 height: widthOrHeight0(context, 1) * 0.02,
                               ),
-                              Text(
+                              const Text(
                                 "Email ",
                                 style: TextStyle(color: Colors.black),
                               ),
@@ -207,7 +212,7 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                               SizedBox(
                                 height: widthOrHeight0(context, 1) * 0.04,
                               ),
-                              Text(
+                              const Text(
                                 "ID ",
                                 style: TextStyle(color: Colors.black),
                               ),
@@ -218,7 +223,9 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                                 passToggle: false,
                                 passController: signUpController6.country,
                                 labelText: '',
-                                validator: (value) {},
+                                validator: (value) {
+                                  return null;
+                                },
                                 str: 'your id',
                               ),
                               SizedBox(
@@ -228,11 +235,11 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                               Row(
                                 children: [
                                   IconButton(
-                                    icon: Icon(Icons.upload_file),
+                                    icon: const Icon(Icons.upload_file),
                                     onPressed: _pickPDF,
                                     tooltip: 'Upload PDF',
                                   ),
-                                  Text(
+                                  const Text(
                                     "Enter your new certificate ",
                                     style: TextStyle(color: Colors.black),
                                   ),
@@ -241,7 +248,7 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                               SizedBox(
                                 height: widthOrHeight0(context, 1) * 0.04,
                               ),
-                              Text(
+                              const Text(
                                 "Specialization",
                                 style: TextStyle(color: Colors.black),
                               ),
@@ -252,13 +259,15 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                                 passToggle: false,
                                 passController: signUpController6.email,
                                 labelText: '',
-                                validator: (value) {},
+                                validator: (value) {
+                                  return null;
+                                },
                                 str: 'your Specialization',
                               ),
                               SizedBox(
                                 height: widthOrHeight0(context, 1) * 0.03,
                               ),
-                              Text(
+                              const Text(
                                 "Bio",
                                 style: TextStyle(color: Colors.black),
                               ),
@@ -276,13 +285,13 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (_) =>
-                                                  const SignUP()));
+                                                  const LoginScreen()));
                                     },
                                     child: Container(
                                       height:
                                           widthOrHeight0(context, 0) * .05,
                                       decoration: BoxDecoration(
-                                          color: Color(0xff2D9BF0),
+                                          color: const Color(0xff2D9BF0),
                                           borderRadius:
                                               BorderRadius.circular(5)),
                                       child: const Center(

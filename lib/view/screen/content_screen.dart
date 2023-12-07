@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:psychepulse/view/screen/home_screen.dart';
 import 'package:psychepulse/view/screen/splash_screen.dart';
-
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
 class ContentScreen extends StatefulWidget {
@@ -32,8 +30,8 @@ class _ContentScreenState extends State<ContentScreen> {
                           isSelected=true;
                         });
                       },
-                    background:isSelected? Color(0xFFFDCCC5) :Colors.white,
-                    TextColor:isSelected? Colors.white:Color(0xFFFDCCC5),
+                    background:isSelected? const Color(0xFFFDCCC5) :Colors.white,
+                    TextColor:isSelected? Colors.white:const Color(0xFFFDCCC5),
                   ),
                   defaultButton(
                     text: 'Psychological disorders',
@@ -44,8 +42,8 @@ class _ContentScreenState extends State<ContentScreen> {
                         isSelected=false;
                       });
                     },
-                    background:isSelected? Colors.white:Color(0xFFFDCCC5),
-                    TextColor:isSelected? Color(0xFFFDCCC5) :Colors.white,
+                    background:isSelected? Colors.white:const Color(0xFFFDCCC5),
+                    TextColor:isSelected? const Color(0xFFFDCCC5) :Colors.white,
                   ),
                 ],
               ),
