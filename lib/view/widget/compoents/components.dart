@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 Widget defaultButton({
   double width=double.infinity,
-  double height=50.0,
+   double height=50,
   Color background=const Color(0xFFFDCCC5),
   Color TextColor= Colors.white,
   final Function()? function,
@@ -43,14 +43,14 @@ Widget defaultFormField({
   final String? text,
   final String? label,
   Function()? onTap,
-  final double? width ,
-  final double? height ,
   double radius=0.0,
   IconData? suffixIcon,
   IconData? pref,
   bool isPassword=false,
   Function()?suffixonPressed,
   bool isClickable=true,
+  final double? width ,
+  final double? height ,
 })=>SizedBox(
   width: width,
   height: height,
@@ -61,12 +61,12 @@ Widget defaultFormField({
     onChanged:onChanged,
     validator:validator,
     obscureText:isPassword,
-    style:const TextStyle(
-    ),
+    textAlign: TextAlign.start,
+
     onTap:onTap ,
     enabled:isClickable ,
     decoration: InputDecoration(
-      prefixIcon: Icon(pref),
+      //prefixIcon: Icon(pref),
      hintText: text,
       labelText: label,
       labelStyle: const TextStyle(

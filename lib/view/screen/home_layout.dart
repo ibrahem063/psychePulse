@@ -1,13 +1,12 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:psychepulse/view/screen/ChatsScreen.dart';
 import 'package:psychepulse/view/screen/call_screen.dart';
 import 'package:psychepulse/view/screen/content_screen.dart';
 import 'package:psychepulse/view/screen/doctor_screen.dart';
 import 'package:psychepulse/view/screen/drawer_screen.dart';
 import 'package:psychepulse/view/screen/home_screen.dart';
-import 'package:psychepulse/view/screen/profile_screen.dart';
-import 'package:psychepulse/view/widget/compoents/AlertBox.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
 class HomeLayout extends StatefulWidget {
@@ -31,17 +30,34 @@ class _HomeLayoutState extends State<HomeLayout> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  spreadRadius: 0.3,
+                  blurRadius: 5,
+                  offset: const Offset(0,1),
+                ),
+              ]
+          ),
+        ),
+        systemOverlayStyle:SystemUiOverlayStyle(statusBarColor: Colors.grey.shade400),
         title: Padding(
-          padding: EdgeInsets.only(left: widthOrHeight0(context, 1) * 0.2),
-          child: const Text(
+          padding:  EdgeInsets.only(left: widthOrHeight0(context, 1)*0.2),
+          child:  Text(
             'PsychePulse',
             style: TextStyle(
-                fontSize: 25,
-                color: Color(0xFFFDCCC5),
-                fontWeight: FontWeight.w900),
+              fontSize: 25,
+              color:Theme.of(context).primaryColor,
+              fontWeight: FontWeight.w900
+            ),
           ),
         ),
       ),
+
       drawer: const DrawerScreen(),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
@@ -66,7 +82,7 @@ class _HomeLayoutState extends State<HomeLayout> {
               if (index == 2) {
                 showdialogonbuttonpress(context);
               } else {
-             
+
                 setState(() {
                   currentIndex = index;
                 });
@@ -96,7 +112,7 @@ class _HomeLayoutState extends State<HomeLayout> {
               const BottomNavigationBarItem(
                   icon: CircleAvatar(
                     radius: 22,
-                    backgroundColor: Color(0xFFFDCCC5),
+                    backgroundColor: Color(0xFFFDB6A8),
                     child: Icon(
                       Icons.perm_phone_msg,
                       color: Colors.white,
@@ -140,123 +156,10 @@ class _HomeLayoutState extends State<HomeLayout> {
 
   Future<void> showdialogonbuttonpress(BuildContext context) async {
     return showDialog(
-      
       context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
-        return Dialog(
-         alignment: Alignment.bottomCenter,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          backgroundColor: Color(0xff79BFF5),
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Container(
-              height: 180,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Column(
-                        children: [
-                          CircleAvatar(
-                            radius: 30,
-                            backgroundColor: Color(0xffC2EAFF),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.phone_in_talk),
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(height: 8.0),
-                          Text(
-                            "Text Conversation",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12.0,
-                            ),
-                          ),
-                          Text(
-                            "Talk to a life coach chat",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 10.0,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 16.0),
-                      Container(
-                        height: 60.0,
-                        width: 1.0,
-                        color: Colors.white,
-                      ),
-                      SizedBox(width: 16.0),
-                      Column(
-                        children: [
-                          CircleAvatar(
-                            radius: 30,
-                            backgroundColor: Color(0xffC2EAFF),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.message),
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(height: 8.0),
-                          Text(
-                            "Text Conversation",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12.0,
-                            ),
-                          ),
-                          Text(
-                            "Talk to a life coach chat",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 10.0,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 16.0),
-                  SizedBox(height: widthOrHeight0(context, 1) * 0.003),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: Color(0xffC2EAFF),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(0),
-                      child: Text(
-                        'Talk to your doctor wherever you are',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
+        return CallScreen();
       },
     );
   }

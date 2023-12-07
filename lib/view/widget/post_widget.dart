@@ -12,6 +12,7 @@ class PostWidget extends StatelessWidget {
     required this.postImage,
     required this.like,
     required this.comment,
+    required this.callback,
   });
 
   final String path;
@@ -20,6 +21,7 @@ class PostWidget extends StatelessWidget {
   final String postImage;
   final int like;
   final int comment;
+  final Function() callback;
 
   @override
   Widget build(BuildContext context) {
@@ -32,36 +34,43 @@ class PostWidget extends StatelessWidget {
             children: [
               Expanded(
                   flex: 1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Row(
-                        children: [
-                          CircleAvatar(
-                            radius: widthOrHeight0(context, 0) * 0.03,
-                            foregroundImage: AssetImage(path),
-                          ),
-                          SizedBox(
-                            width: widthOrHeight0(context, 1) * 0.03,
-                          ),
-                          Text(
-                            name,
-                            style: TextStyle(
-                                fontSize: widthOrHeight0(context, 0) * 0.04,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(),
-                      buildContainer(
-                          context,
-                          '',
-                          Icons.more_vert,
-                          widthOrHeight0(context, 1) * 0.03,
-                          widthOrHeight0(context, 0) * 0.05,
-                          Theme.of(context).scaffoldBackgroundColor,
-                          Colors.black)
-                    ],
+                  child: Padding(
+                    padding:  EdgeInsets.only(left:widthOrHeight0(context, 1)*0.05),
+                    child: Row(
+                      children: [
+                        Row(
+
+                          children: [
+                            CircleAvatar(
+                              radius: widthOrHeight0(context, 0) * 0.03,
+                              foregroundImage: AssetImage(path),
+                            ),
+                            SizedBox(
+                              width: widthOrHeight0(context, 1) * 0.03,
+                            ),
+                            GestureDetector(
+                              onTap: callback,
+                              child: Text(
+                                name,
+                                style: TextStyle(
+                                    fontSize: widthOrHeight0(context, 0) * 0.04,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Expanded(
+                          child: buildContainer(
+                              context,
+                              '',
+                              Icons.more_vert,
+                              widthOrHeight0(context, 1) * 0.02,
+                              widthOrHeight0(context, 0) * 0.05,
+                              Theme.of(context).scaffoldBackgroundColor,
+                              Colors.black),
+                        )
+                      ],
+                    ),
                   )),
               Expanded(
                   flex: 4,
@@ -184,9 +193,6 @@ class PostWidget extends StatelessWidget {
             ],
           ),
         ),
-        Divider(
-          thickness: widthOrHeight0(context, 0) * 0.005,
-        )
       ],
     );
   }

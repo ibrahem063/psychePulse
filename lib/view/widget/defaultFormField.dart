@@ -11,7 +11,7 @@ class TextFormFieldWidget extends StatelessWidget {
   final double width;
   final double height;
   final Color color;
-  final IconData iconSufData;
+  final IconData? iconSufData;
 
   const TextFormFieldWidget(
       {super.key,
@@ -23,7 +23,7 @@ class TextFormFieldWidget extends StatelessWidget {
       this.width = 0,
       this.height = 0,
       this.color = Colors.lime,
-      this.iconSufData = Icons.add});
+      this.iconSufData ,});
 
   @override
   Widget build(BuildContext context) {
