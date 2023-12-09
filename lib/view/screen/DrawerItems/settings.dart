@@ -79,7 +79,7 @@ class _SettingsState extends State<Settings> {
                   children: [
                     SizedBox(
                       height: widthOrHeight0(context, 1) * 0.07,
-                      width: widthOrHeight0(context, 0) * 0.4,
+                      width: widthOrHeight0(context, 0) * 0.45,
                       child: OutlinedButton(
                         onPressed: () {
                           //click logic here
@@ -115,9 +115,9 @@ class _SettingsState extends State<Settings> {
                 SizedBox(
                   height: widthOrHeight0(context, 1) * 0.02,
                 ),
-                Container(
+                SizedBox(
                   height: widthOrHeight0(context, 1) * 0.07,
-                  width: widthOrHeight0(context, 0) * 0.4,
+                  width: widthOrHeight0(context, 0) * 0.45,
                   child: OutlinedButton(
                     onPressed: () {
                       //click logic here

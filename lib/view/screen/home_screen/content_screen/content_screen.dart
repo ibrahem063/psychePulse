@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:psychepulse/view/screen/Psychological_disorders_screen.dart';
-import 'package:psychepulse/view/screen/psychotherapy_screen.dart';
-import 'package:psychepulse/view/screen/splash_screen.dart';
+import 'package:psychepulse/view/screen/home_screen/content_screen/Psychological_disorders_screen.dart';
+import 'package:psychepulse/view/screen/home_screen/content_screen/psychotherapy_screen.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
 class ContentScreen extends StatefulWidget {
@@ -26,7 +25,7 @@ class _ContentScreenState extends State<ContentScreen> {
                 children: [
                   defaultButton(
                       text: 'Psychotherapy',
-                      width: widthOrHeight0(context, 1)*0.19,
+                      width: widthOrHeight0(context, 1)*0.197,
                       borderRadius: 10,
                       function: (){
                         setState(() {

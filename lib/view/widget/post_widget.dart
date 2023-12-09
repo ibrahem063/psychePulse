@@ -32,46 +32,45 @@ class PostWidget extends StatelessWidget {
           width: double.infinity,
           child: Column(
             children: [
-              Expanded(
-                  flex: 1,
-                  child: Padding(
-                    padding:  EdgeInsets.only(left:widthOrHeight0(context, 1)*0.05),
-                    child: Row(
-                      children: [
-                        Row(
+              Padding(
+                padding:  EdgeInsets.only(left:widthOrHeight0(context, 1)*0.05),
+                child: Row(
+                  children: [
+                    Row(
 
-                          children: [
-                            CircleAvatar(
-                              radius: widthOrHeight0(context, 0) * 0.03,
-                              foregroundImage: AssetImage(path),
-                            ),
-                            SizedBox(
-                              width: widthOrHeight0(context, 1) * 0.03,
-                            ),
-                            GestureDetector(
-                              onTap: callback,
-                              child: Text(
-                                name,
-                                style: TextStyle(
-                                    fontSize: widthOrHeight0(context, 0) * 0.04,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ],
+                      children: [
+                        CircleAvatar(
+                          radius: widthOrHeight0(context, 0) * 0.03,
+                          foregroundImage: AssetImage(path),
                         ),
-                        Expanded(
-                          child: buildContainer(
-                              context,
-                              '',
-                              Icons.more_vert,
-                              widthOrHeight0(context, 1) * 0.02,
-                              widthOrHeight0(context, 0) * 0.05,
-                              Theme.of(context).scaffoldBackgroundColor,
-                              Colors.black),
-                        )
+                        SizedBox(
+                          width: widthOrHeight0(context, 1) * 0.03,
+                        ),
+                        GestureDetector(
+                          onTap: callback,
+                          child: Text(
+                            name,
+                            style: TextStyle(
+                                fontSize: widthOrHeight0(context, 0) * 0.04,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
                       ],
                     ),
-                  )),
+                    Expanded(
+                      flex: 1,
+                      child: buildContainer(
+                          context,
+                          '',
+                          Icons.more_vert,
+                          widthOrHeight0(context, 1) * 0.02,
+                          widthOrHeight0(context, 0) * 0.05,
+                          Theme.of(context).scaffoldBackgroundColor,
+                          Colors.black),
+                    )
+                  ],
+                ),
+              ),
               Expanded(
                   flex: 4,
                   child: Column(

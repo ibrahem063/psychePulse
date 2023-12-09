@@ -4,7 +4,7 @@ import 'package:psychepulse/conf/app_locale.dart';
 import 'package:psychepulse/controller/login_controller.dart';
 import 'package:psychepulse/main.dart';
 import 'package:psychepulse/view/screen/SignNP/register_screen.dart';
-import 'package:psychepulse/view/screen/home_layout.dart';
+import 'package:psychepulse/view/screen/home_screen/home_layout.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
 import 'package:psychepulse/view/widget/defaultFormField.dart';

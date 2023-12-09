@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:psychepulse/view/screen/message_screen.dart';
+import 'package:psychepulse/view/screen/home_screen/chat_screen/message_screen.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
 class ChatsScreen extends StatefulWidget {

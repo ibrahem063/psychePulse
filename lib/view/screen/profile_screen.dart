@@ -28,9 +28,8 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView(
+      body: Column(
         children: [
-          //Profile widget
           Container(
             height: widthOrHeight0(context, 0) * 0.3,
             width: double.infinity,
@@ -121,38 +120,37 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
           Divider(
-            thickness: widthOrHeight0(context, 0) * 0.01,
+            thickness: widthOrHeight0(context, 0) * 0.005,
           ),
 
-           PostWidget(
-            callback: () {
-
-            },
-            comment: 32,
-            like: 16,
-            path: 'assets/images/something.jpg',
-            name: 'Ola',
-            postText: 'Is this drug useful for anxiety?',
-            postImage: 'assets/images/drug.jpg',
-          ),
-           PostWidget(
-             callback: () {
-
-             },
-            comment: 32,
-            like: 16,
-            path: 'assets/images/something.jpg',
-            name: 'Ola',
-            postText: 'Is this drug useful for anxiety?',
-            postImage: 'assets/images/drug.jpg',
+          Expanded(
+            flex: 1,
+            child: ListView.separated(
+              separatorBuilder: (context, index) => Divider(thickness: widthOrHeight0(context, 0) * 0.005,),
+              itemBuilder: (context, index) => Container(
+                color: Colors.white,
+                child: Padding(
+                  padding:  EdgeInsets.only(top: widthOrHeight0(context, 1)*0.02),
+                  child:  PostWidget(
+                    callback: () {
+                    },
+                    comment: 32,
+                    like: 16,
+                    path: 'assets/images/something.jpg',
+                    name: 'Ola',
+                    postText: 'Is this drug useful for anxiety?',
+                    postImage: 'assets/images/drug.jpg',
+                  ),
+                ),
+              ),
+              itemCount: 7,
+            ),
           ),
         ],
       ),
     );
   }
 }
-
-
 
 Container buildContainer(BuildContext context, String text, IconData iconData,
     double width, double height, Color color, Color iconColor) {

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:psychepulse/view/screen/DrawerItems/consultations_screen.dart';
+import 'package:psychepulse/view/screen/DrawerItems/my_post_screen.dart';
 import 'package:psychepulse/view/screen/Profile_page/profile_user_Screen.dart';
 import 'package:psychepulse/view/screen/SignNP/login_screen.dart';
 import 'package:psychepulse/view/screen/profile_screen.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
-import 'DrawerItems/settings.dart';
+import '../DrawerItems/settings.dart';
 
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen({super.key});
@@ -91,16 +93,14 @@ class _DrawerScreenState extends State<DrawerScreen> {
             ),
             drawerButton(
                 icon: Icons.forum_outlined, text: 'My post', function: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen(),));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const MyPostScreen(),));
             }),
             drawerButton(
                 icon: Icons.quiz_outlined,
                 text: 'consultations',
-                function: () {}),
-            drawerButton(
-                icon: Icons.date_range_outlined,
-                text: 'Dates & visits',
-                function: () {}),
+                function: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const ConsultationsScreen(),));
+                }),
             drawerButton(
                 icon: Icons.drag_indicator_sharp,
                 text: 'Drug stimulant',
@@ -153,7 +153,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
               ),
             ),
             SizedBox(
-              height: widthOrHeight0(context, 1) * 0.03,
+              height: widthOrHeight0(context, 1) * 0.02,
             ),
             Container(
               width: widthOrHeight0(context, 1) * 0.3,

@@ -11,7 +11,7 @@ class LanguageSelection extends StatefulWidget {
 }
 
 class _GenderSelectionState extends State<LanguageSelection> {
-  String selectedGender = '';
+   String selectedGender='';
   final FlutterLocalization localization = FlutterLocalization.instance;
 
   @override

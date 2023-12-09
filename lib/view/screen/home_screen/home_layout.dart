@@ -1,12 +1,12 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:psychepulse/view/screen/ChatsScreen.dart';
-import 'package:psychepulse/view/screen/call_screen.dart';
-import 'package:psychepulse/view/screen/content_screen.dart';
-import 'package:psychepulse/view/screen/doctor_screen.dart';
-import 'package:psychepulse/view/screen/drawer_screen.dart';
-import 'package:psychepulse/view/screen/home_screen.dart';
+import 'package:psychepulse/view/screen/home_screen/chat_screen/ChatsScreen.dart';
+import 'package:psychepulse/view/screen/home_screen/call_screen.dart';
+import 'package:psychepulse/view/screen/home_screen/content_screen/content_screen.dart';
+import 'package:psychepulse/view/screen/home_screen/doctor_screen.dart';
+import 'package:psychepulse/view/screen/home_screen/drawer_screen.dart';
+import 'package:psychepulse/view/screen/home_screen/home_screen.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
 class HomeLayout extends StatefulWidget {
