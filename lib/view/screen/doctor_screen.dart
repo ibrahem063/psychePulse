@@ -59,7 +59,7 @@ class _DoctorScreenState extends State<DoctorScreen> {
               functionBotton1: (){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const splash()),
+                  MaterialPageRoute(builder: (context) => const Splash()),
                 );
               },
               functionBotton2: (){

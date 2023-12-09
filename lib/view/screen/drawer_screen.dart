@@ -4,6 +4,8 @@ import 'package:psychepulse/view/screen/SignNP/login_screen.dart';
 import 'package:psychepulse/view/screen/profile_screen.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
+import 'DrawerItems/settings.dart';
+
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen({super.key});
 
@@ -110,7 +112,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
             drawerButton(
                 icon: Icons.settings_outlined,
                 text: 'Settings',
-                function: () {}),
+                function: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Settings(),));
+                }),
             drawerButton(
                 icon: Icons.wallet_outlined,
                 text: 'Subscription information',
