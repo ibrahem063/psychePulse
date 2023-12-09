@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:psychepulse/view/screen/Psychological_disorders_screen.dart';
+import 'package:psychepulse/view/screen/psychotherapy_screen.dart';
 import 'package:psychepulse/view/screen/splash_screen.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
@@ -11,6 +13,7 @@ class ContentScreen extends StatefulWidget {
 
 class _ContentScreenState extends State<ContentScreen> {
   bool isSelected= true;
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -23,11 +26,12 @@ class _ContentScreenState extends State<ContentScreen> {
                 children: [
                   defaultButton(
                       text: 'Psychotherapy',
-                      width: widthOrHeight0(context, 1)*0.2,
+                      width: widthOrHeight0(context, 1)*0.19,
                       borderRadius: 10,
                       function: (){
                         setState(() {
                           isSelected=true;
+                          currentIndex=0;
                         });
                       },
                     background:isSelected? const Color(0xFFFDCCC5) :Colors.white,
@@ -35,11 +39,12 @@ class _ContentScreenState extends State<ContentScreen> {
                   ),
                   defaultButton(
                     text: 'Psychological disorders',
-                    width: widthOrHeight0(context, 1)*0.2,
+                    width: widthOrHeight0(context, 1)*0.19,
                     borderRadius: 10,
                     function: (){
                       setState(() {
                         isSelected=false;
+                        currentIndex=1;
                       });
                     },
                     background:isSelected? Colors.white:const Color(0xFFFDCCC5),
@@ -50,13 +55,10 @@ class _ContentScreenState extends State<ContentScreen> {
               SizedBox(
                 height: widthOrHeight0(context, 1)*0.04,
               ),
-              ContentButton(text: 'Thinking errors', function: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const splash(),
-                    ));
-              }),
+              Expanded(
+                flex: 1,
+                child:currentIndex==0? const PsychotherapyScreen():const PsychologicalDisordersScreen(),
+              ),
             ],
           ),
         ));

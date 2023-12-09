@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:psychepulse/view/screen/Profile_page/Profile_dr_screen.dart';
 import 'package:psychepulse/view/screen/Profile_page/profile_user_Screen.dart';
+import 'package:psychepulse/view/screen/SignNP/login_screen.dart';
 import 'package:psychepulse/view/screen/profile_screen.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
@@ -84,10 +84,6 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 ),
               ),
             ),
-
-
-
-
             SizedBox(
               height: widthOrHeight0(context, 1) * 0.03,
             ),
@@ -106,10 +102,6 @@ class _DrawerScreenState extends State<DrawerScreen> {
             drawerButton(
                 icon: Icons.drag_indicator_sharp,
                 text: 'Drug stimulant',
-                function: () {}),
-            drawerButton(
-                icon: Icons.interests_outlined,
-                text: 'My interest',
                 function: () {}),
             drawerButton(
                 icon: Icons.star_border_outlined,
@@ -247,6 +239,22 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   ),
                 ],
               ),
+            ),
+            SizedBox(
+              height: widthOrHeight0(context, 1) * 0.03,
+            ),
+            defaultButton(
+                text: 'Logout',
+                borderRadius: 10,
+                background: Colors.blue,
+                function:() {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  );
+                },
+                height:40,
+                width: 160
             ),
           ],
         ),

@@ -39,7 +39,7 @@ class _DoctorScreenState extends State<DoctorScreen> {
         ),
         defaultFormField(
             controller: _controller,
-            tybe: TextInputType.none,
+            tybe: TextInputType.text,
             validator:(p0) {
               return null;
             },
@@ -52,6 +52,7 @@ class _DoctorScreenState extends State<DoctorScreen> {
           height: widthOrHeight0(context, 0) * 0.02,
         ),
         Expanded(
+          flex: 1,
           child: ListView.separated(
             separatorBuilder: (context, index) => Divider(thickness: widthOrHeight0(context, 0)*0.01,),
             itemBuilder: (context, index) => DoctorDetailsWidget(

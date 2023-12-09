@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
-import 'package:psychepulse/view/widget/profile/gender.dart';
 import 'package:psychepulse/view/widget/profile/language.dart';
 
 class Settings extends StatefulWidget {

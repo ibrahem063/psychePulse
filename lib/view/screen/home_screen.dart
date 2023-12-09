@@ -58,6 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
               ),
               Expanded(
+                flex: 1,
                 child: ListView.separated(
                   separatorBuilder: (context, index) => SizedBox(height:widthOrHeight0(context, 1)*0.01 ,),
                   itemBuilder: (context, index) => Expanded(

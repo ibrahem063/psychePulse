@@ -127,7 +127,6 @@ Widget ContentButton({
   required String text,
   required Function()? function,
   double width=double.infinity,
-  d
 })=>GestureDetector(
   onTap:function ,
   child: Container(
@@ -153,5 +152,60 @@ Widget ContentButton({
         ),
       ],
     ),
+  ),
+);
+
+Widget ChatsButton({
+  required String pathImage,
+  required String text,
+  required String time,
+  required String message,
+  required Function()? function,
+  double width=0,
+})=>GestureDetector(
+  onTap:function ,
+  child: Row(
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: [
+      CircleAvatar(
+         radius: 40,
+          backgroundImage: NetworkImage(pathImage,
+          ),),
+      const SizedBox(
+        width: 20,
+      ),
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            text,
+            style:const TextStyle(
+              fontSize: 20,
+            ),
+          ),
+          Row(
+            children: [
+              Text(
+                message,
+                style:const TextStyle(
+                  fontSize: 15,
+                  color: Colors.grey,
+                  fontWeight: FontWeight.bold
+                ),
+              ),
+              const SizedBox(width: 5,),
+              Text(
+                time,
+                style:const TextStyle(
+                    fontSize: 10,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    ],
   ),
 );
