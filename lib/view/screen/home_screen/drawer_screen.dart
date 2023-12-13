@@ -3,7 +3,7 @@ import 'package:psychepulse/view/screen/DrawerItems/consultations_screen.dart';
 import 'package:psychepulse/view/screen/DrawerItems/my_post_screen.dart';
 import 'package:psychepulse/view/screen/Profile_page/profile_user_Screen.dart';
 import 'package:psychepulse/view/screen/SignNP/login_screen.dart';
-import 'package:psychepulse/view/screen/profile_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
 import '../DrawerItems/settings.dart';
@@ -251,11 +251,16 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 text: 'Logout',
                 borderRadius: 10,
                 background: Colors.blue,
-                function:() {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const LoginScreen()),
-                  );
+                function:()async {
+                  await FirebaseAuth.instance.signOut();
+                  Navigator.pushAndRemoveUntil(
+                          context,
+                           MaterialPageRoute(builder: (context) => const LoginScreen()),
+                          (route) => false);
+                  // Navigator.pushReplacement(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  // );
                 },
                 height:40,
                 width: 160

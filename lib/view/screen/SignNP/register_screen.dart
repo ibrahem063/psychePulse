@@ -2,8 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:psychepulse/conf/app_locale.dart';
-import 'package:psychepulse/view/screen/SignNP/login_screen.dart';
+import 'package:psychepulse/view/screen/home_screen/home_layout.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -151,7 +153,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               return null;
                             },
                             text: 'Enter your password',
-                            label: 'password',
                             suffixIcon: Icons.lock_open_outlined,
                             radius: 20.0,
                           ),
@@ -194,14 +195,57 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               text: 'Continue',
                               borderRadius:20.0,
                               width: 350.0,
-                              function: () {
+                              function: () async {
                                 if (_formKey.currentState!.validate()) {
-
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder:(context)=>const LoginScreen(),
-                                        ),);
+                                  try {
+                                    final credential = await FirebaseAuth
+                                        .instance.createUserWithEmailAndPassword(
+                                      email: email.text,
+                                       password:password.text,
+                                    );
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (
+                                            context) => const HomeLayout(),
+                                      ),
+                                    );
+                                  } on FirebaseAuthException catch (e) {
+                                    if (e.code == 'weak-password') {
+                                      AwesomeDialog(
+                                        context: context,
+                                        dialogType: DialogType.error,
+                                        headerAnimationLoop: true,
+                                        animType: AnimType.bottomSlide,
+                                        title: 'Eroor',
+                                        reverseBtnOrder: true,
+                                        btnOkOnPress: () {},
+                                        btnCancelOnPress: () {},
+                                        desc:
+                                        'The password provided is too weak',
+                                      ).show();
+                                      print(
+                                          'The password provided is too weak.');
+                                    } else
+                                    if (e.code == 'email-already-in-use') {
+                                      AwesomeDialog(
+                                        context: context,
+                                        dialogType: DialogType.error,
+                                        headerAnimationLoop: true,
+                                        animType: AnimType.bottomSlide,
+                                        title: 'Eroor',
+                                        reverseBtnOrder: true,
+                                        btnOkOnPress: () {},
+                                        btnCancelOnPress: () {},
+                                        desc:
+                                        'The account already exists for that email.',
+                                      ).show();
+                                      print(
+                                          'The account already exists for that email.');
+                                    }
+                                  } catch (e) {
+                                    print(e);
+                                  }
                                 }
                               },
                             ),

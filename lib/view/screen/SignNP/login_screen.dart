@@ -5,6 +5,8 @@ import 'package:psychepulse/main.dart';
 import 'package:psychepulse/view/screen/SignNP/register_screen.dart';
 import 'package:psychepulse/view/screen/home_screen/home_layout.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 
 
@@ -151,14 +153,53 @@ class _LoginScreenState extends State<LoginScreen> {
                             background: Colors.black,
                             borderRadius:20.0,
                             width: 350.0,
-                            function: () {
+                            function: () async{
                               if (_formKey.currentState!.validate()) {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder:(context)=>const HomeLayout(),
-                                  ),
-                                );
+                                try {
+                                  final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+                                      email: email.text,
+                                      password: password.text
+                                  );
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder:(context)=>const HomeLayout(),
+                                    ),
+                                  );
+                                } on FirebaseAuthException catch (e) {
+                                  if (e.code == 'user-not-found') {
+                                    AwesomeDialog(
+                                      context: context,
+                                      dialogType: DialogType.error,
+                                      headerAnimationLoop: true,
+                                      animType: AnimType.bottomSlide,
+                                      title: 'Eroor',
+                                      reverseBtnOrder: true,
+                                      btnOkOnPress: () {},
+                                      btnCancelOnPress: () {},
+                                      desc:
+                                      'The email or password is incorrect',
+                                    ).show();
+                                    print('No user found for that email.');
+                                  } else if (e.code == 'wrong-password') {
+                                    AwesomeDialog(
+                                      context: context,
+                                      dialogType: DialogType.error,
+                                      headerAnimationLoop: true,
+                                      animType: AnimType.bottomSlide,
+                                      title: 'Eroor',
+                                      reverseBtnOrder: true,
+                                      btnOkOnPress: () {},
+                                      btnCancelOnPress: () {},
+                                      desc:
+                                      'The email or password is incorrect',
+                                    ).show();
+                                    print('Wrong password provided for that user.');
+                                  }
+                                }
+                                catch (e){
+                                  print(e);
+                                }
                               }
                             },
                           ),
@@ -230,7 +271,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),),
                       TextButton(
                         onPressed: (){
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder:(context)=>const RegisterScreen(),
