@@ -34,20 +34,6 @@ class _DoctorScreenState extends State<DoctorScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-         SizedBox(
-          height:widthOrHeight0(context, 0)*0.02,
-        ),
-        defaultFormField(
-            controller: _controller,
-            tybe: TextInputType.text,
-            validator:(p0) {
-              return null;
-            },
-            radius: 10,
-            pref: Icons.search,
-            text: 'Search',
-            width: widthOrHeight0(context, 1) * 0.4,
-            height: widthOrHeight0(context, 0) * 0.05),
         SizedBox(
           height: widthOrHeight0(context, 0) * 0.02,
         ),

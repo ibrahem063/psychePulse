@@ -112,7 +112,7 @@ class _HomeLayoutState extends State<HomeLayout> {
               const BottomNavigationBarItem(
                   icon: CircleAvatar(
                     radius: 22,
-                    backgroundColor: Color(0xFFFDB6A8),
+                    backgroundColor: Colors.grey,
                     child: Icon(
                       Icons.perm_phone_msg,
                       color: Colors.white,

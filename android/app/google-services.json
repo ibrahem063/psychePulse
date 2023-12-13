@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "71725886891",
+    "project_id": "psychepulse-f3924",
+    "storage_bucket": "psychepulse-f3924.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71725886891:android:bdf0d74b9e7458252cb6ee",
+        "android_client_info": {
+          "package_name": "com.example.psychepulse"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBE4wBgdh2ZNSv01ZnOC2Bn7-Pa4DC-3Lg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

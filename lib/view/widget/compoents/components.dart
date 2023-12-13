@@ -51,9 +51,14 @@ Widget defaultFormField({
   bool isClickable=true,
   final double? width ,
   final double? height ,
-})=>SizedBox(
+})=>Container(
   width: width,
   height: height,
+  decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(radius),
+  ),
+  alignment: Alignment.center,
   child: TextFormField(
     controller: controller,
     keyboardType: tybe,
@@ -62,12 +67,15 @@ Widget defaultFormField({
     validator:validator,
     obscureText:isPassword,
     textAlign: TextAlign.start,
-
     onTap:onTap ,
     enabled:isClickable ,
     decoration: InputDecoration(
       //prefixIcon: Icon(pref),
      hintText: text,
+      hintStyle: const TextStyle(
+        color: Colors.grey,
+
+      ),
       labelText: label,
       labelStyle: const TextStyle(
           color: Colors.grey,

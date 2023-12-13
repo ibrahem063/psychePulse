@@ -74,43 +74,38 @@ class _SettingsState extends State<Settings> {
                 SizedBox(
                   height: widthOrHeight0(context, 1) * 0.036,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: widthOrHeight0(context, 1) * 0.07,
-                      width: widthOrHeight0(context, 0) * 0.45,
-                      child: OutlinedButton(
-                        onPressed: () {
-                          //click logic here
-                        },
-                        style: OutlinedButton.styleFrom(
-                          side: const BorderSide(color: Colors.black),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                                10), // Adjust the border radius as needed
-                          ),
-                        ),
-                        child: const Row(
-                          children: [
-                            Icon(Icons.support_agent_sharp,
-                                color: Colors.black),
-                            SizedBox(width: 8.0),
-                            Text(
-                              'Support',
-                              style: TextStyle(
-                                  fontSize: 16.0,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Spacer(), // Use Spacer instead of SizedBox
-                            Icon(Icons.arrow_forward_ios_sharp,
-                                color: Colors.black),
-                          ],
-                        ),
+                SizedBox(
+                  height: widthOrHeight0(context, 1) * 0.07,
+                  width: widthOrHeight0(context, 0) * 0.45,
+                  child: OutlinedButton(
+                    onPressed: () {
+                      //click logic here
+                    },
+                    style: OutlinedButton.styleFrom(
+                      side: const BorderSide(color: Colors.black),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                            10), // Adjust the border radius as needed
                       ),
                     ),
-                  ],
+                    child: const Row(
+                      children: [
+                        Icon(Icons.support_agent_sharp,
+                            color: Colors.black),
+                        SizedBox(width: 8.0),
+                        Text(
+                          'Support',
+                          style: TextStyle(
+                              fontSize: 16.0,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Spacer(), // Use Spacer instead of SizedBox
+                        Icon(Icons.arrow_forward_ios_sharp,
+                            color: Colors.black),
+                      ],
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: widthOrHeight0(context, 1) * 0.02,

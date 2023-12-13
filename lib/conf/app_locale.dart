@@ -1,5 +1,6 @@
 mixin AppLocale {
   static const String title = 'title';
+  static const String name = 'name';
   static const String login = 'login';
   static const String subTitle = 'subTitle';
   static const String emailLogin = 'emailLogin';
@@ -8,16 +9,20 @@ mixin AppLocale {
   static const String bottomLogin = 'bottomLogin';
   static const String doNotHaveAccount = 'doNotHaveAccount';
   static const String registerNow = 'registerNow';
+  static const String confirmpassword = 'confirm password';
 
   static const Map<String, dynamic> EN = {
     login: 'Login',
-    subTitle:'welcome backe.. Sign in with your email \nand password or continue with social\n media',
+    subTitle:'welcome backe.. Sign in with your email and password or continue with social media',
     emailLogin:'email',
     passwordLogin:'Password',
     forgotPass:'Forgot Password',
     bottomLogin:'LOGIN',
     doNotHaveAccount:"You don't have an account?",
-    registerNow:'Register now'
+    registerNow:'Register now',
+    confirmpassword:"confirm password",
+    name:"name"
+
   };
   static const Map<String, dynamic> AR = {
     login: 'تسجيل الدخول',
@@ -27,6 +32,8 @@ mixin AppLocale {
     forgotPass:'نسيت كلمة المرور',
     bottomLogin:'تسجيل الدخول',
     doNotHaveAccount:'لا تملك حساب',
-    registerNow:'سجل الان'
+    registerNow:'سجل الان',
+    confirmpassword:"تأكيد كلمة المرور",
+    name:"الاسم"
   };
 }

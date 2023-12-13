@@ -3,9 +3,13 @@ import 'package:flutter_localization/flutter_localization.dart';
 import 'package:psychepulse/view/screen/splash_screen.dart';
 
 import 'conf/app_locale.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
