@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
 import '../widget/post_widget.dart';
@@ -10,31 +11,47 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        actions: [
-          Text(
-            'PsychePulse',
-            style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontSize: widthOrHeight0(context, 1) * 0.03,
-                fontWeight: FontWeight.bold),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  spreadRadius: 0.3,
+                  blurRadius: 5,
+                  offset: const Offset(0,1),
+                ),
+              ]
           ),
-        ],
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: Icon(
-            Icons.arrow_back,
-            size: widthOrHeight0(context, 1) * 0.05,
+        ),
+        systemOverlayStyle:SystemUiOverlayStyle(statusBarColor: Colors.grey.shade400),
+        title: Padding(
+          padding:  EdgeInsets.only(left: widthOrHeight0(context, 1)*0.2),
+          child:  ShaderMask(
+            shaderCallback: (Rect bounds) {
+              return LinearGradient(
+                colors: [Color(0xFFFDCCC5),Colors.pink.shade200, Colors.deepPurple.shade200],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ).createShader(bounds);
+            },
+            child: Text(
+              'PsychePulse',
+              style: TextStyle(
+                  fontSize: 25,
+                  color:Theme.of(context).primaryColor,
+                  fontWeight: FontWeight.w900
+              ),
+            ),
           ),
         ),
       ),
       body: Column(
         children: [
-          Container(
+          SizedBox(
             height: widthOrHeight0(context, 0) * 0.3,
             width: double.infinity,
-            decoration: const BoxDecoration(
-                border: Border(top: BorderSide(color: Colors.grey))),
             child: Stack(
               children: [
                 Column(
@@ -84,7 +101,7 @@ class ProfileScreen extends StatelessWidget {
                                 widthOrHeight0(context, 1) * 0.15,
                                 widthOrHeight0(context, 0) * 0.05,
                                 Theme.of(context).primaryColor,
-                                Theme.of(context).scaffoldBackgroundColor),
+                             ),
                             SizedBox(
                               width: widthOrHeight0(context, 1) * 0.01,
                             ),
@@ -95,7 +112,7 @@ class ProfileScreen extends StatelessWidget {
                                 widthOrHeight0(context, 1) * 0.15,
                                 widthOrHeight0(context, 0) * 0.05,
                                 Theme.of(context).primaryColor,
-                                Theme.of(context).scaffoldBackgroundColor),
+                             ),
                             SizedBox(
                               width: widthOrHeight0(context, 1) * 0.01,
                             ),
@@ -108,7 +125,7 @@ class ProfileScreen extends StatelessWidget {
                                   widthOrHeight0(context, 1) * 0.03,
                                   widthOrHeight0(context, 0) * 0.05,
                                   Theme.of(context).primaryColor,
-                                  Theme.of(context).scaffoldBackgroundColor),
+                                  ),
                             )
                           ],
                         )
@@ -153,13 +170,12 @@ class ProfileScreen extends StatelessWidget {
 }
 
 Container buildContainer(BuildContext context, String text, IconData iconData,
-    double width, double height, Color color, Color iconColor) {
+    double width, double height,  Color iconColor) {
   return Container(
     width: width,
     height: height,
     decoration: BoxDecoration(
-        color: color,
-        borderRadius: const BorderRadius.all(Radius.circular(10))),
+                borderRadius: const BorderRadius.all(Radius.circular(10))),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [

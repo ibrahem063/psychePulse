@@ -71,8 +71,12 @@ class _DrawerScreenState extends State<DrawerScreen> {
               width: widthOrHeight0(context, 1) * 0.182,
               height: widthOrHeight0(context, 1) * 0.05,
               decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(20),
+                  gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [Color(0xFFFDCCC5),Colors.pink.shade200, Colors.deepPurple.shade200], // Colors to blend
+              ),
               ),
               child: TextButton(
                 onPressed: () {
@@ -247,23 +251,33 @@ class _DrawerScreenState extends State<DrawerScreen> {
             SizedBox(
               height: widthOrHeight0(context, 1) * 0.03,
             ),
-            defaultButton(
-                text: 'Logout',
-                borderRadius: 10,
-                background: Colors.blue,
-                function:()async {
-                  await FirebaseAuth.instance.signOut();
+            Container(
+              width: widthOrHeight0(context, 1) * 0.182,
+              height: widthOrHeight0(context, 1) * 0.05,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [Color(0xFFFDCCC5),Colors.pink.shade200, Colors.deepPurple.shade200], // Colors to blend
+                ),
+              ),
+              child: TextButton(
+                onPressed: () {
                   Navigator.pushAndRemoveUntil(
-                          context,
-                           MaterialPageRoute(builder: (context) => const LoginScreen()),
+                      context,
+                      MaterialPageRoute(builder: (context) => const LoginScreen()),
                           (route) => false);
-                  // Navigator.pushReplacement(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => const LoginScreen()),
-                  // );
                 },
-                height:40,
-                width: 160
+                child:const Text(
+                  'Logout',
+                  style: TextStyle(
+                      color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17,
+                  ),
+                ),
+              ),
             ),
           ],
         ),

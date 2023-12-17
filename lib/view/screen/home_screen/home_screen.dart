@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:psychepulse/view/screen/profile_screen.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 import 'package:psychepulse/view/widget/post_widget.dart';
+import 'package:flutter_svg/svg.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Container(
-          color: Colors.grey.shade200,
+          color: Colors.grey.shade100,
           child: Column(
             children: [
               Container(
@@ -47,7 +48,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(
                         width: widthOrHeight0(context, 1)*0.008,
                       ),
-                      IconButton(onPressed: (){}, icon: Icon(Icons.add_box_outlined,size:widthOrHeight0(context, 1)*0.04 ,)),
+                      IconButton(onPressed: (){},
+                        icon:  SvgPicture.asset(
+                        'assets/icons/icons8-add-image-48.svg',
+                        width: 30,
+                        height: 30,
+                      ),),
                     ],
                   ),
                 ),

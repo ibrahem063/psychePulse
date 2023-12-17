@@ -8,6 +8,7 @@ import 'package:psychepulse/view/screen/home_screen/doctor_screen.dart';
 import 'package:psychepulse/view/screen/home_screen/drawer_screen.dart';
 import 'package:psychepulse/view/screen/home_screen/home_screen.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
+import 'package:flutter_svg/svg.dart';
 
 class HomeLayout extends StatefulWidget {
   const HomeLayout({super.key});
@@ -47,12 +48,21 @@ class _HomeLayoutState extends State<HomeLayout> {
         systemOverlayStyle:SystemUiOverlayStyle(statusBarColor: Colors.grey.shade400),
         title: Padding(
           padding:  EdgeInsets.only(left: widthOrHeight0(context, 1)*0.2),
-          child:  Text(
-            'PsychePulse',
-            style: TextStyle(
-              fontSize: 25,
-              color:Theme.of(context).primaryColor,
-              fontWeight: FontWeight.w900
+          child:  ShaderMask(
+            shaderCallback: (Rect bounds) {
+              return LinearGradient(
+                colors: [Color(0xFFFDCCC5),Colors.pink.shade200, Colors.deepPurple.shade200],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ).createShader(bounds);
+            },
+            child: Text(
+              'PsychePulse',
+              style: TextStyle(
+                fontSize: 25,
+                color:Theme.of(context).primaryColor,
+                fontWeight: FontWeight.w900
+              ),
             ),
           ),
         ),
@@ -75,6 +85,7 @@ class _HomeLayoutState extends State<HomeLayout> {
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(30), topRight: Radius.circular(30)),
           child: BottomNavigationBar(
+            enableFeedback: true,
             elevation: 0,
             showSelectedLabels: false,
             currentIndex: currentIndex,
@@ -90,9 +101,10 @@ class _HomeLayoutState extends State<HomeLayout> {
             },
             items: [
               BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home_outlined,
-                  size: 35,
+                icon:  SvgPicture.asset(
+                  'assets/icons/icons8-home-page.svg',
+                  width: 40,
+                  height: 40,
                   color: currentIndex == 0
                       ? const Color(0xFFFDCCC5)
                       : Colors.grey.shade300,
@@ -100,29 +112,41 @@ class _HomeLayoutState extends State<HomeLayout> {
                 label: 'Home',
               ),
               BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.menu_book_outlined,
-                  size: 35,
+                icon:  SvgPicture.asset(
+                  'assets/icons/icons8-open-book-64_1.svg',
+                  width: 40,
+                  height: 40,
                   color: currentIndex == 1
                       ? const Color(0xFFFDCCC5)
                       : Colors.grey.shade300,
                 ),
                 label: 'content',
               ),
-              const BottomNavigationBarItem(
-                  icon: CircleAvatar(
-                    radius: 22,
-                    backgroundColor: Colors.grey,
-                    child: Icon(
-                      Icons.perm_phone_msg,
-                      color: Colors.white,
+               BottomNavigationBarItem(
+                  icon: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [Color(0xFFFDCCC5),Colors.pink.shade200, Colors.deepPurple.shade200], // Colors to blend
+                      ),
+                    ),
+                    child:const CircleAvatar(
+                      radius: 22,
+                      backgroundColor: Colors.transparent,
+                      child: Icon(
+                        Icons.perm_phone_msg,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   label: ''),
               BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.medical_services_outlined,
-                  size: 35,
+                icon:  SvgPicture.asset(
+                  'assets/icons/icons8-doctor-50.svg',
+                  width: 40,
+                  height: 40,
                   color: currentIndex == 3
                       ? const Color(0xFFFDCCC5)
                       : Colors.grey.shade300,
@@ -130,12 +154,13 @@ class _HomeLayoutState extends State<HomeLayout> {
                 label: 'Doctor',
               ),
               BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.chat_bubble_outline_sharp,
-                  size: 35,
+                icon:  SvgPicture.asset(
+                  'assets/icons/icons8-chat-100-_1_.svg',
+                  width: 40,
+                  height: 40,
                   color: currentIndex == 4
                       ? const Color(0xFFFDCCC5)
-                      : Colors.grey.shade300,
+                      : Colors.grey.shade400,
                 ),
                 label: 'Chats',
               ),

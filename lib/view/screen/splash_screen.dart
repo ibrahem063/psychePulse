@@ -15,7 +15,7 @@ class _OnBoardingScreenState extends State<Splash> {
   @override
   void initState() {
     Timer(
-      const Duration(seconds: 2),
+      const Duration(seconds: 3),
       () => Navigator.push(
           context,
           MaterialPageRoute(

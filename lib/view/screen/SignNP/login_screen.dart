@@ -7,6 +7,7 @@ import 'package:psychepulse/view/screen/home_screen/home_layout.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:flutter_svg/svg.dart';
 
 
 
@@ -71,7 +72,19 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: EdgeInsets.all(18),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: const Color(0xFFFDCCC5),
+                        gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [Color(0xFFFDCCC5),Colors.pink.shade200, Colors.deepPurple.shade200], // Colors to blend
+                      ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.3),
+                            spreadRadius: 2,
+                            blurRadius: 4,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
                         borderRadius: BorderRadius.circular(40),
                       ),
                       child: Column(
@@ -130,14 +143,15 @@ class _LoginScreenState extends State<LoginScreen> {
                             radius: 20.0,
                           ),
                           TextButton(
-                            onPressed: (){
+                            onPressed: ()async{
+                              await FirebaseAuth.instance.sendPasswordResetEmail(email: email.text);
                             },
                             child:  Text(AppLocale.forgotPass.getString(context),
                               textAlign: TextAlign.center,
                               style:const TextStyle(
                                 decoration: TextDecoration.underline,
                                 overflow: TextOverflow.visible,
-                                color: Colors.grey,
+                                color: Colors.black,
                                 fontWeight: FontWeight.w500,
                                 textBaseline:TextBaseline.alphabetic ,
                                 fontSize: 16.0,
@@ -156,7 +170,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             function: () async{
                               if (_formKey.currentState!.validate()) {
                                 try {
-                                  final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+                                  final credential = await FirebaseAuth.instance
+                                      .signInWithEmailAndPassword(
                                       email: email.text,
                                       password: password.text
                                   );
@@ -166,36 +181,46 @@ class _LoginScreenState extends State<LoginScreen> {
                                       builder:(context)=>const HomeLayout(),
                                     ),
                                   );
-                                } on FirebaseAuthException catch (e) {
-                                  if (e.code == 'user-not-found') {
-                                    AwesomeDialog(
-                                      context: context,
-                                      dialogType: DialogType.error,
-                                      headerAnimationLoop: true,
-                                      animType: AnimType.bottomSlide,
-                                      title: 'Eroor',
-                                      reverseBtnOrder: true,
-                                      btnOkOnPress: () {},
-                                      btnCancelOnPress: () {},
-                                      desc:
-                                      'The email or password is incorrect',
-                                    ).show();
-                                    print('No user found for that email.');
-                                  } else if (e.code == 'wrong-password') {
-                                    AwesomeDialog(
-                                      context: context,
-                                      dialogType: DialogType.error,
-                                      headerAnimationLoop: true,
-                                      animType: AnimType.bottomSlide,
-                                      title: 'Eroor',
-                                      reverseBtnOrder: true,
-                                      btnOkOnPress: () {},
-                                      btnCancelOnPress: () {},
-                                      desc:
-                                      'The email or password is incorrect',
-                                    ).show();
-                                    print('Wrong password provided for that user.');
-                                  }
+                                  } on FirebaseAuthException catch (e) {
+                                  print("aaaaaaaaaaaaaaaaaaaaaaaaa${e.code}");
+                                    if (e.code.contains('invalid-email')) {
+                                      AwesomeDialog(
+                                        context: context,
+                                        dialogType: DialogType.error,
+                                        headerAnimationLoop: true,
+                                        animType: AnimType.bottomSlide,
+                                        title: 'Eroor',
+                                        reverseBtnOrder: true,
+                                        desc:
+                                        'The email or password is incorrect',
+                                      ).show();
+                                      print('No user found for that email.');
+                                    } else if (e.code.contains('invalid-credential')) {
+                                      AwesomeDialog(
+                                        context: context,
+                                        dialogType: DialogType.error,
+                                        headerAnimationLoop: true,
+                                        animType: AnimType.bottomSlide,
+                                        title: 'Eroor',
+                                        reverseBtnOrder: true,
+                                        desc:
+                                        'The email or password is incorrect',
+                                      ).show();
+                                      print('Wrong password provided for that user.');
+                                    }
+                                    else if (e.code.contains('many-requests')) {
+                                      AwesomeDialog(
+                                        context: context,
+                                        dialogType: DialogType.error,
+                                        headerAnimationLoop: true,
+                                        animType: AnimType.bottomSlide,
+                                        title: 'Eroor',
+                                        reverseBtnOrder: true,
+                                        desc:
+                                        'Many false attempts were made later',
+                                      ).show();
+                                      print('Wrong password provided for that user.');
+                                    }
                                 }
                                 catch (e){
                                   print(e);
@@ -203,7 +228,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               }
                             },
                           ),
-
                           SizedBox(
                             height: widthOrHeight0(context, 1) * .015,
                           ),
@@ -211,7 +235,73 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-
+                  SizedBox(
+                    height: widthOrHeight0(context, 1) * .025,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [Color(0xFFFDCCC5),Colors.pink.shade200, Colors.deepPurple.shade200], // Colors to blend
+                          ),
+                        ),
+                        child: CircleAvatar(
+                          backgroundColor: Colors.transparent,
+                          radius:20.0 ,
+                          child: IconButton(onPressed: (){}, icon:  SvgPicture.asset(
+                            'assets/icons/icons8-google.svg',
+                            width: 50,
+                            height: 50,
+                          ),),
+                        ),
+                      ),
+                      const SizedBox(width: 20.0),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [Color(0xFFFDCCC5),Colors.pink.shade200, Colors.deepPurple.shade200], // Colors to blend
+                          ),
+                        ),
+                        child: CircleAvatar(
+                          radius:20.0 ,
+                          backgroundColor: Colors.transparent,
+                          child: IconButton(onPressed: (){}, icon:  SvgPicture.asset(
+                            'assets/icons/icons8-facebook.svg',
+                            width: 50,
+                            height: 50,
+                          ),),
+                        ),
+                      ),
+                      const SizedBox(width: 20.0),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [Color(0xFFFDCCC5),Colors.pink.shade200, Colors.deepPurple.shade200], // Colors to blend
+                          ),
+                        ),
+                        child: CircleAvatar(
+                          radius:20.0 ,
+                          backgroundColor: Colors.transparent,
+                          child: IconButton(onPressed: (){}, icon:  SvgPicture.asset(
+                            'assets/icons/icons8-twitter.svg',
+                            width: 50,
+                            height: 50,
+                          ),),
+                        ),
+                      ),
+                    ],
+                  ),
                   SizedBox(
                     height: widthOrHeight0(context, 1) * .025,
                   ),
@@ -220,8 +310,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Container(
                       width:180,
                       decoration: BoxDecoration(
-                          color:const Color(0xffFDCCC5,),
-                          borderRadius: BorderRadius.circular(10)
+                            borderRadius: BorderRadius.circular(20),
+                            gradient: LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [Color(0xFFFDCCC5),Colors.pink.shade200, Colors.deepPurple.shade200], // Colors to blend
+                            ),
                       ),
 
                       child: Center(
@@ -231,6 +325,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             color: Colors.black,
                             fontWeight: FontWeight.w500,
                           ),
+
                           iconSize: 30,
                           value: selectedValue,
                           onChanged: (String? newValue) {
@@ -269,24 +364,33 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontSize: 18.0,
 
                         ),),
-                      TextButton(
-                        onPressed: (){
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder:(context)=>const RegisterScreen(),
-                            ),
-                          );
+                      ShaderMask(
+                        shaderCallback: (Rect bounds) {
+                          return LinearGradient(
+                            colors: [Color(0xFFFDCCC5),Colors.pink.shade200, Colors.deepPurple.shade200],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ).createShader(bounds);
                         },
-                        child: Text( AppLocale.registerNow.getString(context),
-                          textAlign: TextAlign.center,
-                          style:const TextStyle(
-                            color: Color(0xffFDCCC5,),
-                            fontSize: 18.0,
-                            decorationThickness: 2.0,
-                            fontWeight: FontWeight.bold
-                          ),
-                        ),),
+                        child: TextButton(
+                          onPressed: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder:(context)=>const RegisterScreen(),
+                              ),
+                            );
+                          },
+                          child: Text( AppLocale.registerNow.getString(context),
+                            textAlign: TextAlign.center,
+                            style:const TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.0,
+                              decorationThickness: 2.0,
+                              fontWeight: FontWeight.bold
+                            ),
+                          ),),
+                      ),
                     ],
                   ),
                 ],
