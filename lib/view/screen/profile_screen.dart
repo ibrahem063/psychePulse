@@ -174,8 +174,9 @@ Container buildContainer(BuildContext context, String text, IconData iconData,
   return Container(
     width: width,
     height: height,
-    decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(10))),
+    decoration:const BoxDecoration(
+                borderRadius:  BorderRadius.all(Radius.circular(10)),
+    ),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
@@ -187,10 +188,10 @@ Container buildContainer(BuildContext context, String text, IconData iconData,
                 color: Theme.of(context).scaffoldBackgroundColor),
           ),
         ],
-        Icon(
-          iconData,
-          color: iconColor,
-        )
+       IconButton(onPressed: (){}, icon:  Icon(
+         iconData,
+         color: Colors.black,
+       )),
       ],
     ),
   );

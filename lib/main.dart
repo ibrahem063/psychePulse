@@ -60,7 +60,7 @@ class _MyAppState extends State<MyApp> {
       localizationsDelegates: localization.localizationsDelegates,
       locale: FlutterLocalization.instance.currentLocale,
       theme: ThemeData(
-        primaryColor: const Color(0xfffdccc5),
+        primaryColor:  Colors.white,
       ),
         debugShowCheckedModeBanner: false,
        home: FirebaseAuth.instance.currentUser==null? Splash():HomeLayout(),

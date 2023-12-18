@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 import 'package:psychepulse/view/widget/profile/language.dart';
 
@@ -13,39 +14,46 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          Text(
-            'PsychePulse',
-            style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontSize: widthOrHeight0(context, 1) * 0.03,
-                fontWeight: FontWeight.bold),
+      appBar:  AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  spreadRadius: 0.3,
+                  blurRadius: 5,
+                  offset: const Offset(0,1),
+                ),
+              ]
           ),
-        ],
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: Icon(
-            Icons.arrow_back,
-            size: widthOrHeight0(context, 1) * 0.05,
+        ),
+        systemOverlayStyle:SystemUiOverlayStyle(statusBarColor: Colors.grey.shade400),
+        title: Padding(
+          padding:  EdgeInsets.only(left: widthOrHeight0(context, 1)*0.2),
+          child:  ShaderMask(
+            shaderCallback: (Rect bounds) {
+              return LinearGradient(
+                colors: [Color(0xFFFDCCC5),Colors.pink.shade200, Colors.deepPurple.shade200],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ).createShader(bounds);
+            },
+            child: Text(
+              'PsychePulse',
+              style: TextStyle(
+                  fontSize: 25,
+                  color:Theme.of(context).primaryColor,
+                  fontWeight: FontWeight.w900
+              ),
+            ),
           ),
         ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            alignment: Alignment.center,
-            child: const Text(
-              "Settings",
-              style: TextStyle(fontSize: 26),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          const Divider(
-            color: Colors.grey,
-            thickness: 1.0, // You can adjust the thickness as needed
-          ),
           Padding(
             padding: EdgeInsets.all(widthOrHeight0(context, 1) * 0.02),
             child: Column(

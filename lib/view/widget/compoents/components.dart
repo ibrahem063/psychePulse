@@ -1,4 +1,7 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:psychepulse/controller/cubit/cubit.dart';
 
 Widget defaultButton({
   double width=double.infinity,
@@ -70,7 +73,10 @@ Widget defaultFormField({
     onTap:onTap ,
     enabled:isClickable ,
     decoration: InputDecoration(
-      //prefixIcon: Icon(pref),
+      prefixIcon: pref != null?
+      Icon(
+      pref,
+      ): null,
      hintText: text,
       hintStyle: const TextStyle(
         color: Colors.grey,
@@ -138,7 +144,7 @@ Widget ContentButton({
 })=>GestureDetector(
   onTap:function ,
   child: Container(
-    padding: EdgeInsets.all(10),
+    padding: const EdgeInsets.all(10),
     width:width ,
     height: 60,
     decoration: BoxDecoration(
@@ -215,5 +221,162 @@ Widget ChatsButton({
         ],
       ),
     ],
+  ),
+);
+
+Widget defaultPay({
+  required String titale,
+  required String price,
+  double width=double.infinity,
+  double height=65,
+  required String icon,
+  required Function()? function,
+})=>SizedBox(
+  height: height,
+  width: width,
+  child: OutlinedButton(
+    onPressed:function,
+    style: OutlinedButton.styleFrom(
+      side:const BorderSide(color: Colors.black),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(
+            10), // Adjust the border radius as needed
+      ),
+    ),
+    child: Row(
+      children: [
+        SvgPicture.asset(
+          icon,
+          width: 40,
+          height: 40,
+        ),
+        const SizedBox(width: 8.0),
+        Padding(
+          padding:const EdgeInsets.only(top:10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+               Text(
+                titale,
+                style:const TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                price,
+                style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey[500],
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+        const Spacer(),
+        const Icon(Icons.arrow_forward_ios_sharp,
+            color: Colors.black),
+      ],
+    ),
+  ),
+);
+
+
+Widget buildTaskItem(Map model, context) => Dismissible(
+  key: Key(model['id'].toString()),
+  child: Padding(
+    padding: const EdgeInsets.all(20.0),
+    child: Row(
+      children: [
+        CircleAvatar(
+          radius: 40.0,
+          child: Text(
+            '${model['title']}',
+          ),
+        ),
+        const SizedBox(
+          width: 20.0,
+        ),
+        Expanded(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '${model['time']}',
+                style: const TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                '${model['date']}',
+                style: const TextStyle(
+                  color: Colors.grey,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(
+          width: 20.0,
+        ),
+        IconButton(onPressed:(){
+          AppCubit.get(context).deleteData(id: model['id'],);
+        }, icon: Icon(Icons.delete_outline,
+          color: Colors.red,
+        ))
+      ],
+    ),
+  ),
+);
+
+
+Widget tasksBuilder({
+  required List<Map> drugs,
+}) => ConditionalBuilder(
+  condition: drugs.length > 0,
+  builder: (context) => ListView.separated(
+    itemBuilder: (context, index)
+    {
+      return buildTaskItem(drugs[index], context);
+    },
+    separatorBuilder: (context, index) => myDivider(),
+    itemCount: drugs.length,
+  ),
+  fallback: (context) => const Center(
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          Icons.menu,
+          size: 100.0,
+          color: Colors.grey,
+        ),
+        Text(
+          'No Drug Yet, Please Add Some Drugs',
+          style: TextStyle(
+            fontSize: 16.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.grey,
+          ),
+        ),
+      ],
+    ),
+  ),
+);
+
+
+
+Widget myDivider() => Padding(
+  padding: const EdgeInsetsDirectional.only(
+    start: 20.0,
+  ),
+  child: Container(
+    width: double.infinity,
+    height: 1.0,
+    color: Colors.grey[300],
   ),
 );

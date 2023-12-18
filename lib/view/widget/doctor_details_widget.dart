@@ -95,7 +95,7 @@ class DoctorDetailsWidget extends StatelessWidget {
                             child: Icon(
                               Icons.call,
                               color: const Color(0xff57aff3),
-                              size: widthOrHeight0(context, 0) * 0.07,
+                              size: widthOrHeight0(context, 0) * 0.05,
                             ))
                       ],
                     ),
@@ -208,6 +208,7 @@ class DoctorDetailsWidget extends StatelessWidget {
           ),
           SizedBox(height: widthOrHeight0(context, 1)*0.02,),
           defaultButton(
+            function:function ,
               text: 'Appointments available ',
               fontSize: widthOrHeight0(context, 1) * 0.016,
               background: const Color(0xff57aff3),

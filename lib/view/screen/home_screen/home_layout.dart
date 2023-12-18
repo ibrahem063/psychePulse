@@ -7,6 +7,7 @@ import 'package:psychepulse/view/screen/home_screen/content_screen/content_scree
 import 'package:psychepulse/view/screen/home_screen/doctor_screen.dart';
 import 'package:psychepulse/view/screen/home_screen/drawer_screen.dart';
 import 'package:psychepulse/view/screen/home_screen/home_screen.dart';
+import 'package:psychepulse/view/screen/home_screen/search_screen.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -45,9 +46,15 @@ class _HomeLayoutState extends State<HomeLayout> {
               ]
           ),
         ),
+        actions: [
+          IconButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchScreen(),));
+          }, icon:const Icon(Icons.search_rounded,
+          size: 30,) )
+        ],
         systemOverlayStyle:SystemUiOverlayStyle(statusBarColor: Colors.grey.shade400),
         title: Padding(
-          padding:  EdgeInsets.only(left: widthOrHeight0(context, 1)*0.2),
+          padding:  EdgeInsets.only(left: widthOrHeight0(context, 1)*0.153),
           child:  ShaderMask(
             shaderCallback: (Rect bounds) {
               return LinearGradient(
@@ -122,14 +129,14 @@ class _HomeLayoutState extends State<HomeLayout> {
                 ),
                 label: 'content',
               ),
-               BottomNavigationBarItem(
+              BottomNavigationBarItem(
                   icon: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       gradient: LinearGradient(
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight,
-                        colors: [Color(0xFFFDCCC5),Colors.pink.shade200, Colors.deepPurple.shade200], // Colors to blend
+                        colors: [const Color(0xFFFDCCC5),Colors.pink.shade200, Colors.deepPurple.shade200], // Colors to blend
                       ),
                     ),
                     child:const CircleAvatar(
@@ -184,7 +191,7 @@ class _HomeLayoutState extends State<HomeLayout> {
       context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
-        return CallScreen();
+        return const CallScreen();
       },
     );
   }

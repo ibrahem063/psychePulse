@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
-class ConsultationsScreen extends StatefulWidget {
-  const ConsultationsScreen({super.key});
+class SearchScreen extends StatefulWidget {
+  const SearchScreen({super.key});
 
   @override
-  State<ConsultationsScreen> createState() => _ConsultationsScreenState();
+  State<SearchScreen> createState() => _SearchScreenState();
 }
 
-class _ConsultationsScreenState extends State<ConsultationsScreen> {
+class _SearchScreenState extends State<SearchScreen> {
+  var searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(
+      appBar: AppBar(
         flexibleSpace: Container(
           decoration: BoxDecoration(
               color: Colors.white,
@@ -30,7 +31,7 @@ class _ConsultationsScreenState extends State<ConsultationsScreen> {
         ),
         systemOverlayStyle:SystemUiOverlayStyle(statusBarColor: Colors.grey.shade400),
         title: Padding(
-          padding:  EdgeInsets.only(left: widthOrHeight0(context, 1)*0.2),
+          padding:  EdgeInsets.only(left: widthOrHeight0(context, 1)*0.153),
           child:  ShaderMask(
             shaderCallback: (Rect bounds) {
               return LinearGradient(
@@ -50,10 +51,27 @@ class _ConsultationsScreenState extends State<ConsultationsScreen> {
           ),
         ),
       ),
-      body: ListView.separated(
-        separatorBuilder: (context, index) => SizedBox(height:widthOrHeight0(context, 1)*0.01 ,),
-        itemBuilder: (context, index) =>Container() ,
-        itemCount: 3,
+      body: Column(
+        children:
+        [
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: defaultFormField(
+              pref: Icons.search,
+              radius: 20,
+                height: 50,
+                text: 'Search',
+                controller: searchController,
+                tybe: TextInputType.text,
+                validator: (String? value){
+                  if(value!.isEmpty)
+                  {
+                    return 'search must not be empty';
+                  }
+                  return null;
+                })
+          ),
+        ],
       ),
     );
   }

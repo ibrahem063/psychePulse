@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:psychepulse/view/screen/DrawerItems/Subcription.dart';
 import 'package:psychepulse/view/screen/DrawerItems/consultations_screen.dart';
+import 'package:psychepulse/view/screen/DrawerItems/drug_screen.dart';
 import 'package:psychepulse/view/screen/DrawerItems/my_post_screen.dart';
 import 'package:psychepulse/view/screen/Profile_page/profile_user_Screen.dart';
 import 'package:psychepulse/view/screen/SignNP/login_screen.dart';
@@ -17,7 +19,6 @@ class DrawerScreen extends StatefulWidget {
 
 class _DrawerScreenState extends State<DrawerScreen> {
   bool isSelected = true;
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -108,7 +109,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
             drawerButton(
                 icon: Icons.drag_indicator_sharp,
                 text: 'Drug stimulant',
-                function: () {}),
+                function: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  DrugScreen(),));
+                }),
             drawerButton(
                 icon: Icons.star_border_outlined,
                 text: 'Rate application',
@@ -122,7 +125,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
             drawerButton(
                 icon: Icons.wallet_outlined,
                 text: 'Subscription information',
-                function: () {}),
+                function: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SubcriptionScreen(),));
+                }),
             Padding(
               padding: EdgeInsets.only(top: widthOrHeight0(context, 1) * 0.1),
               child: Divider(height: 1, color: Colors.grey.shade300),
@@ -174,6 +179,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         onTap: (){
                           setState(() {
                             isSelected = true;
+
                           }
                           );
                         },

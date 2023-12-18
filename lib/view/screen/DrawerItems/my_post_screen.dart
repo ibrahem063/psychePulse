@@ -15,7 +15,7 @@ class _MyPostScreenState extends State<MyPostScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  AppBar(
+      appBar:AppBar(
         flexibleSpace: Container(
           decoration: BoxDecoration(
               color: Colors.white,
@@ -33,12 +33,21 @@ class _MyPostScreenState extends State<MyPostScreen> {
         systemOverlayStyle:SystemUiOverlayStyle(statusBarColor: Colors.grey.shade400),
         title: Padding(
           padding:  EdgeInsets.only(left: widthOrHeight0(context, 1)*0.2),
-          child:  Text(
-            'PsychePulse',
-            style: TextStyle(
-                fontSize: 25,
-                color:Theme.of(context).primaryColor,
-                fontWeight: FontWeight.w900
+          child:  ShaderMask(
+            shaderCallback: (Rect bounds) {
+              return LinearGradient(
+                colors: [Color(0xFFFDCCC5),Colors.pink.shade200, Colors.deepPurple.shade200],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ).createShader(bounds);
+            },
+            child: Text(
+              'PsychePulse',
+              style: TextStyle(
+                  fontSize: 25,
+                  color:Theme.of(context).primaryColor,
+                  fontWeight: FontWeight.w900
+              ),
             ),
           ),
         ),

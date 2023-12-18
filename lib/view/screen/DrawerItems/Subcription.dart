@@ -1,281 +1,81 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
-import 'package:psychepulse/view/widget/profile/gender.dart';
-import 'package:psychepulse/view/widget/profile/language.dart';
+import 'package:flutter_svg/svg.dart';
 
-class Subcription extends StatefulWidget {
-  const Subcription({super.key});
+class SubcriptionScreen extends StatefulWidget {
+  const SubcriptionScreen({super.key});
 
   @override
-  State<Subcription> createState() => _SettingsState();
+  State<SubcriptionScreen> createState() => _SubcriptionScreenState();
 }
 
-class _SettingsState extends State<Subcription> {
+class _SubcriptionScreenState extends State<SubcriptionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          Text(
-            'PsychePulse',
-            style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontSize: widthOrHeight0(context, 1) * 0.03,
-                fontWeight: FontWeight.w800),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  spreadRadius: 0.3,
+                  blurRadius: 5,
+                  offset: const Offset(0,1),
+                ),
+              ]
           ),
-        ],
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: Icon(
-            Icons.arrow_back,
-            size: widthOrHeight0(context, 1) * 0.05,
+        ),
+        systemOverlayStyle:SystemUiOverlayStyle(statusBarColor: Colors.grey.shade400),
+        title: Padding(
+          padding:  EdgeInsets.only(left: widthOrHeight0(context, 1)*0.2),
+          child:  ShaderMask(
+            shaderCallback: (Rect bounds) {
+              return LinearGradient(
+                colors: [Color(0xFFFDCCC5),Colors.pink.shade200, Colors.deepPurple.shade200],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ).createShader(bounds);
+            },
+            child: Text(
+              'PsychePulse',
+              style: TextStyle(
+                  fontSize: 25,
+                  color:Theme.of(context).primaryColor,
+                  fontWeight: FontWeight.w900
+              ),
+            ),
           ),
         ),
       ),
       body: Column(
+
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            alignment: Alignment.center,
-            child: Text(
-              "Subscription information",
-              style: TextStyle(fontSize: 23),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          Divider(
-            color: Colors.grey,
-            thickness: 1.0,
-          ),
           Padding(
+
             padding: EdgeInsets.all(widthOrHeight0(context, 1) * 0.02),
             child: Column(
               children: [
                 SizedBox(
                   height: widthOrHeight0(context, 1) * 0.026,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: widthOrHeight0(context, 1) * 0.07,
-                      width: widthOrHeight0(context, 0) * 0.4,
-                      child: OutlinedButton(
-                        onPressed: () {
-                          //click logic here
-                        },
-                        style: OutlinedButton.styleFrom(
-                          side: BorderSide(color: Colors.black),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                                10), // Adjust the border radius as needed
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                           Icon(
-                          Icons.add_card_sharp,
-                          color: Colors.black,
-                          size: 40.0, // Set the size to your desired value
-                        ),
-                            SizedBox(width: 8.0),
-                            Padding(
-                              padding:  EdgeInsets.only(top: widthOrHeight0(context, 1)*0.009),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Visa',
-                                    style: TextStyle(
-                                        fontSize: 22.0,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  Text(
-                                    '10.00jd / month',
-                                    style: TextStyle(
-                                        fontSize: 12,
-                                        color: Colors.grey[500],
-                                        fontWeight: FontWeight.bold),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Spacer(),
-                            Icon(Icons.arrow_forward_ios_sharp,
-                                color: Colors.black),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                defaultPay(titale: 'Visa', price: '10.00jd / month', icon: 'assets/icons/icons8-visa.svg', function: (){}),
                 SizedBox(
                   height: widthOrHeight0(context, 1) * 0.02,
                 ),
-                Container(
-                  height: widthOrHeight0(context, 1) * 0.07,
-                  width: widthOrHeight0(context, 0) * 0.4,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      //click logic here
-                    },
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: Colors.black),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                       Icon(
-                          Icons.add_card_sharp,
-                          color: Colors.black,
-                          size: 40.0, // Set the size to your desired value
-                        ),
-                        SizedBox(width: 8.0),
-                        Padding(
-                          padding:  EdgeInsets.only(top: widthOrHeight0(context, 1)*0.009),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Google pay',
-                                style: TextStyle(
-                                    fontSize: 22.0,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
-                                textAlign: TextAlign.center,
-                              ),
-                              Text(
-                                '10.00jd / month',
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey[500],
-                                    fontWeight: FontWeight.bold),
-                                textAlign: TextAlign.center,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Spacer(),
-                        Icon(Icons.arrow_forward_ios_sharp,
-                            color: Colors.black),
-                      ],
-                    ),
-                  ),
-                ),
+                defaultPay(titale: 'Google pay', price: '10.00jd / month', icon: 'assets/icons/icons8-google-play.svg', function: (){}),
                 SizedBox(
                   height: widthOrHeight0(context, 1) * 0.02,
                 ),
-                Container(
-                  height: widthOrHeight0(context, 1) * 0.07,
-                  width: widthOrHeight0(context, 0) * 0.4,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      //click logic here
-                    },
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: Colors.black),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.add_card_sharp,
-                          color: Colors.black,
-                          size: 40.0, // Set the size to your desired value
-                        ),
-                        SizedBox(width: 8.0),
-                        Padding(
-                          padding:  EdgeInsets.only(top: widthOrHeight0(context, 1)*0.009),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Visa',
-                                style: TextStyle(
-                                    fontSize: 22.0,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
-                                textAlign: TextAlign.center,
-                              ),
-                              Text(
-                                '10.00jd / week',
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey[500],
-                                    fontWeight: FontWeight.bold),
-                                textAlign: TextAlign.center,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Spacer(),
-                        Icon(Icons.arrow_forward_ios_sharp,
-                            color: Colors.black),
-                      ],
-                    ),
-                  ),
-                ),
+                defaultPay(titale: 'Visa', price: '3.50jd / week', icon: 'assets/icons/icons8-visa.svg', function: (){}),
                 SizedBox(
                   height: widthOrHeight0(context, 1) * 0.02,
                 ),
-                Container(
-                  height: widthOrHeight0(context, 1) * 0.07,
-                  width: widthOrHeight0(context, 0) * 0.4,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      //click logic here
-                    },
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: Colors.black),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.add_card_sharp,
-                          color: Colors.black,
-                          size: 40.0, // Set the size to your desired value
-                        ),
-                        SizedBox(width: 15),
-                        Padding(
-                         padding:  EdgeInsets.only(top: widthOrHeight0(context, 1)*0.009),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Google pay',
-                                style: TextStyle(
-                                    fontSize: 22.0,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                '10.00jd / week',
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey[500],
-                                    fontWeight: FontWeight.bold),
-                                textAlign: TextAlign.center,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Spacer(),
-                        Icon(Icons.arrow_forward_ios_sharp,
-                            color: Colors.black),
-                      ],
-                    ),
-                  ),
-                ),
+                defaultPay(titale: 'Google pay', price: '3.50jd / week', icon: 'assets/icons/icons8-google-play.svg', function: (){}),
               ],
             ),
           ),
