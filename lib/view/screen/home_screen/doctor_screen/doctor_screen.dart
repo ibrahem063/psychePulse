@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:psychepulse/view/screen/Profile_page/Profile_dr_screen.dart';
 import 'package:psychepulse/view/screen/Profile_page/profile_user_Screen.dart';
+import 'package:psychepulse/view/screen/home_screen/doctor_screen/doctor_details_screen.dart';
 import 'package:psychepulse/view/screen/home_screen/home_screen.dart';
 import 'package:psychepulse/view/screen/splash_screen.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
-import '../../../model/doctor_details_model.dart';
-import '../../widget/doctor_details_widget.dart';
+import '../../../../model/doctor_details_model.dart';
+import '../../../widget/doctor_details_widget.dart';
 
 class DoctorScreen extends StatefulWidget {
   const DoctorScreen({super.key});
@@ -57,7 +58,7 @@ class _DoctorScreenState extends State<DoctorScreen> {
               function: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ProfileUserScreen()),
+                  MaterialPageRoute(builder: (context) => const DoctorDetailsScreen()),
                 );
               },
             doctorDetails: doctorDetails,

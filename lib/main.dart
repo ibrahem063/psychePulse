@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:psychepulse/controller/cubit/cubit.dart';
 import 'package:psychepulse/view/screen/home_screen/home_layout.dart';
 import 'package:psychepulse/view/screen/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';

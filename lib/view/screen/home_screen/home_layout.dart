@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:psychepulse/view/screen/home_screen/chat_screen/ChatsScreen.dart';
 import 'package:psychepulse/view/screen/home_screen/call_screen.dart';
 import 'package:psychepulse/view/screen/home_screen/content_screen/content_screen.dart';
-import 'package:psychepulse/view/screen/home_screen/doctor_screen.dart';
+import 'package:psychepulse/view/screen/home_screen/doctor_screen/doctor_screen.dart';
 import 'package:psychepulse/view/screen/home_screen/drawer_screen.dart';
 import 'package:psychepulse/view/screen/home_screen/home_screen.dart';
 import 'package:psychepulse/view/screen/home_screen/search_screen.dart';

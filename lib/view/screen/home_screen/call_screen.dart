@@ -40,7 +40,7 @@ class _CallScreenState extends State<CallScreen> {
                       ),
                       const SizedBox(height: 8.0),
                       const Text(
-                        "Text Conversation",
+                        "voice call",
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -76,7 +76,7 @@ class _CallScreenState extends State<CallScreen> {
                       ),
                       const SizedBox(height: 8.0),
                       const Text(
-                        "voice call",
+                        "Text Conversation",
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,

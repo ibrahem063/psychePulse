@@ -94,38 +94,50 @@ class ProfileScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            buildContainer(
+                            Container(
+                              decoration:const BoxDecoration(
+                                borderRadius:  BorderRadius.all(Radius.circular(10)),
+                                color:Colors.blue,
+                              ),
+                              child: buildContainer(
                                 context,
                                 'Add frind',
                                 Icons.person_add_alt_1,
-                                widthOrHeight0(context, 1) * 0.15,
+                                widthOrHeight0(context, 1) * 0.16,
                                 widthOrHeight0(context, 0) * 0.05,
                                 Theme.of(context).primaryColor,
-                             ),
-                            SizedBox(
-                              width: widthOrHeight0(context, 1) * 0.01,
+                              ),
                             ),
-                            buildContainer(
-                                context,
-                                'Message',
-                                Icons.send,
-                                widthOrHeight0(context, 1) * 0.15,
-                                widthOrHeight0(context, 0) * 0.05,
-                                Theme.of(context).primaryColor,
-                             ),
                             SizedBox(
                               width: widthOrHeight0(context, 1) * 0.01,
                             ),
                             Container(
-                              width:widthOrHeight0(context, 1) * 0.035 ,
+                              decoration:const BoxDecoration(
+                                borderRadius:  BorderRadius.all(Radius.circular(10)),
+                                color:Colors.blue,
+                              ),
                               child: buildContainer(
-                                  context,
-                                  '',
-                                  Icons.more_vert,
-                                  widthOrHeight0(context, 1) * 0.03,
-                                  widthOrHeight0(context, 0) * 0.05,
-                                  Theme.of(context).primaryColor,
-                                  ),
+                                context,
+                                'Message',
+                                Icons.send,
+                                widthOrHeight0(context, 1) * 0.16,
+                                widthOrHeight0(context, 0) * 0.05,
+                                Theme.of(context).primaryColor,
+                              ),
+                            ),
+                            SizedBox(
+                              width: widthOrHeight0(context, 1) * 0.01,
+                            ),
+                            Container(
+                              width:widthOrHeight0(context, 1) * 0.057 ,
+                              child: buildContainer(
+                                context,
+                                '',
+                                Icons.more_vert,
+                                widthOrHeight0(context, 1) * 0.03,
+                                widthOrHeight0(context, 0) * 0.05,
+                                Theme.of(context).primaryColor,
+                              ),
                             )
                           ],
                         )
@@ -169,14 +181,11 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-Container buildContainer(BuildContext context, String text, IconData iconData,
+Widget buildContainer(BuildContext context, String text, IconData iconData,
     double width, double height,  Color iconColor) {
   return Container(
     width: width,
     height: height,
-    decoration:const BoxDecoration(
-                borderRadius:  BorderRadius.all(Radius.circular(10)),
-    ),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
@@ -190,7 +199,7 @@ Container buildContainer(BuildContext context, String text, IconData iconData,
         ],
        IconButton(onPressed: (){}, icon:  Icon(
          iconData,
-         color: Colors.black,
+         color: iconColor,
        )),
       ],
     ),
