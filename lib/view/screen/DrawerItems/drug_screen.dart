@@ -21,7 +21,7 @@ class DrugScreen extends StatelessWidget {
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (BuildContext context, AppStates state) {
           if (state is AppInsertDatabaseState) {
-            Navigator.pop(context);
+             Navigator.pop(context);
           }
         },
         builder: (BuildContext context, AppStates state) {

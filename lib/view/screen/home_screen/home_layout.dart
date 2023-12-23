@@ -66,7 +66,7 @@ class _HomeLayoutState extends State<HomeLayout> {
             child: Text(
               'PsychePulse',
               style: TextStyle(
-                fontSize: 25,
+                fontSize: 24,
                 color:Theme.of(context).primaryColor,
                 fontWeight: FontWeight.w900
               ),
@@ -76,6 +76,35 @@ class _HomeLayoutState extends State<HomeLayout> {
       ),
 
       drawer: const DrawerScreen(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+      floatingActionButton:  Padding(
+        padding: const EdgeInsets.only(top: 10.0),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            border: Border.all(color: Colors.white,width: 1,),
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [const Color(0xFFFDCCC5),Colors.pink.shade200, Colors.deepPurple.shade200], // Colors to blend
+            ),
+          ),
+          child: CircleAvatar(
+            radius: 30,
+            backgroundColor: Colors.transparent,
+            child: IconButton(
+              onPressed: () {
+                showdialogonbuttonpress(context);
+              },
+              icon:const Icon(
+                Icons.perm_phone_msg,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.transparent,
@@ -98,7 +127,7 @@ class _HomeLayoutState extends State<HomeLayout> {
             currentIndex: currentIndex,
             onTap: (index) {
               if (index == 2) {
-                showdialogonbuttonpress(context);
+
               } else {
 
                 setState(() {
@@ -130,25 +159,16 @@ class _HomeLayoutState extends State<HomeLayout> {
                 label: 'content',
               ),
               BottomNavigationBarItem(
-                  icon: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      gradient: LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        colors: [const Color(0xFFFDCCC5),Colors.pink.shade200, Colors.deepPurple.shade200], // Colors to blend
-                      ),
-                    ),
-                    child:const CircleAvatar(
-                      radius: 22,
-                      backgroundColor: Colors.transparent,
-                      child: Icon(
-                        Icons.perm_phone_msg,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  label: ''),
+                icon:  SvgPicture.asset(
+                  '',
+                  width: 40,
+                  height: 40,
+                  color: currentIndex == 2
+                      ? const Color(0xFFFDCCC5)
+                      : Colors.grey.shade300,
+                ),
+                label: 'Home',
+              ),
               BottomNavigationBarItem(
                 icon:  SvgPicture.asset(
                   'assets/icons/icons8-doctor-50.svg',

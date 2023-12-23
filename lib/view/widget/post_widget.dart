@@ -66,7 +66,7 @@ class PostWidget extends StatelessWidget {
                           Icons.more_vert,
                           widthOrHeight0(context, 1) * 0.02,
                           widthOrHeight0(context, 0) * 0.05,
-                          Theme.of(context).scaffoldBackgroundColor,
+                          Colors.black
                           ),
                     )
                   ],

@@ -105,7 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               return null;
                             },
                             text: 'Enter your Name',
-                            suffixIcon: Icons.email_outlined,
+                            suffixIcon: Icons.person,
                             radius: 20.0,
                           ),
                           const SizedBox(

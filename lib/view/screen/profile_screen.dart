@@ -59,7 +59,7 @@ class ProfileScreen extends StatelessWidget {
                     Expanded(
                       child: Container(
                         decoration: BoxDecoration(
-                            color: Theme.of(context).primaryColor,
+                            color: Color(0xFFFDCCC5),
                             borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(15),
                                 bottomRight: Radius.circular(15))),
@@ -97,7 +97,7 @@ class ProfileScreen extends StatelessWidget {
                             Container(
                               decoration:const BoxDecoration(
                                 borderRadius:  BorderRadius.all(Radius.circular(10)),
-                                color:Colors.blue,
+                                color:Color(0xFFFDCCC5),
                               ),
                               child: buildContainer(
                                 context,
@@ -114,7 +114,7 @@ class ProfileScreen extends StatelessWidget {
                             Container(
                               decoration:const BoxDecoration(
                                 borderRadius:  BorderRadius.all(Radius.circular(10)),
-                                color:Colors.blue,
+                                color:Color(0xFFFDCCC5),
                               ),
                               child: buildContainer(
                                 context,
@@ -136,7 +136,7 @@ class ProfileScreen extends StatelessWidget {
                                 Icons.more_vert,
                                 widthOrHeight0(context, 1) * 0.03,
                                 widthOrHeight0(context, 0) * 0.05,
-                                Theme.of(context).primaryColor,
+                                Colors.black
                               ),
                             )
                           ],
@@ -182,7 +182,7 @@ class ProfileScreen extends StatelessWidget {
 }
 
 Widget buildContainer(BuildContext context, String text, IconData iconData,
-    double width, double height,  Color iconColor) {
+    double width, double height, Color iconColor) {
   return Container(
     width: width,
     height: height,
