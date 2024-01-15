@@ -25,6 +25,7 @@ class DrugScreen extends StatelessWidget {
           }
         },
         builder: (BuildContext context, AppStates state) {
+          var drugs=AppCubit.get(context).drugs;
           AppCubit cubit = AppCubit.get(context);
           return Scaffold(
             key: scaffoldKey,
@@ -75,7 +76,7 @@ class DrugScreen extends StatelessWidget {
             ),
             body: ConditionalBuilder(
               condition: state is! AppGetDatabaseLoadingState,
-              builder: (context) =>tasksBuilder(drugs: cubit.drugs),
+              builder: (context) =>tasksBuilder(drugs:drugs ,contexts:context),
               fallback: (context) =>
               const Center(child: CircularProgressIndicator(
                 color: Colors.black,

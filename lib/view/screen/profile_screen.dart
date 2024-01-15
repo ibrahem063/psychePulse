@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:psychepulse/view/screen/cubit/cubit.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
 import '../widget/post_widget.dart';
@@ -58,9 +59,9 @@ class ProfileScreen extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Container(
-                        decoration: BoxDecoration(
+                        decoration:const BoxDecoration(
                             color: Color(0xFFFDCCC5),
-                            borderRadius: const BorderRadius.only(
+                            borderRadius:  BorderRadius.only(
                                 bottomLeft: Radius.circular(15),
                                 bottomRight: Radius.circular(15))),
                       ),
@@ -161,18 +162,13 @@ class ProfileScreen extends StatelessWidget {
                 child: Padding(
                   padding:  EdgeInsets.only(top: widthOrHeight0(context, 1)*0.02),
                   child:  PostWidget(
-                    callback: () {
-                    },
-                    comment: 32,
-                    like: 16,
-                    path: 'assets/images/something.jpg',
-                    name: 'Ola',
-                    postText: 'Is this drug useful for anxiety?',
-                    postImage: 'assets/images/drug.jpg',
+                    index: index,
+                    context: context,
+                     model: psychepulseCubit.get(context).posts[index],
                   ),
                 ),
               ),
-              itemCount: 7,
+              itemCount: psychepulseCubit.get(context).posts.length,
             ),
           ),
         ],

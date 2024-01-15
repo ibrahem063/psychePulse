@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:psychepulse/controller/signup_controller.dart';
-import 'package:psychepulse/view/screen/SignNP/login_screen.dart';
-import 'package:psychepulse/view/widget/profile/Multi.dart';
+import 'package:psychepulse/view/screen/SignNP/login/login_screen.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
-import 'package:psychepulse/view/widget/profile/defaultFormField%20copy.dart';
 import 'package:psychepulse/view/widget/profile/gender.dart';
 import 'package:file_picker/file_picker.dart';
 
@@ -16,8 +13,18 @@ class ProfileDRScreen extends StatefulWidget {
 }
 
 class  _ProfileDRScreenState extends State<ProfileDRScreen> {
-  SignUpController signUpController6 = SignUpController();
+  // SignUpController signUpController6 = SignUpController();
   String? pickedFilePath;
+
+   TextEditingController email = TextEditingController();
+   TextEditingController firstName = TextEditingController();
+   TextEditingController country = TextEditingController();
+   TextEditingController birth = TextEditingController();
+   TextEditingController password = TextEditingController();
+   TextEditingController doctor = TextEditingController();
+  TextEditingController bio = TextEditingController();
+   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
 
   Future<void> _pickPDF() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -139,7 +146,7 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                   child: SizedBox(
                     width: widthOrHeight0(context, 0) * 0.5,
                     child: Form(
-                      key: signUpController6.formKey,
+                      key: formKey,
                       child: Column(
                         children: [
                           Column(
@@ -153,33 +160,18 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                               SizedBox(
                                 height: widthOrHeight0(context, 1) * 0.005,
                               ),
-                              TextFormFieldWidget2(
-                                passToggle: false,
-                                passController: signUpController6.firstName,
-                                labelText: '',
-                                validator: (value) {
+                              defaultFormField(
+                                height: 50,
+                                controller: firstName,
+                                tybe: TextInputType.text,
+                                validator: (value){
                                   return null;
                                 },
-                                str: 'Ibrahim',
+                                text: 'ibrahim',
+                                radius: 10.0,
                               ),
                               SizedBox(
-                                height: widthOrHeight0(context, 1) * 0.02,
-                              ),
-                              const Text(
-                                "Last Name",
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              SizedBox(
-                                height: widthOrHeight0(context, 1) * 0.005,
-                              ),
-                              TextFormFieldWidget2(
-                                passToggle: false,
-                                passController: signUpController6.secondname,
-                                labelText: '',
-                                validator: (value) {
-                                  return null;
-                                },
-                                str: 'Khald',
+                                height: widthOrHeight0(context, 1) * 0.015,
                               ),
                             ],
                           ),
@@ -194,14 +186,15 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                               SizedBox(
                                 height: widthOrHeight0(context, 1) * 0.005,
                               ),
-                              TextFormFieldWidget2(
-                                passToggle: false,
-                                passController: signUpController6.birth,
-                                labelText: '',
-                                validator: (value) {
+                              defaultFormField(
+                                height: 50,
+                                controller: birth,
+                                tybe: TextInputType.datetime,
+                                validator: (value){
                                   return null;
                                 },
-                                str: '06/02/2001',
+                                text: '06/02/2001',
+                                radius: 10.0,
                               ),
                               SizedBox(
                                 height: widthOrHeight0(context, 1) * 0.02,
@@ -217,23 +210,15 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                               SizedBox(
                                 height: widthOrHeight0(context, 1) * 0.005,
                               ),
-                              TextFormFieldWidget2(
-                                passToggle: false,
-                                passController: signUpController6.doctor,
-                                labelText: '',
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return "Enter Email";
-                                  }
-                                  bool emailValid = RegExp(
-                                          r"^[a-zA-Z0-9.a-zA-Z0-9.1#$&'*+-/=?^_ {|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                      .hasMatch(value);
-                                  if (!emailValid) {
-                                    return "Enter valid Email";
-                                  }
+                              defaultFormField(
+                                height: 50,
+                                controller: email,
+                                tybe: TextInputType.emailAddress,
+                                validator: (value){
                                   return null;
                                 },
-                                str: 'Ibrahim@gmail.com',
+                                text: 'Ibrahim@gmail.com',
+                                radius: 10.0,
                               ),
                               SizedBox(
                                 height: widthOrHeight0(context, 1) * 0.04,
@@ -245,14 +230,15 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                               SizedBox(
                                 height: widthOrHeight0(context, 1) * 0.005,
                               ),
-                              TextFormFieldWidget2(
-                                passToggle: false,
-                                passController: signUpController6.country,
-                                labelText: '',
-                                validator: (value) {
+                              defaultFormField(
+                                height: 50,
+                                controller: country,
+                                tybe: TextInputType.text,
+                                validator: (value){
                                   return null;
                                 },
-                                str: 'your id',
+                                text: 'your id',
+                                radius: 10.0,
                               ),
                               SizedBox(
                                 height: widthOrHeight0(context, 1) * 0.015
@@ -281,14 +267,15 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                               SizedBox(
                                 height: widthOrHeight0(context, 1) * 0.005,
                               ),
-                              TextFormFieldWidget2(
-                                passToggle: false,
-                                passController: signUpController6.email,
-                                labelText: '',
-                                validator: (value) {
+                              defaultFormField(
+                                height: 50,
+                                controller: doctor,
+                                tybe: TextInputType.text,
+                                validator: (value){
                                   return null;
                                 },
-                                str: 'your Specialization',
+                                text:  'your Specialization',
+                                radius: 10.0,
                               ),
                               SizedBox(
                                 height: widthOrHeight0(context, 1) * 0.03,
@@ -297,7 +284,16 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                                 "Bio",
                                 style: TextStyle(color: Colors.black),
                               ),
-                              MyProfileUser(),
+                              TextField(
+                                minLines: 4,
+                                controller:bio,
+                                maxLines: null,
+                                decoration: const InputDecoration(
+                                  labelText: '',
+                                  hintText: 'Add text',
+                                  border: OutlineInputBorder(),
+                                ),
+                              ),
                               SizedBox(
                                 height: widthOrHeight0(context, 1) * 0.03,
                               ),
@@ -311,7 +307,7 @@ class  _ProfileDRScreenState extends State<ProfileDRScreen> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (_) =>
-                                                  const LoginScreen()));
+                                                   LoginScreen()));
                                     },
                                     child: Container(
                                       height:

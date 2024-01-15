@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:psychepulse/view/screen/SignNP/login_screen.dart';
+import 'package:psychepulse/view/screen/SignNP/login/login_screen.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
 class Splash extends StatefulWidget {
@@ -19,7 +19,7 @@ class _OnBoardingScreenState extends State<Splash> {
       () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const LoginScreen(),
+            builder: (context) =>  LoginScreen(),
           )),
     );
     super.initState();

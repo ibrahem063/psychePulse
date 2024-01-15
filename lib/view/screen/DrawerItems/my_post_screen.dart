@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:psychepulse/view/screen/cubit/cubit.dart';
 import 'package:psychepulse/view/screen/profile_screen.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 import 'package:psychepulse/view/widget/post_widget.dart';
@@ -61,23 +62,13 @@ class _MyPostScreenState extends State<MyPostScreen> {
                 child: Padding(
                   padding:  EdgeInsets.only(top: widthOrHeight0(context, 1)*0.02),
                   child:  PostWidget(
-                    callback: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ProfileScreen(),
-                          ));
-                    },
-                    comment: 32,
-                    like: 16,
-                    path: 'assets/images/something.jpg',
-                    name: 'Ola',
-                    postText: 'Is this drug useful for anxiety?',
-                    postImage: 'assets/images/drug.jpg',
+                    index: index,
+                    context: context,
+                    model: psychepulseCubit.get(context).posts[index],
                   ),
                 ),
               ),
-              itemCount: 7,
+              itemCount:psychepulseCubit.get(context).posts.length,
             ),
           ),
     );

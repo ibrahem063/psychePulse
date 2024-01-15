@@ -29,6 +29,7 @@ Widget defaultButton({
     child: Text(
       text,
       style: TextStyle(
+        fontFamily: 'jannah',
         fontWeight: fontWeight,
         color: TextColor,
         fontSize: fontSize,
@@ -80,7 +81,7 @@ Widget defaultFormField({
      hintText: text,
       hintStyle: const TextStyle(
         color: Colors.grey,
-
+          fontFamily: 'jannah',
       ),
       labelText: label,
       labelStyle: const TextStyle(
@@ -157,6 +158,7 @@ Widget ContentButton({
         Text(
           text,
           style:const TextStyle(
+            fontFamily: 'jannah',
             fontSize: 20,
           ),
         ),
@@ -204,7 +206,8 @@ Widget ChatsButton({
                 style:const TextStyle(
                   fontSize: 15,
                   color: Colors.grey,
-                  fontWeight: FontWeight.bold
+                  fontWeight: FontWeight.bold,
+                    fontFamily: 'jannah'
                 ),
               ),
               const SizedBox(width: 5,),
@@ -213,7 +216,8 @@ Widget ChatsButton({
                 style:const TextStyle(
                     fontSize: 10,
                     color: Colors.grey,
-                    fontWeight: FontWeight.bold
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'jannah'
                 ),
               ),
             ],
@@ -259,6 +263,7 @@ Widget defaultPay({
                Text(
                 titale,
                 style:const TextStyle(
+                    fontFamily: 'jannah',
                     fontSize: 20.0,
                     color: Colors.black,
                     fontWeight: FontWeight.bold),
@@ -267,6 +272,7 @@ Widget defaultPay({
               Text(
                 price,
                 style: TextStyle(
+                    fontFamily: 'jannah',
                     fontSize: 12,
                     color: Colors.grey[500],
                     fontWeight: FontWeight.bold),
@@ -294,6 +300,9 @@ Widget buildTaskItem(Map model, context) => Dismissible(
           radius: 40.0,
           child: Text(
             '${model['title']}',
+            style: TextStyle(
+                fontFamily: 'jannah'
+            ),
           ),
         ),
         const SizedBox(
@@ -307,6 +316,7 @@ Widget buildTaskItem(Map model, context) => Dismissible(
               Text(
                 '${model['time']}',
                 style: const TextStyle(
+                  fontFamily: 'jannah',
                   fontSize: 18.0,
                   fontWeight: FontWeight.bold,
                 ),
@@ -314,6 +324,7 @@ Widget buildTaskItem(Map model, context) => Dismissible(
               Text(
                 '${model['date']}',
                 style: const TextStyle(
+                  fontFamily: 'jannah',
                   color: Colors.grey,
                 ),
               ),
@@ -335,10 +346,11 @@ Widget buildTaskItem(Map model, context) => Dismissible(
 
 
 Widget tasksBuilder({
+  required BuildContext contexts,
   required List<Map> drugs,
 }) => ConditionalBuilder(
   condition: drugs.length > 0,
-  builder: (context) => ListView.separated(
+  builder: (contexts) => ListView.separated(
     itemBuilder: (context, index)
     {
       return buildTaskItem(drugs[index], context);
@@ -361,6 +373,7 @@ Widget tasksBuilder({
             fontSize: 16.0,
             fontWeight: FontWeight.bold,
             color: Colors.grey,
+              fontFamily: 'jannah'
           ),
         ),
       ],

@@ -1,41 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:psychepulse/controller/cubit/cubit.dart';
-import 'package:psychepulse/view/screen/home_screen/home_layout.dart';
+import 'package:psychepulse/model/network/local/cache_helper.dart';
+import 'package:psychepulse/view/screen/home_screen/home_layout/home_layout.dart';
 import 'package:psychepulse/view/screen/splash_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:psychepulse/view/widget/constanst/constanst.dart';
 import 'conf/app_locale.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
+
+import 'view/widget/bloc_observer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
   await Firebase.initializeApp(
   );
-  runApp(MyApp());
+  await CacheHelper.init();
+  Widget widget;
+  uId = CacheHelper.getData(key: 'uId');
+  if(uId != null)
+  {
+    widget = HomeLayout();
+  } else
+  {
+    widget = Splash();
+  }
+
+  runApp(MyApp(
+    startWidget: widget,
+  ));
+
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
+   final Widget startWidget;
+  const MyApp({
+    super.key,
+    required this.startWidget,
+  });
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-
   final FlutterLocalization localization = FlutterLocalization.instance;
 
   @override
   void initState() {
-    FirebaseAuth.instance
-        .authStateChanges()
-        .listen((User? user) {
-      if (user == null) {
-        print('User is currently signed out!');
-      } else {
-        print('User is signed in!');
-      }
-    });
     localization.init(
       mapLocales: [
         const MapLocale('en', AppLocale.EN),
@@ -64,8 +75,7 @@ class _MyAppState extends State<MyApp> {
         primaryColor:  Colors.white,
       ),
         debugShowCheckedModeBanner: false,
-       home: FirebaseAuth.instance.currentUser==null? Splash():HomeLayout(),
-
+       home:widget.startWidget,
     );
   }
 }

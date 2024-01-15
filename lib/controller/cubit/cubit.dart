@@ -11,7 +11,7 @@ class AppCubit extends Cubit<AppStates>
   static AppCubit get(context)=>BlocProvider.of(context);
 
   late Database database;
-  List<Map> drugs = [];
+  List<Map<dynamic, dynamic>> drugs = [];
 
   void createDatabase() {
     openDatabase(
@@ -32,6 +32,7 @@ class AppCubit extends Cubit<AppStates>
       onOpen: (database)
       {
         getDataFromDatabase(database);
+        emit(AppGetDatabaseState());
         print('database opened');
       },
     ).then((value) {
@@ -62,7 +63,7 @@ class AppCubit extends Cubit<AppStates>
       });
   }
 
-  void getDataFromDatabase(database)
+ void getDataFromDatabase(database)
   {
     drugs=[];
     emit(AppGetDatabaseLoadingState());
@@ -102,7 +103,4 @@ class AppCubit extends Cubit<AppStates>
 
     emit(AppChangeBottomSheetState());
   }
-
-
-
 }
