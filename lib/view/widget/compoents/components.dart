@@ -21,7 +21,11 @@ Widget defaultButton({
   decoration: BoxDecoration(
       borderRadius: BorderRadiusDirectional.circular(borderRadius),
     border: Border.all(color: borderColor ),
-    color: background ,
+    gradient: LinearGradient(
+      begin: Alignment.centerLeft,
+      end: Alignment.centerRight,
+      colors:[Color(0xFFFDCCC5),Colors.pink.shade200, Colors.deepPurple.shade200], // Colors to blend
+    ),
   ),
   clipBehavior: Clip.antiAlias,
   child: MaterialButton(

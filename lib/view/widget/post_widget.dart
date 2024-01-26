@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:psychepulse/model/post_model.dart';
-import 'package:psychepulse/view/screen/cubit/cubit.dart';
-import 'package:psychepulse/view/screen/profile_screen.dart';
+import 'package:psychepulse/view/users_screen/cubit/cubit.dart';
+import 'package:psychepulse/view/users_screen/profile_screen.dart';
 import 'package:psychepulse/view/widget/styles/icon_broken.dart';
 
 class PostWidget extends StatelessWidget {
@@ -45,22 +45,24 @@ class PostWidget extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          TextButton(
-                            onPressed: (){
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const ProfileScreen(),
-                                  ));
-                            },
-                            child: Text('${model.name}',
-                            style: const TextStyle(
-                              height: 1.4,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              fontFamily: 'jannah',
-                            ),
+                          Expanded(
+                            child: TextButton(
+                              onPressed: (){
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const ProfileScreen(),
+                                    ));
+                              },
+                              child: Text('${model.name}',
+                              style: const TextStyle(
+                                height: 1.4,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                fontFamily: 'jannah',
+                              ),
+                              ),
                             ),
                           ),
                           const SizedBox(

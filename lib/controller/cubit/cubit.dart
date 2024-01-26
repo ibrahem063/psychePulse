@@ -56,7 +56,6 @@ class AppCubit extends Cubit<AppStates>
     ).then((value) {
         print('$value inserted successfully');
         emit(AppInsertDatabaseState());
-
         getDataFromDatabase(database);
       }).catchError((error) {
         print('Error When Inserting New Record ${error.toString()}');
@@ -65,13 +64,13 @@ class AppCubit extends Cubit<AppStates>
 
  void getDataFromDatabase(database)
   {
-    drugs=[];
     emit(AppGetDatabaseLoadingState());
-
+    drugs=[];
     database.rawQuery('SELECT * FROM drugs ').then((value) {
       value.forEach((element)
       {
         drugs.add(element);
+        emit(AppGetDatabaseState());
       });
 
       emit(AppGetDatabaseState());

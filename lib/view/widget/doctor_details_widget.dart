@@ -1,32 +1,24 @@
 
 import 'package:flutter/material.dart';
-import 'package:psychepulse/view/screen/Profile_page/Profile_dr_screen.dart';
-import 'package:psychepulse/view/screen/splash_screen.dart';
-
-import '../../model/doctor_details_model.dart';
 import 'compoents/components.dart';
 
 class DoctorDetailsWidget extends StatelessWidget {
   const DoctorDetailsWidget({
     super.key,
-    required this.doctorDetails,
     required this.path,
     required this.name,
     required this.subTitle,
     required this.rate,
     required this.function,
-    required this.functionBotton1,
-    required this.functionBotton2,
+    required this.functionBotton,
   });
 
-  final List<DoctorDetailsModel> doctorDetails;
   final String path;
   final String name;
   final String subTitle;
   final double rate;
   final Function() function;
-  final Function() functionBotton1;
-  final Function() functionBotton2;
+  final Function() functionBotton;
 
   @override
   Widget build(BuildContext context) {
@@ -49,28 +41,6 @@ class DoctorDetailsWidget extends StatelessWidget {
                     SizedBox(
                       height: widthOrHeight0(context, 1) * 0.03,
                     ),
-                    defaultButton(
-                        function:functionBotton1,
-                        text: 'Fast booking',
-                        width: widthOrHeight0(context, 1) * 0.13,
-                        fontSize: widthOrHeight0(context, 1) * 0.014,
-                        height: widthOrHeight0(context, 0) * 0.046,
-                        background: const Color(0xff57aff3),
-                        borderRadius: 10,
-                        borderColor:
-                        Theme.of(context).scaffoldBackgroundColor),
-                    SizedBox(
-                      height: widthOrHeight0(context, 1) * 0.01,
-                    ),
-                    Text(
-                      'OR',
-                      style: TextStyle(
-                          color: const Color(0xff57aff3),
-                          fontSize: widthOrHeight0(context, 1) * 0.02),
-                    ),
-                    SizedBox(
-                      height: widthOrHeight0(context, 1) * 0.01,
-                    ),
                     Stack(
                       alignment: Alignment.center,
                       children: [
@@ -79,7 +49,7 @@ class DoctorDetailsWidget extends StatelessWidget {
                           height:widthOrHeight0(context, 0) * 0.046,
                         ),
                         defaultButton(
-                          function:functionBotton2,
+                          function:functionBotton,
                           text: 'Call',
                           width: widthOrHeight0(context, 1) * 0.13,
                           fontSize: widthOrHeight0(context, 1) * 0.015,
@@ -87,14 +57,13 @@ class DoctorDetailsWidget extends StatelessWidget {
                           background:
                           Theme.of(context).scaffoldBackgroundColor,
                           borderRadius: 10,
-                          borderColor: const Color(0xff57aff3),
-                          TextColor: const Color(0xff57aff3),
+                          TextColor: Colors.white,
                         ),
                         Positioned(
                             left: 0,
                             child: Icon(
                               Icons.call,
-                              color: const Color(0xff57aff3),
+                              color: Colors.purple.shade300,
                               size: widthOrHeight0(context, 0) * 0.05,
                             ))
                       ],
@@ -137,7 +106,8 @@ class DoctorDetailsWidget extends StatelessWidget {
                             child: Text(
                               name,
                               style: TextStyle(
-                                  color: const Color(0xff57aff3),
+                                fontFamily: 'jannah',
+                                  color: Colors.black,
                                   fontWeight: FontWeight.bold,
                                   fontSize:
                                   widthOrHeight0(context, 1) * 0.029),
@@ -177,13 +147,12 @@ class DoctorDetailsWidget extends StatelessWidget {
                       ),
                       SizedBox(height: widthOrHeight0(context, 0)*0.03,),
                       Column(
-                        children:
-                        List.generate(doctorDetails.length, (index) {
-                          return Row(
+                        children: [
+                          Row(
                             children: [
                               Icon(
-                                doctorDetails[index].icon,
-                                color: const Color(0xff57aff3),
+                                Icons.headphones,
+                                color:  Colors.purple.shade300,
                                 size: 15,
                               ),
                               SizedBox(
@@ -191,15 +160,91 @@ class DoctorDetailsWidget extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  doctorDetails[index].data,
+                                  'Psychiatrist and mental health counselor',
                                   style: const TextStyle(
                                       color: Color(0xffdbd8d8)),
                                 ),
                               )
                             ],
-                          );
-                        }),
-                      )
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.location_on,
+                                color:  Colors.purple.shade300,
+                                size: 15,
+                              ),
+                              SizedBox(
+                                width: widthOrHeight0(context, 1) * 0.01,
+                              ),
+                              Expanded(
+                                child: Text(
+                                  'Jordan - Amman',
+                                  style: const TextStyle(
+                                      color: Color(0xffdbd8d8)),
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.access_time_filled,
+                                color:  Colors.purple.shade300,
+                                size: 15,
+                              ),
+                              SizedBox(
+                                width: widthOrHeight0(context, 1) * 0.01,
+                              ),
+                              Expanded(
+                                child: Text(
+                                  'Waiting time: 15-30 minutes',
+                                  style: const TextStyle(
+                                      color: Color(0xffdbd8d8)),
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.remove_red_eye ,
+                                color:  Colors.purple.shade300,
+                                size: 15,
+                              ),
+                              SizedBox(
+                                width: widthOrHeight0(context, 1) * 0.01,
+                              ),
+                              Expanded(
+                                child: Text(
+                                  '1576 watch',
+                                  style: const TextStyle(
+                                      color: Color(0xffdbd8d8)),
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.attach_money_outlined,
+                                color:  Colors.purple.shade300,
+                                size: 15,
+                              ),
+                              SizedBox(
+                                width: widthOrHeight0(context, 1) * 0.01,
+                              ),
+                              Expanded(
+                                child: Text(
+                                  'Scout: 50 US dollars',
+                                  style: const TextStyle(
+                                      color: Color(0xffdbd8d8)),
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -211,7 +256,6 @@ class DoctorDetailsWidget extends StatelessWidget {
             function:function ,
               text: 'Appointments available ',
               fontSize: widthOrHeight0(context, 1) * 0.016,
-              background: const Color(0xff57aff3),
               borderColor: Theme.of(context).scaffoldBackgroundColor,
               fontWeight: FontWeight.bold,
               borderRadius: 5,
