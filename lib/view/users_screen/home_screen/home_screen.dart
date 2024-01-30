@@ -14,7 +14,7 @@ TextEditingController controllerShare=TextEditingController();
    @override
    Widget build(BuildContext context) {
      return BlocProvider(
-       create: (context) => psychepulseCubit()..getUserData(),
+       create: (context) => psychepulseCubit()..getUserData()..getPosts(),
        child: BlocConsumer<psychepulseCubit,psychepulStates>(
          builder: (context, state) {
            return ConditionalBuilder(

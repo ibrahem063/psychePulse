@@ -1,55 +1,58 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:psychepulse/view/users_screen/cubit/cubit.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 import '../../../widget/doctor_details_widget.dart';
 import '../../Profile_page/Profile_dr_screen.dart';
+import '../../cubit/states.dart';
 import 'doctor_details_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class DoctorScreen extends StatefulWidget {
-  const DoctorScreen({super.key});
+class DoctorScreen extends StatelessWidget {
+  DoctorScreen({super.key});
 
-  @override
-  State<DoctorScreen> createState() => _DoctorScreenState();
-}
-
-class _DoctorScreenState extends State<DoctorScreen> {
   final TextEditingController _controller = TextEditingController();
-
-
-
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: widthOrHeight0(context, 0) * 0.02,
+    return BlocProvider(
+      create: (context) => psychepulseCubit()..getDr(),
+      child: BlocConsumer<psychepulseCubit,psychepulStates>(
+        listener:(context, state){
+
+        },
+        builder: (context, state) => ConditionalBuilder(
+          builder: (context) =>Column(
+            children: [
+              SizedBox(
+                height: widthOrHeight0(context, 0) * 0.02,
+              ),
+              Expanded(
+                flex: 1,
+                child: ListView.separated(
+                  separatorBuilder: (context, index) => Divider(thickness: widthOrHeight0(context, 0)*0.01,),
+                  itemBuilder: (context, index) => DoctorDetailsWidget(
+                    functionBotton: (){
+                      psychepulseCubit.get(context).callDr('tel', '${psychepulseCubit.get(context).doctor[index].phone}');
+                    },
+                    function: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) =>  DoctorDetailsScreen(model:psychepulseCubit.get(context).doctor[index] ,)),
+                      );
+                    },
+                    model:psychepulseCubit.get(context).doctor[index] ,
+                  ),
+                  itemCount: psychepulseCubit.get(context).doctor.length,
+                ),
+              )
+            ],
+          ) ,
+          fallback: (context) => const Center(child: CircularProgressIndicator()),
+          condition:psychepulseCubit.get(context).doctor.length>= 0,
         ),
-        Expanded(
-          flex: 1,
-          child: ListView.separated(
-            separatorBuilder: (context, index) => Divider(thickness: widthOrHeight0(context, 0)*0.01,),
-            itemBuilder: (context, index) => DoctorDetailsWidget(
-              functionBotton: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ProfileDRScreen()),
-                );
-              },
-              function: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const DoctorDetailsScreen()),
-                );
-              },
-            path: 'assets/images/doctor.jpg',
-            name: 'DR. Omar Jalal',
-            subTitle: 'Psychiatrist and mental health counselor',
-            rate: 4.7,
-          ),
-              itemCount: 2,
-          ),
-        )
-      ],
+      ),
     );
   }
 }
+
 

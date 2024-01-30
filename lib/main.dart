@@ -9,6 +9,7 @@ import 'conf/app_locale.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:psychepulse/injection.dart' as di;
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'injection.dart';
 import 'view/widget/bloc_observer.dart';
@@ -21,13 +22,13 @@ void main() async {
   await CacheHelper.init();
   await di.init();
   Widget widget;
-  uId = CacheHelper.getData(key: 'uId');
+  uId=CacheHelper.getData(key: 'uId');
   if(uId != null)
   {
-    widget = HomeLayout();
+    widget = const HomeLayout();
   } else
   {
-    widget = Splash();
+    widget = const Splash();
   }
 
   runApp(MyApp(
@@ -69,14 +70,14 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers
-          : [
+      providers: [
         BlocProvider(
-          create: (BuildContext context) => sl<psychepulseCubit>(),
-        ),
-      ],
-      child: MaterialApp(
+            create: (context) => sl<psychepulseCubit>(),
+        )
 
+        ],
+      child: MaterialApp(
+      
         supportedLocales: const [
           Locale('en', 'US'),
           Locale('ar', 'AR'),

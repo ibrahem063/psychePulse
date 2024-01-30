@@ -1,22 +1,16 @@
-
 import 'package:flutter/material.dart';
+import 'package:psychepulse/model/doctor_model.dart';
 import 'compoents/components.dart';
 
 class DoctorDetailsWidget extends StatelessWidget {
   const DoctorDetailsWidget({
     super.key,
-    required this.path,
-    required this.name,
-    required this.subTitle,
-    required this.rate,
+    required this.model,
     required this.function,
     required this.functionBotton,
   });
 
-  final String path;
-  final String name;
-  final String subTitle;
-  final double rate;
+  final DrModel model;
   final Function() function;
   final Function() functionBotton;
 
@@ -36,7 +30,7 @@ class DoctorDetailsWidget extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: widthOrHeight0(context, 1) * 0.06,
-                      foregroundImage: AssetImage(path),
+                      foregroundImage: NetworkImage(model.image),
                     ),
                     SizedBox(
                       height: widthOrHeight0(context, 1) * 0.03,
@@ -104,7 +98,7 @@ class DoctorDetailsWidget extends StatelessWidget {
                           SizedBox(
                             width: widthOrHeight0(context, 1) * 0.23,
                             child: Text(
-                              name,
+                              'Dr.${model.name.toUpperCase()}',
                               style: TextStyle(
                                 fontFamily: 'jannah',
                                   color: Colors.black,
@@ -118,7 +112,7 @@ class DoctorDetailsWidget extends StatelessWidget {
                       SizedBox(
                         width: widthOrHeight0(context, 1) * 0.27,
                         child: Text(
-                          subTitle,
+                          model.Jurisdiction,
                           style: TextStyle(
                               color: const Color(0xffdbd8d8),
                               fontSize: widthOrHeight0(context, 1) * 0.02),
@@ -127,7 +121,7 @@ class DoctorDetailsWidget extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            rate.toString(),
+                            model.rate,
                             style: TextStyle(
                                 fontSize: widthOrHeight0(context, 1) * 0.02,
                                 fontWeight: FontWeight.bold),
@@ -160,7 +154,7 @@ class DoctorDetailsWidget extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  'Psychiatrist and mental health counselor',
+                                  '${model.Jurisdiction}',
                                   style: const TextStyle(
                                       color: Color(0xffdbd8d8)),
                                 ),
@@ -179,7 +173,7 @@ class DoctorDetailsWidget extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  'Jordan - Amman',
+                                  '${model.location}',
                                   style: const TextStyle(
                                       color: Color(0xffdbd8d8)),
                                 ),
@@ -198,7 +192,7 @@ class DoctorDetailsWidget extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  'Waiting time: 15-30 minutes',
+                                  'Waiting time: ${model.timeOpen}-${model.timeClose} minutes',
                                   style: const TextStyle(
                                       color: Color(0xffdbd8d8)),
                                 ),
@@ -236,7 +230,7 @@ class DoctorDetailsWidget extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  'Scout: 50 US dollars',
+                                  'Scout: ${model.price} US dollars',
                                   style: const TextStyle(
                                       color: Color(0xffdbd8d8)),
                                 ),

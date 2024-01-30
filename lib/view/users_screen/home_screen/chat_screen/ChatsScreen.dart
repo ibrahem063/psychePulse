@@ -35,9 +35,8 @@ class ChatsScreen extends StatelessWidget {
     onTap: () {
       Navigator.push(
         context,
-       MaterialPageRoute(builder: (context) => MessagesScreen(
-         userModel: model,
-       ),
+       MaterialPageRoute(builder: (context) => ChatDetailsScreen(
+         userModel: model,),
        ),
       );
     },

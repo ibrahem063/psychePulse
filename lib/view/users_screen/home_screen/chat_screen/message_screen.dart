@@ -1,112 +1,148 @@
-import 'package:flutter/cupertino.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
-import 'package:psychepulse/model/user_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../model/message_model.dart';
-import '../../cubit/cubit.dart';
+import '../../../../model/user_model.dart';
+import '../../../widget/styles/icon_broken.dart';
+import 'package:psychepulse/view/users_screen/cubit/cubit.dart';
 import '../../cubit/states.dart';
-
-class MessagesScreen extends StatefulWidget {
+class ChatDetailsScreen extends StatefulWidget {
   final UserModel userModel;
 
-  const MessagesScreen({
-    Key? key,
+  ChatDetailsScreen({
+    super.key,
     required this.userModel,
-  }) : super(key: key);
+  });
 
   @override
-  State<MessagesScreen> createState() => _MessagesScreenState();
+  State<ChatDetailsScreen> createState() => _ChatDetailsScreenState();
 }
 
-class _MessagesScreenState extends State<MessagesScreen> {
-  @override
-  void initState() {
+class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
+  var messageController = TextEditingController();
+  void initState(){
     super.initState();
-    //psychepulseCubit.get(context).getMessages(widget.userModel);
+     // psychepulseCubit.get(context).getMessages(widget.userModel);
   }
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => psychepulseCubit()..userModel,
-      child: BlocBuilder<psychepulseCubit, psychepulStates>(
-        builder: (context, state) {
-          return Scaffold(
-            appBar: AppBar(
-              title: Text(
-                widget.userModel.name,
+    return BlocBuilder<psychepulseCubit, psychepulStates>(
+          builder: (context, state) {
+            return Scaffold(
+              appBar: AppBar(
+                titleSpacing: 0.0,
+                title: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 20.0,
+                      backgroundImage: NetworkImage(
+                        widget.userModel!.image,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 15.0,
+                    ),
+                    Text(
+                      widget.userModel!.name,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            body: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                children: [
-                  if (psychepulseCubit.get(context).messages.isNotEmpty)
-                    Expanded(
-                      child: ListView.separated(
-                        physics: const BouncingScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          if (psychepulseCubit.get(context).messages[index].senderId == psychepulseCubit.get(context).userModel!.uId) {
-                            return MyItem(
-                              model: psychepulseCubit.get(context).messages[index],
-                            );
-                          }
-
-                          return UserItem(
-                            model: psychepulseCubit.get(context).messages[index],
-                          );
-                        },
-                        separatorBuilder: (context, index) =>SizedBox(),
-                           // space10Vertical(context),
-                        itemCount: psychepulseCubit.get(context).messages.length,
-                      ),
-                    ),
-                  if (psychepulseCubit.get(context).messages.isEmpty)
-                    const Expanded(
-                      child: Center(
-                        child: CupertinoActivityIndicator(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  //space20Vertical(context),
-                  Row(
+              body: ConditionalBuilder(
+                condition: psychepulseCubit.get(context).messages.length >= 0,
+                builder: (context) => Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
                     children: [
                       Expanded(
-                        child: TextFormField(
-                          controller:psychepulseCubit.get(context).messageController,
-                          decoration: InputDecoration(
-                            isDense: true,
-                            hintText: 'type message',
-                            border: const OutlineInputBorder(),
+                        child: ListView.separated(
+                          physics: const BouncingScrollPhysics(),
+                          itemBuilder: (context, index)
+                          {
+                            if (psychepulseCubit.get(context).messages[index].senderId == psychepulseCubit.get(context).userModel!.uId) {
+                              return buildMyMessage(
+                                model: psychepulseCubit.get(context).messages[index],
+                              );
+                            }
+
+                            return buildMessage(
+                              model: psychepulseCubit.get(context).messages[index],
+                            );
+
+                          },
+                          separatorBuilder: (context, index) => const SizedBox(
+                            height: 15.0,
                           ),
+                          itemCount: psychepulseCubit.get(context).messages.length,
                         ),
                       ),
-                      MaterialButton(
-                        minWidth: 1,
-                        onPressed: () {
-                          psychepulseCubit.get(context).sendMessage(widget.userModel);
-                        },
-                        child: const Icon(
-                          Icons.send,
-                          color: Colors.teal,
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.grey.shade300,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(
+                            15.0,
+                          ),
+                        ),
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 15.0,
+                                ),
+                                child: TextFormField(
+                                  controller: messageController,
+                                  decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'type your message here ...',
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: 50.0,
+                              color: Colors.black38,
+                              child: MaterialButton(
+                                onPressed: () {
+                                  psychepulseCubit .get(context).sendMessage(
+                                    receiverId: widget.userModel!.uId,
+                                    dateTime: DateTime.now().toString(),
+                                    text: messageController.text,
+                                  );
+                                  messageController.clear();
+                                },
+                                minWidth: 1.0,
+                                child: Icon(
+                                  IconBroken.Send,
+                                  size: 16.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
-                ],
+                ),
+                fallback: (context) => const Center(
+                  child: CircularProgressIndicator(),
+                ),
               ),
-            ),
-          );
-        },
-      ),
-    );
+            );
+          },
+        );
   }
 }
 
-class MyItem extends StatelessWidget {
+class buildMessage extends StatelessWidget {
   final MessageModel model;
 
-  const MyItem({
+  const buildMessage({
     Key? key,
     required this.model,
   }) : super(key: key);
@@ -149,10 +185,10 @@ class MyItem extends StatelessWidget {
   }
 }
 
-class UserItem extends StatelessWidget {
+class buildMyMessage extends StatelessWidget {
   final MessageModel model;
 
-  const UserItem({
+  const buildMyMessage({
     Key? key,
     required this.model,
   }) : super(key: key);
@@ -192,5 +228,3 @@ class UserItem extends StatelessWidget {
     );
   }
 }
-
-

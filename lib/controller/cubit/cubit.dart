@@ -24,6 +24,7 @@ class AppCubit extends Cubit<AppStates>
             .execute(
             'CREATE TABLE drugs(id INTEGER PRIMARY KEY, title TEXT, date TEXT, time TEXT)')
             .then((value) {
+              emit(AppGetDatabaseState());
           print('table created');
         }).catchError((error) {
           print('Error When Creating Table ${error.toString()}');

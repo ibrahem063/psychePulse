@@ -12,7 +12,14 @@ class psychepulGetUserErrorState extends psychepulStates
 
   psychepulGetUserErrorState(this.error);
 }
+class psychepulGetDrSuccessState extends psychepulStates {}
 
+class psychepulGetDrErrorState extends psychepulStates
+{
+  final String error;
+
+  psychepulGetDrErrorState(this.error);
+}
 class psychepulseLikePostSuccessState extends psychepulStates {}
 
 class psychepulLikePostErrorState extends psychepulStates
@@ -86,4 +93,12 @@ class psychepulseGetAllUsersErrorState extends psychepulStates
   final String error;
 
   psychepulseGetAllUsersErrorState(this.error);
+}
+class psychepulseGetAllDrsSuccessState extends psychepulStates {}
+
+class psychepulseGetAllDrErrorState extends psychepulStates
+{
+  final String error;
+
+  psychepulseGetAllDrErrorState(this.error);
 }

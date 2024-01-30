@@ -13,7 +13,7 @@ class HomeLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>psychepulseCubit()..getPosts(),
+      create: (context) =>psychepulseCubit()..getUsers()..getPosts(),
       child: BlocConsumer<psychepulseCubit,psychepulStates>(
         builder:(context, state) {
           var cubit = psychepulseCubit.get(context);

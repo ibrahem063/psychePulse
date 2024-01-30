@@ -3,14 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
-class DoctorDetailsScreen extends StatefulWidget {
-  const DoctorDetailsScreen({super.key});
+import '../../../../model/doctor_model.dart';
 
-  @override
-  State<DoctorDetailsScreen> createState() => _DoctorDetailsScreenState();
-}
+class DoctorDetailsScreen extends StatelessWidget {
+  DrModel? model;
+  DoctorDetailsScreen({
+  super.key,
+    required this.model
+  });
 
-class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,9 +63,9 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                     padding: const EdgeInsets.only(top: 50.0),
                     child: Container(
                       decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.black
-                        )
+                          border: Border.all(
+                              color: Colors.black
+                          )
                       ),
                       child: Column(
                         children: [
@@ -90,26 +91,26 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                             ],
                           ),
                           const SizedBox(height: 10,),
-                          const Row(
+                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text('Dr.',
                                 style: TextStyle(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w500
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.w500
                                 ),
-        
+
                               ),
-                              Text('Omar Jalal',
+                              Text('${model!.name}',
                                 style: TextStyle(
                                     fontSize: 25,
                                     fontWeight: FontWeight.bold
                                 ),
-        
+
                               ),
                             ],
                           ),
-                          const Text('Psychiatrist and mental health counselor',
+                          Text('${model!.Jurisdiction}',
                             style: TextStyle(
                                 color: Colors.grey
                             ),),
@@ -141,8 +142,8 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                               const SizedBox(width: 8,),
                               const Text('20 reservations at the doctor',
                                 style: TextStyle(
-                                  color: Colors.black54
-                              ),)
+                                    color: Colors.black54
+                                ),)
                             ],
                           ),
                           const SizedBox(height: 10,),
@@ -166,7 +167,7 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                       ),
                     ),
                   ),
-                   Padding(
+                  Padding(
                     padding: const EdgeInsets.only(top: 13.0),
                     child: Center(
                       child: Container(
@@ -174,11 +175,11 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                             border: Border.all(
                                 color: Colors.blue
                             ),
-                          borderRadius: BorderRadius.circular(50)
+                            borderRadius: BorderRadius.circular(50)
                         ),
-                        child: const CircleAvatar(
+                        child:  CircleAvatar(
                           radius: 40,
-                          backgroundImage: AssetImage('assets/images/doctor.jpg'),
+                          backgroundImage: NetworkImage(model!.image),
                         ),
                       ),
                     ),
@@ -202,17 +203,17 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                           Padding(
                             padding: const EdgeInsets.only(left: 8.0,right: 8.0,bottom: 8.0),
                             child: SvgPicture.asset(
-                              'assets/icons/icons8-doughnut-chart-64.svg',
-                              width: 40,
-                              height: 40,
-                              color:Colors.blue
+                                'assets/icons/icons8-doughnut-chart-64.svg',
+                                width: 40,
+                                height: 40,
+                                color:Colors.blue
                             ),
                           ),
-                          const Text(
+                           Text(
                             'Data',
                             style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500
                             ),
                           ),
                         ],
@@ -228,13 +229,13 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                           fontWeight: FontWeight.w500
                       ),),
                       const SizedBox(height: 10,),
-                       Container(
-                        child: const Text('As a board-certified psychiatrist with a strong background in the assessment and treatment of a wide range of mental health conditions, I have provided compassionate and evidence-based care to diverse patient populations, fostering improved emotional well-being and quality of life.',
+                      Container(
+                        child: Text( model!.bio,
                           style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500
-                        ),),
+                              color: Colors.grey,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500
+                          ),),
                       ),
                       const SizedBox(height: 20,),
                       const Text('Specialties',style: TextStyle(
@@ -244,7 +245,7 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                       SizedBox(
                         height: 100,
                         child: ListView.separated(
-                          separatorBuilder: (context, index) =>const SizedBox(height: 10,),
+                            separatorBuilder: (context, index) =>const SizedBox(height: 10,),
                             itemBuilder: (context, index) =>const  Text('mood disorders',
                               style: TextStyle(
                                 decoration: TextDecoration.underline,
@@ -382,3 +383,4 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
     );
   }
 }
+

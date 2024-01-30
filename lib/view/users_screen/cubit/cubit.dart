@@ -7,8 +7,9 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:psychepulse/model/user_model.dart';
 import 'package:psychepulse/view/users_screen/cubit/states.dart';
 import 'package:psychepulse/view/widget/constanst/constanst.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import '../../../model/chat_model.dart';
+import '../../../model/doctor_model.dart';
 import '../../../model/message_model.dart';
 import '../../../model/post_model.dart';
 import '../home_screen/call_screen.dart';
@@ -28,21 +29,40 @@ class psychepulseCubit extends Cubit<psychepulStates> {
     FirebaseFirestore.instance.collection('users').doc(uId).get().then((value) {
       print(value.data());
       userModel = UserModel.frmojson(value.data());
-      getPosts();
+      getMessages(userModel!);
       emit(psychepulGetUserSuccessState());
     }).catchError((error) {
       print(error.toString());
       emit(psychepulGetUserErrorState(error.toString()));
     });
   }
-
+  DrModel? drModel;
+  List<DrModel> doctor = [];
+  void getDr() {
+    if (doctor.length == 0) {
+      FirebaseFirestore.instance.collection('doctors').get().then((value) {
+        value.docs.forEach((element) {
+          if (element.data() != drModel)
+            print('${element.data()}===========================');
+            doctor.add(DrModel.frmojson(element.data()));
+        });
+        emit(psychepulseGetAllDrsSuccessState());
+      }).catchError((error) {
+        print(error.toString());
+        emit(psychepulseGetAllDrErrorState(error.toString()));
+      });
+    }
+  }
   int currentIndex = 0;
 
+  void callDr(String scheme,String path){
+    launchUrl(Uri(scheme:scheme,path:path));
+  }
   List<Widget> screens = [
     HomeScreen(),
     const ContentScreen(),
     const CallScreen(),
-    const DoctorScreen(),
+    DoctorScreen(),
     ChatsScreen(),
   ];
 
@@ -270,7 +290,6 @@ class psychepulseCubit extends Cubit<psychepulStates> {
        {
          element.reference
             .collection('likes')
-             .orderBy('dateTime')
             .get()
             .then((value)
         {
@@ -307,136 +326,92 @@ class psychepulseCubit extends Cubit<psychepulStates> {
   List<UserModel> users = [];
 
   void getUsers() {
-     if (users.length == 0)
-      FirebaseFirestore.instance.collection('users').get().then((value) {
-        value.docs.forEach((element) {
-          if (element.data()['uId'] != userModel!.uId)
+     if (users.length == 0) {
+       FirebaseFirestore.instance.collection('users').get().then((value) {
+        for (var element in value.docs) {
+          if (element.data()['uId'] != userModel!.uId) {
             users.add(UserModel.frmojson(element.data()));
-        });
+          }
+        }
 
         emit(psychepulseGetAllUsersSuccessState());
       }).catchError((error) {
         print(error.toString());
         emit(psychepulseGetAllUsersErrorState(error.toString()));
       });
+     }
   }
 
-  TextEditingController messageController = TextEditingController();
 
-  void sendMessage(UserModel userDataModel) {
+
+  void sendMessage({
+    required String receiverId,
+    required String dateTime,
+    required String text,
+  }) {
+    MessageModel model = MessageModel(
+      senderId: userModel!.uId,
+      receiverId: receiverId,
+      time: dateTime,
+      message: text,
+    );
+
+    // set my chats
+
     FirebaseFirestore.instance
         .collection('users')
         .doc(userModel!.uId)
         .collection('chats')
-        .get()
+        .doc(receiverId)
+        .collection('messages')
+        .add(model.toJson())
         .then((value) {
-      MessageModel model = MessageModel(
-        time: DateTime.now().toString(),
-        message: messageController.text,
-        receiverId: userDataModel.uId,
-        senderId: userModel!.uId,
-      );
-      if (value.docs.any((element) => element.reference.id != userDataModel.uId)) {
-        ChatModel chatDataModel = ChatModel(
-          username: userModel!.name,
-          userId: userDataModel.uId,
-          userImage: userDataModel.image,
-        );
-        FirebaseFirestore.instance
-            .collection('users')
-            .doc(userModel!.uId)
-            .collection('chats')
-            .doc(userDataModel.uId)
-            .set(chatDataModel.toJson())
-            .then((value) {
-          emit(psychepulseSendMessageSuccessState());
-        })
-            .catchError((error) {
-          debugPrint(error.toString());
-
-          emit(CreateChatError());
-        });
-
-        FirebaseFirestore.instance
-            .collection('users')
-            .doc(userDataModel.uId)
-            .collection('chats')
-            .doc(userModel!.uId)
-            .set(chatDataModel.toJson())
-            .then((value) {
-          emit(psychepulseSendMessageSuccessState());
-        })
-            .catchError((error) {
-          debugPrint(error.toString());
-
-          emit(CreateChatError());
-        });
-      } else {
-        FirebaseFirestore.instance
-            .collection('users')
-            .doc(userModel!.uId)
-            .collection('chats')
-            .doc(userDataModel.uId)
-            .collection('messages')
-            .add(model.toJson())
-            .then((value) {
-          messageController.clear();
-          emit(psychepulseSendMessageSuccessclearState());
-        }).catchError((error) {
-          debugPrint(error.toString());
-
-          emit(CreateChatError());
-        });
-
-        FirebaseFirestore.instance
-            .collection('users')
-            .doc(userDataModel.uId)
-            .collection('chats')
-            .doc(userModel!.uId)
-            .collection('messages')
-            .add(model.toJson())
-            .then((value) {
-          messageController.clear();
-          emit(psychepulseSendMessageSuccessclearState());
-        }).catchError((error) {
-          debugPrint(error.toString());
-
-          emit(CreateChatError());
-        });
-      }
+      emit(psychepulseSendMessageSuccessState());
     }).catchError((error) {
-      debugPrint(error.toString());
-
       emit(psychepulseSendMessageErrorState());
     });
-    emit(psychepulseSendMessageSuccessState());
+
+    // set receiver chats
+
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(receiverId)
+        .collection('chats')
+        .doc(userModel!.uId)
+        .collection('messages')
+        .add(model.toJson())
+        .then((value) {
+      emit(psychepulseSendMessageSuccessState());
+    }).catchError((error) {
+      emit(psychepulseSendMessageErrorState());
+    });
   }
 
   List<MessageModel> messages = [];
-
-  void getMessages(UserModel userDataModel) {
-    FirebaseFirestore.instance
+  void getMessages(UserModel Model)  {
+      FirebaseFirestore.instance
         .collection('users')
         .doc(userModel!.uId)
         .collection('chats')
-        .doc(userDataModel.uId)
-        .collection('messages').orderBy('time', descending: true,)
+        .doc(Model.uId)
+        .collection('messages')
         .snapshots()
         .listen((value) {
       messages = [];
-
       for (var element in value.docs) {
+        print('=========${element.data()}============');
         messages.add(MessageModel.fromJson(element.data()));
         emit(psychepulseGetMessageSuccessState());
       }
 
       debugPrint(messages.length.toString());
 
-      emit(psychepulseGetMessageErrorState());
+
     });
-    emit(psychepulseGetMessageSuccessState());
   }
 }
+
+
 
 
 
