@@ -289,7 +289,7 @@ class psychepulseCubit extends Cubit<psychepulStates> {
        value.docs.forEach((element)
        {
          element.reference
-            .collection('likes')
+            .collection('likes').orderBy('dateTime')
             .get()
             .then((value)
         {
@@ -391,7 +391,7 @@ class psychepulseCubit extends Cubit<psychepulStates> {
   void getMessages(UserModel Model)  {
       FirebaseFirestore.instance
         .collection('users')
-        .doc(userModel!.uId)
+        .doc(userModel?.uId)
         .collection('chats')
         .doc(Model.uId)
         .collection('messages')

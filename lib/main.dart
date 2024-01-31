@@ -9,20 +9,20 @@ import 'conf/app_locale.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:psychepulse/injection.dart' as di;
-import 'package:firebase_messaging/firebase_messaging.dart';
-
+import 'firebase_options.dart';
 import 'injection.dart';
 import 'view/widget/bloc_observer.dart';
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
   );
   await CacheHelper.init();
   await di.init();
   Widget widget;
-  uId=CacheHelper.getData(key: 'uId');
   if(uId != null)
   {
     widget = const HomeLayout();

@@ -22,7 +22,7 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   var messageController = TextEditingController();
   void initState(){
     super.initState();
-     // psychepulseCubit.get(context).getMessages(widget.userModel);
+      psychepulseCubit.get(context).getMessages(widget!.userModel);
   }
   @override
   Widget build(BuildContext context) {
