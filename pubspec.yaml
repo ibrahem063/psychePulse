@@ -66,6 +66,7 @@ dev_dependencies:
   image_picker: ^1.0.7
   get_it: ^7.6.6
   url_launcher: ^6.2.4
+  webview_flutter: ^4.4.4
 
 
 # For information on the generic Dart part of this file, see the

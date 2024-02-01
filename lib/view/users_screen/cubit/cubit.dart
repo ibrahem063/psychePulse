@@ -8,7 +8,6 @@ import 'package:psychepulse/model/user_model.dart';
 import 'package:psychepulse/view/users_screen/cubit/states.dart';
 import 'package:psychepulse/view/widget/constanst/constanst.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../../model/chat_model.dart';
 import '../../../model/doctor_model.dart';
 import '../../../model/message_model.dart';
 import '../../../model/post_model.dart';

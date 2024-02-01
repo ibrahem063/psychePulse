@@ -142,38 +142,7 @@ required Function()? function,
   ],
 );
 
-Widget ContentButton({
-  required String text,
-  required Function()? function,
-  double width=double.infinity,
-})=>GestureDetector(
-  onTap:function ,
-  child: Container(
-    padding: const EdgeInsets.all(10),
-    width:width ,
-    height: 60,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(20),
-      border: Border.all(color: Colors.black)
-    ),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          text,
-          style:const TextStyle(
-            fontFamily: 'jannah',
-            fontSize: 20,
-          ),
-        ),
-        const Icon(
-          Icons.arrow_forward_ios,
-          size: 20,
-        ),
-      ],
-    ),
-  ),
-);
+
 
 Widget ChatsButton({
   required String pathImage,

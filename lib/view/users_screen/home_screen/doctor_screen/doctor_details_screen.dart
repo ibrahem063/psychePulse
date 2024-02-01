@@ -149,18 +149,13 @@ class DoctorDetailsScreen extends StatelessWidget {
                           const SizedBox(height: 10,),
                           Padding(
                             padding: const EdgeInsets.only(bottom: 20.0 ,top: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                defaultButton(
-                                    text: 'Call',
-                                    TextColor: Colors.white,
-                                    width: 120,
-                                    fontSize: 13,
-                                    borderRadius: 15,
-                                    height: 40
-                                ),
-                              ],
+                            child: defaultButton(
+                                text: 'Call',
+                                TextColor: Colors.white,
+                                width: 120,
+                                fontSize: 13,
+                                borderRadius: 15,
+                                height: 40
                             ),
                           )
                         ],

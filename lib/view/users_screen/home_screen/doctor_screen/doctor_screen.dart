@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:psychepulse/view/users_screen/cubit/cubit.dart';
 import 'package:psychepulse/view/widget/compoents/components.dart';
 import '../../../widget/doctor_details_widget.dart';
-import '../../Profile_page/Profile_dr_screen.dart';
 import '../../cubit/states.dart';
 import 'doctor_details_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

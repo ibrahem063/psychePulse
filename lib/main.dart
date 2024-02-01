@@ -72,7 +72,7 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (context) => sl<psychepulseCubit>(),
+            create: (context) => sl<psychepulseCubit>()..getDr()..getPosts(),
         )
 
         ],
