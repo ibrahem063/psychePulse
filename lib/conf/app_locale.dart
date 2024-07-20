@@ -9,7 +9,7 @@ mixin AppLocale {
   static const String bottomLogin = 'bottomLogin';
   static const String doNotHaveAccount = 'doNotHaveAccount';
   static const String registerNow = 'registerNow';
-  static const String confirmpassword = 'confirm password';
+  static const String Phone = 'Phone';
 
   static const Map<String, dynamic> EN = {
     login: 'Login',
@@ -20,7 +20,7 @@ mixin AppLocale {
     bottomLogin:'LOGIN',
     doNotHaveAccount:"You don't have an account?",
     registerNow:'Register now',
-    confirmpassword:"confirm password",
+    Phone:"Phone",
     name:"name"
 
   };
@@ -33,7 +33,7 @@ mixin AppLocale {
     bottomLogin:'تسجيل الدخول',
     doNotHaveAccount:'لا تملك حساب',
     registerNow:'سجل الان',
-    confirmpassword:"تأكيد كلمة المرور",
+    Phone:"رقم الهاتف",
     name:"الاسم"
   };
 }

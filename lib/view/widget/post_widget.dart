@@ -1,198 +1,263 @@
-import 'package:flutter/material.dart';
 
-import '../screen/profile_screen.dart';
-import 'compoents/components.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:psychepulse/model/post_model.dart';
+import 'package:psychepulse/view/users_screen/cubit/cubit.dart';
+import 'package:psychepulse/view/users_screen/profile_screen.dart';
+import 'package:psychepulse/view/widget/styles/icon_broken.dart';
 
 class PostWidget extends StatelessWidget {
   const PostWidget({
     super.key,
-    required this.path,
-    required this.name,
-    required this.postText,
-    required this.postImage,
-    required this.like,
-    required this.comment,
-    required this.callback,
+    required this.model,
+    required this.context,
+    required this.index,
   });
-
-  final String path;
-  final String name;
-  final String postText;
-  final String postImage;
-  final int like;
-  final int comment;
-  final Function() callback;
+  final BuildContext  context;
+  final int index;
+  final PostModel model;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: widthOrHeight0(context, 0) * 0.4,
-          width: double.infinity,
-          child: Column(
-            children: [
-              Padding(
-                padding:  EdgeInsets.only(left:widthOrHeight0(context, 1)*0.05),
-                child: Row(
-                  children: [
-                    Row(
-
-                      children: [
-                        CircleAvatar(
-                          radius: widthOrHeight0(context, 0) * 0.03,
-                          foregroundImage: AssetImage(path),
-                        ),
-                        SizedBox(
-                          width: widthOrHeight0(context, 1) * 0.03,
-                        ),
-                        GestureDetector(
-                          onTap: callback,
-                          child: Text(
-                            name,
-                            style: TextStyle(
-                                fontSize: widthOrHeight0(context, 0) * 0.04,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: buildContainer(
-                          context,
-                          '',
-                          Icons.more_vert,
-                          widthOrHeight0(context, 1) * 0.02,
-                          widthOrHeight0(context, 0) * 0.05,
-                          Theme.of(context).scaffoldBackgroundColor,
-                          Colors.black),
-                    )
-                  ],
+    return Card(
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      elevation: 0.0,
+      margin: const EdgeInsets.symmetric(
+        horizontal: 8.0,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 25.0,
+                  backgroundImage: NetworkImage(
+                    '${model.image}',
+                  ),
                 ),
-              ),
-              Expanded(
-                  flex: 4,
+                const SizedBox(
+                  width: 15.0,
+                ),
+                Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                          flex: 3,
-                          child: Container(
-                              alignment: Alignment.centerLeft,
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: widthOrHeight0(context, 1) * 0.05,
-                                  ),
-                                  Text(postText)
-                                ],
-                              ))),
-                      Expanded(
-                          flex: 8,
-                          child: Container(
-                            alignment: Alignment.center,
-                            child: Image.asset(
-                              postImage,
-                              fit: BoxFit.cover,
-                            ),
-                          )),
-                      Expanded(
-                          flex: 2,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    width: widthOrHeight0(context, 1) * 0.04,
-                                    height: widthOrHeight0(context, 0) * 0.03,
-                                    decoration: const BoxDecoration(
-                                        color: Colors.grey,
-                                        shape: BoxShape.circle),
-                                    child: Icon(
-                                      Icons.favorite,
-                                      size: widthOrHeight0(context, 0) * 0.015,
-                                      color: Theme.of(context)
-                                          .scaffoldBackgroundColor,
-                                    ),
-                                  ),
-                                  Text(
-                                    like.toString(),
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xff808080)),
-                                  )
-                                ],
-                              ),
-                              SizedBox(),
-                              Row(
-                                children: [
-                                  Text(
-                                    comment.toString(),
-                                    style: const TextStyle(
-                                        color: Color(0xff808080),
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  SizedBox(
-                                    width: widthOrHeight0(context, 1) * 0.01,
-                                  ),
-                                  const Text(
-                                    'COMMENT',
-                                    style: TextStyle(
-                                        color: Color(0xff808080),
-                                        fontWeight: FontWeight.bold),
-                                  )
-                                ],
-                              ),
-                            ],
-                          )),
-                    ],
-                  )),
-              Divider(
-                endIndent: widthOrHeight0(context, 1) * 0.05,
-                indent: widthOrHeight0(context, 1) * 0.05,
-              ),
-              const Expanded(
-                  flex: 1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Column(
+                      Row(
                         children: [
-                          Icon(
-                            Icons.favorite_border,
-                            color: Color(0xff808080),
-                          ),
-                          Text(
-                            'Like',
-                            style: TextStyle(
+                          Expanded(
+                            child: TextButton(
+                              onPressed: (){
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const ProfileScreen(),
+                                    ));
+                              },
+                              child: Text('${model.name}',
+                              style: const TextStyle(
+                                height: 1.4,
+                                color: Colors.black,
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xff808080)),
-                          )
+                                fontSize: 20,
+                                fontFamily: 'jannah',
+                              ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 5.0,
+                          ),
+                          const Icon(
+                            Icons.check_circle,
+                            color: Colors.blue,
+                            size: 16.0,
+                          ),
                         ],
                       ),
-                      SizedBox(),
-                      Column(
-                        children: [
-                          Icon(
-                            Icons.chat_bubble_outline,
-                            color: Color(0xff808080),
-                          ),
-                          Text(
-                            'COMMENT',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff808080)),
-                          )
-                        ],
-                      )
+                      Text(
+                        '${model.dateTime}',
+                        // style: Theme.of(context).textTheme.caption?.copyWith(
+                        //   height: 1.4,
+                        // ),
+                      ),
                     ],
-                  )),
-            ],
-          ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 15.0,
+                ),
+                IconButton(
+                  icon: const Icon(
+                    Icons.more_horiz,
+                    size: 16.0,
+                  ),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 15.0,
+              ),
+              child: Container(
+                width: double.infinity,
+                height: 1.0,
+                color: Colors.grey[300],
+              ),
+            ),
+            Text(
+              '${model.text}',
+              // style: Theme.of(context).textTheme.subtitle1,
+
+            ),
+            if(model.postImage != '')
+              Padding(
+                padding: const EdgeInsetsDirectional.only(
+                    top: 15.0
+                ),
+                child: Container(
+                  height: 140.0,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      4.0,
+                    ),
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        '${model.postImage}',
+                      ),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 5.0,
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: InkWell(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 5.0,
+                        ),
+                        child: Row(
+                          children: [
+                            const Icon(
+                              IconBroken.Heart,
+                              size: 16.0,
+                              color: Colors.red,
+                            ),
+                            const SizedBox(
+                              width: 5.0,
+                            ),
+                            Text(
+                              '${psychepulseCubit.get(context).likes[index]}',
+                              // style: Theme.of(context).textTheme.caption,
+                            ),
+                          ],
+                        ),
+                      ),
+                      onTap: () {},
+                    ),
+                  ),
+                  Expanded(
+                    child: InkWell(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 5.0,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            const Icon(
+                              IconBroken.Message,
+                              size: 16.0,
+                              color: Colors.amber,
+                            ),
+                            const SizedBox(
+                              width: 5.0,
+                            ),
+                            Text(
+                              '0 comment',
+                              // style: Theme.of(context).textTheme.caption,
+                            ),
+                          ],
+                        ),
+                      ),
+                      onTap: () {},
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                bottom: 10.0,
+              ),
+              child: Container(
+                width: double.infinity,
+                height: 1.0,
+                color: Colors.grey[300],
+              ),
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: InkWell(
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 18.0,
+                          backgroundImage: NetworkImage(
+                            '${model.image}',
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 15.0,
+                        ),
+                        const Text(
+                          'write a comment ...',
+                          // style:
+                          // // Theme.of(context).textTheme.caption.copyWith(),
+                        ),
+                      ],
+                    ),
+                    onTap: () {},
+                  ),
+                ),
+                InkWell(
+                  child: Row(
+                    children: [
+                      const Icon(
+                        IconBroken.Heart,
+                        size: 16.0,
+                        color: Colors.red,
+                      ),
+                      const SizedBox(
+                        width: 5.0,
+                      ),
+                      Text(
+                        'Like',
+                        // style: Theme.of(context).textTheme.caption,
+                      ),
+                    ],
+                  ),
+                  onTap: ()
+                  {
+                    psychepulseCubit.get(context).likePost(psychepulseCubit.get(context).postsId[index]);
+                  },
+                ),
+              ],
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

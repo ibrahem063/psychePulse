@@ -13,7 +13,6 @@ class LanguageSelection extends StatefulWidget {
 class _GenderSelectionState extends State<LanguageSelection> {
    String selectedGender='';
   final FlutterLocalization localization = FlutterLocalization.instance;
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -50,8 +49,6 @@ class _GenderSelectionState extends State<LanguageSelection> {
         ),
         const Text('Arabic',
             style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
-
-            
       ],
     );
 
