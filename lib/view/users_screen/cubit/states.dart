@@ -102,3 +102,16 @@ class psychepulseGetAllDrErrorState extends psychepulStates
 
   psychepulseGetAllDrErrorState(this.error);
 }
+class psychepulCreateDatabaseState extends psychepulStates {}
+
+class psychepulGetDatabaseLoadingState extends psychepulStates {}
+
+class psychepulGetDatabaseState extends psychepulStates {}
+
+class psychepulInsertDatabaseState extends psychepulStates {}
+
+class psychepulUpdateDatabaseState extends psychepulStates {}
+
+class psychepulDeleteDatabaseState extends psychepulStates {}
+
+class psychepulChangeBottomSheetState extends psychepulStates {}

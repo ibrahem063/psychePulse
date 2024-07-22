@@ -7,6 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:psychepulse/model/user_model.dart';
 import 'package:psychepulse/view/users_screen/cubit/states.dart';
 import 'package:psychepulse/view/widget/constanst/constanst.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../model/doctor_model.dart';
 import '../../../model/message_model.dart';
@@ -28,6 +29,8 @@ class psychepulseCubit extends Cubit<psychepulStates> {
     FirebaseFirestore.instance.collection('users').doc(uId).get().then((value) {
       print(value.data());
       userModel = UserModel.frmojson(value.data());
+      getPosts();
+      getDr();
       getMessages(userModel!);
       emit(psychepulGetUserSuccessState());
     }).catchError((error) {
@@ -282,13 +285,18 @@ class psychepulseCubit extends Cubit<psychepulStates> {
   List<int> likes = [];
 
   void getPosts()
-   {
-     FirebaseFirestore.instance.collection('posts').get().then((value)
-     {
-       value.docs.forEach((element)
-       {
-         element.reference
-            .collection('likes').orderBy('dateTime')
+  {
+    FirebaseFirestore.instance.collection('posts').
+    orderBy('dateTime',descending: true).snapshots()
+        .listen((value)
+    {
+      posts.clear();
+      likes.clear();
+      postsId.clear();
+      value.docs.forEach((element)
+      {
+        element.reference
+            .collection('likes')
             .get()
             .then((value)
         {
@@ -301,9 +309,6 @@ class psychepulseCubit extends Cubit<psychepulStates> {
       });
 
       emit(psychepulseGetPostsSuccessState());
-    }).catchError((error) {
-      print(error.toString());
-      emit(psychepulseGetPostsErrorState(error.toString()));
     });
   }
 
@@ -325,7 +330,7 @@ class psychepulseCubit extends Cubit<psychepulStates> {
   List<UserModel> users = [];
 
   void getUsers() {
-     if (users.length == 0) {
+     if (users.isEmpty) {
        FirebaseFirestore.instance.collection('users').get().then((value) {
         for (var element in value.docs) {
           if (element.data()['uId'] != userModel!.uId) {
@@ -388,15 +393,17 @@ class psychepulseCubit extends Cubit<psychepulStates> {
 
   List<MessageModel> messages = [];
   void getMessages(UserModel Model)  {
+    messages.clear();
       FirebaseFirestore.instance
         .collection('users')
         .doc(userModel?.uId)
         .collection('chats')
         .doc(Model.uId)
         .collection('messages')
+          .orderBy('time')
         .snapshots()
         .listen((value) {
-      messages = [];
+      messages.clear();
       for (var element in value.docs) {
         print('=========${element.data()}============');
         messages.add(MessageModel.fromJson(element.data()));
@@ -408,6 +415,100 @@ class psychepulseCubit extends Cubit<psychepulStates> {
 
     });
   }
+  late Database database;
+  List<Map<dynamic, dynamic>> drugs = [];
+
+  void createDatabase() {
+    openDatabase(
+      'drugs.db',
+      version: 1,
+      onCreate: (database, version) {
+
+        print('database created');
+        database
+            .execute(
+            'CREATE TABLE drugs(id INTEGER PRIMARY KEY, title TEXT, date TEXT, time TEXT)')
+            .then((value) {
+          emit(psychepulGetDatabaseState());
+          print('table created');
+        }).catchError((error) {
+          print('Error When Creating Table ${error.toString()}');
+        });
+      },
+      onOpen: (database)
+      {
+        getDataFromDatabase(database);
+        emit(psychepulGetDatabaseState());
+        print('database opened');
+      },
+    ).then((value) {
+      database = value;
+      emit(psychepulCreateDatabaseState());
+    });
+  }
+
+  insertToDatabase({
+    required String title,
+    required String time,
+    required String date,
+  }) async {
+    database.insert(
+      'drugs',
+      {
+        'title': title,
+        'date': date,
+        'time': time,
+      },
+    ).then((value) {
+      print('$value inserted successfully');
+      emit(psychepulInsertDatabaseState());
+      getDataFromDatabase(database);
+    }).catchError((error) {
+      print('Error When Inserting New Record ${error.toString()}');
+    });
+  }
+
+  void getDataFromDatabase(database)
+  {
+    emit(psychepulGetDatabaseLoadingState());
+    drugs=[];
+    database.rawQuery('SELECT * FROM drugs ').then((value) {
+      value.forEach((element)
+      {
+        drugs.add(element);
+        emit(psychepulGetDatabaseState());
+      });
+
+      emit(psychepulGetDatabaseState());
+    });
+  }
+
+  void deleteData({
+    required int id,
+  }) async
+  {
+    database.rawDelete('DELETE FROM drugs WHERE id = ?', [id])
+        .then((value)
+    {
+      getDataFromDatabase(database);
+      emit(psychepulDeleteDatabaseState());
+    });
+  }
+
+  bool isBottomSheetShown = false;
+  IconData fabIcon = Icons.edit;
+
+  void changeBottomSheetState({
+    required bool isShow,
+    required IconData icon,
+  }) {
+    isBottomSheetShown = isShow;
+    fabIcon = icon;
+
+
+    emit(psychepulChangeBottomSheetState());
+  }
+
 }
 
 

@@ -239,69 +239,6 @@ class RegisterScreen extends StatelessWidget {
                                             password: password.text,
                                             phone: phone.text
                                         );
-                                        // if (_formKey.currentState!.validate()) {
-                                        //   try {
-                                        //     setState(() {
-                                        //       showSpin = true;
-                                        //     });
-                                        //     FirebaseAuth.instance
-                                        //         .createUserWithEmailAndPassword(
-                                        //       email: email.text,
-                                        //       password: password.text,
-                                        //     ).then((value) {
-                                        //       creatUser(name: name.text,
-                                        //           uId: value.user!.uid,
-                                        //           email: email.text,
-                                        //           phone: phone.text,
-                                        //           isEmailVerified: false);
-                                        //     }).catchError((error) {
-                                        //       print(error.toString());
-                                        //     });
-                                        //   } on FirebaseAuthException catch (e) {
-                                        //     print(
-                                        //         "aaaaaaaaaaaaaaaaaaaaaaaaa${e.code}");
-                                        //     if (e.code == 'weak-password') {
-                                        //       print("aaaaaaaaaaaaaaaaaaaaaaaaa${e
-                                        //           .code}");
-                                        //       AwesomeDialog(
-                                        //         context: context,
-                                        //         dialogType: DialogType.error,
-                                        //         headerAnimationLoop: true,
-                                        //         animType: AnimType.bottomSlide,
-                                        //         title: 'Eroor',
-                                        //         reverseBtnOrder: true,
-                                        //         desc:
-                                        //         'The password provided is too weak',
-                                        //       ).show();
-                                        //       print(
-                                        //           'The password provided is too weak.');
-                                        //     } else
-                                        //     if (e.code == 'email-already-in-use') {
-                                        //       print("aaaaaaaaaaaaaaaaaaaaaaaaa${e
-                                        //           .code}");
-                                        //       AwesomeDialog(
-                                        //         context: context,
-                                        //         dialogType: DialogType.error,
-                                        //         headerAnimationLoop: true,
-                                        //         animType: AnimType.bottomSlide,
-                                        //         title: 'Eroor',
-                                        //         reverseBtnOrder: true,
-                                        //         desc:
-                                        //         'The account already exists for that email.',
-                                        //       ).show();
-                                        //       print(
-                                        //           'The account already exists for that email.');
-                                        //     }
-                                        //     setState(() {
-                                        //       showSpin = false;
-                                        //     });
-                                        //   } catch (e) {
-                                        //     print(e);
-                                        //   }
-                                        //   setState(() {
-                                        //     showSpin = false;
-                                        //   });
-                                        // }
                                       },
                                     ),
                                   ),

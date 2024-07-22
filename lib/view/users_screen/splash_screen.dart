@@ -31,7 +31,7 @@ class _OnBoardingScreenState extends State<Splash> {
     return SizedBox(
       width: widthOrHeight0(context, 1),
       height: widthOrHeight0(context, 0),
-      child: Image.asset(fit: BoxFit.cover, 'assets/images/main-banner.png'),
+      child: Image.asset(fit: BoxFit.cover, 'assets/images/splash.png'),
     );
   }
 }

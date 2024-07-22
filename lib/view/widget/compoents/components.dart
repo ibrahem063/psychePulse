@@ -1,7 +1,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:psychepulse/controller/cubit/cubit.dart';
+import 'package:psychepulse/view/users_screen/cubit/cubit.dart';
 
 Widget defaultButton({
   double width = double.infinity,
@@ -26,8 +26,8 @@ Widget defaultButton({
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
           colors: [
-            Colors.black,
-            Colors.blue.shade200,
+            Color(0xFFFDCCC5),
+            Colors.pink.shade200,
             Colors.deepPurple.shade200
           ], // Colors to blend
         ),
@@ -315,7 +315,7 @@ Widget buildTaskItem(Map model, context) => Dismissible(
             ),
             IconButton(
                 onPressed: () {
-                  AppCubit.get(context).deleteData(
+                  psychepulseCubit.get(context).deleteData(
                     id: model['id'],
                   );
                 },

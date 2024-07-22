@@ -14,35 +14,38 @@ import 'injection.dart';
 import 'view/widget/bloc_observer.dart';
 
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Bloc observer for debugging
   Bloc.observer = MyBlocObserver();
+
+  // Initialize Firebase
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  // Initialize CacheHelper
   await CacheHelper.init();
+
+  // Initialize dependency injection
   await di.init();
-  Widget widget;
-  if(uId != null)
-  {
-    widget = const HomeLayout();
-  } else
-  {
-    widget = const Splash();
+
+  // Determine the start widget based on user login status
+  Widget startWidget;
+  if (uId != null) {
+    startWidget = const HomeLayout();
+  } else {
+    startWidget = const Splash();
   }
 
-  runApp(MyApp(
-    startWidget: widget,
-  ));
-
+  runApp(MyApp(startWidget: startWidget));
 }
 
 class MyApp extends StatefulWidget {
-   final Widget startWidget;
-  const MyApp({
-    super.key,
-    required this.startWidget,
-  });
+  final Widget startWidget;
+
+  const MyApp({super.key, required this.startWidget});
+
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -52,15 +55,17 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
+    super.initState();
+
+    // Initialize localization settings
     localization.init(
       mapLocales: [
         const MapLocale('en', AppLocale.EN),
-        const MapLocale('ar', AppLocale.AR)
+        const MapLocale('ar', AppLocale.AR),
       ],
       initLanguageCode: 'en',
     );
     localization.onTranslatedLanguage = _onTranslatedLanguage;
-    super.initState();
   }
 
   void _onTranslatedLanguage(Locale? locale) {
@@ -72,26 +77,26 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (context) => sl<psychepulseCubit>()..getDr()..getPosts(),
-        )
-
-        ],
+          create: (context) => sl<psychepulseCubit>()..getUserData()..createDatabase(),
+        ),
+      ],
       child: MaterialApp(
-      
         supportedLocales: const [
           Locale('en', 'US'),
           Locale('ar', 'AR'),
         ],
         localizationsDelegates: localization.localizationsDelegates,
-        locale: FlutterLocalization.instance.currentLocale,
+        locale: localization.currentLocale,
         theme: ThemeData(
-          primaryColor:  Colors.white,
+          primaryColor: Colors.white,
         ),
-          debugShowCheckedModeBanner: false,
-         home:widget.startWidget,
+        debugShowCheckedModeBanner: false,
+        home:widget.startWidget,
       ),
     );
   }
 }
 
+// Global variable to store the current app language
 String appLang = 'en';
+

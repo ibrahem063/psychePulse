@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class ChatModel {
   ChatModel({
     required this.username,
@@ -21,5 +23,24 @@ class ChatModel {
       'userImage': userImage,
       'userId': userId,
     };
+  }
+}
+class Message {
+  final String text;
+  final String userId;
+  final Timestamp dateTime;
+
+  Message({
+    required this.text,
+    required this.userId,
+    required this.dateTime,
+  });
+
+  factory Message.fromJson(Map<String, dynamic> json) {
+    return Message(
+      text: json['text'],
+      userId: json['userId'],
+      dateTime: json['dateTime'],
+    );
   }
 }
