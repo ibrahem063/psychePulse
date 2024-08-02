@@ -15,6 +15,7 @@ class DoctorDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar:AppBar(
         flexibleSpace: Container(
           decoration: BoxDecoration(

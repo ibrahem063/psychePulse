@@ -8,23 +8,30 @@ import 'package:psychepulse/view/users_screen/home_screen/chat_screen/message_sc
 import 'package:psychepulse/view/widget/compoents/components.dart';
 
 class ChatsScreen extends StatelessWidget {
+  const ChatsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => psychepulseCubit()..getUserData()..getUsers(),
+      create: (context) => psychepulseCubit()..getUserData(),
       child: BlocConsumer<psychepulseCubit, psychepulStates>(
         listener: (context, state) {},
         builder: (context, state) {
           return ConditionalBuilder(
             condition: psychepulseCubit.get(context).users.length >= 0,
-            builder: (context) => ListView.separated(
-              physics: BouncingScrollPhysics(),
-              itemBuilder: (context, index) =>
-                  buildChatItem(psychepulseCubit.get(context).users[index], context),
-              separatorBuilder: (context, index) => myDivider(),
-              itemCount: psychepulseCubit.get(context).users.length,
+            builder: (context) => Container(
+              color: Colors.white,
+              child: Expanded(
+                child: ListView.separated(
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) =>
+                      buildChatItem(psychepulseCubit.get(context).users[index], context),
+                  separatorBuilder: (context, index) => myDivider(),
+                  itemCount: psychepulseCubit.get(context).users.length,
+                ),
+              ),
             ),
-            fallback: (context) => Center(child: CircularProgressIndicator()),
+            fallback: (context) => const Center(child: CircularProgressIndicator()),
           );
         },
       ),
@@ -47,15 +54,15 @@ class ChatsScreen extends StatelessWidget {
           CircleAvatar(
             radius: 25.0,
             backgroundImage: NetworkImage(
-              '${model.image}',
+              model.image,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 15.0,
           ),
           Text(
-            '${model.name}',
-            style: TextStyle(
+            model.name,
+            style: const TextStyle(
               height: 1.4,
             ),
           ),

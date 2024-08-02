@@ -16,7 +16,7 @@ TextEditingController controllerShare=TextEditingController();
      return BlocConsumer<psychepulseCubit,psychepulStates>(
        builder: (context, state) {
          return ConditionalBuilder(
-           condition:  psychepulseCubit.get(context).posts.length> 0 && psychepulseCubit.get(context).userModel != null,
+           condition:  psychepulseCubit.get(context).posts.isNotEmpty && psychepulseCubit.get(context).userModel != null,
            builder: (context) =>
                Container(
                  color: Colors.grey[200],

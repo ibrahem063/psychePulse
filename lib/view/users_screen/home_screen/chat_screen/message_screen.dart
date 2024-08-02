@@ -6,10 +6,11 @@ import '../../../../model/user_model.dart';
 import '../../../widget/styles/icon_broken.dart';
 import 'package:psychepulse/view/users_screen/cubit/cubit.dart';
 import '../../cubit/states.dart';
+
 class ChatDetailsScreen extends StatefulWidget {
   final UserModel userModel;
 
-  ChatDetailsScreen({
+  const ChatDetailsScreen({
     super.key,
     required this.userModel,
   });
@@ -20,30 +21,49 @@ class ChatDetailsScreen extends StatefulWidget {
 
 class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
   var messageController = TextEditingController();
+  @override
   void initState(){
     super.initState();
-      psychepulseCubit.get(context).getMessages(widget!.userModel);
+      psychepulseCubit.get(context).getMessages(widget.userModel);
   }
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<psychepulseCubit, psychepulStates>(
           builder: (context, state) {
             return Scaffold(
+              backgroundColor: Colors.white,
               appBar: AppBar(
+                flexibleSpace: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          spreadRadius: 0.3,
+                          blurRadius: 5,
+                          offset: const Offset(0, 1),
+                        ),
+                      ]),
+                ),
+                backgroundColor: Colors.white,
                 titleSpacing: 0.0,
                 title: Row(
                   children: [
                     CircleAvatar(
                       radius: 20.0,
                       backgroundImage: NetworkImage(
-                        widget.userModel!.image,
+                        widget.userModel.image,
                       ),
                     ),
                     const SizedBox(
                       width: 15.0,
                     ),
                     Text(
-                      widget.userModel!.name,
+                      widget.userModel.name,
+                      style: const TextStyle(
+                        fontFamily: 'jannah',
+                      ),
                     ),
                   ],
                 ),
@@ -60,15 +80,13 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                           itemBuilder: (context, index)
                           {
                             if (psychepulseCubit.get(context).messages[index].senderId == psychepulseCubit.get(context).userModel!.uId) {
-                              return buildMyMessage(
+                              return buildMessage(
                                 model: psychepulseCubit.get(context).messages[index],
                               );
                             }
-
-                            return buildMessage(
+                            return buildMyMessage(
                               model: psychepulseCubit.get(context).messages[index],
                             );
-
                           },
                           separatorBuilder: (context, index) => const SizedBox(
                             height: 15.0,
@@ -105,18 +123,18 @@ class _ChatDetailsScreenState extends State<ChatDetailsScreen> {
                             ),
                             Container(
                               height: 50.0,
-                              color: Colors.black38,
+                              color: Colors.blue,
                               child: MaterialButton(
                                 onPressed: () {
                                   psychepulseCubit .get(context).sendMessage(
-                                    receiverId: widget.userModel!.uId,
+                                    receiverId: widget.userModel.uId,
                                     dateTime: DateTime.now().toString(),
                                     text: messageController.text,
                                   );
                                   messageController.clear();
                                 },
                                 minWidth: 1.0,
-                                child: Icon(
+                                child: const Icon(
                                   IconBroken.Send,
                                   size: 16.0,
                                   color: Colors.white,
@@ -143,15 +161,61 @@ class buildMessage extends StatelessWidget {
   final MessageModel model;
 
   const buildMessage({
-    Key? key,
+    super.key,
     required this.model,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         const Spacer(),
+        Expanded(
+          child: Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 10.0,
+              vertical: 10.0,
+            ),
+            decoration:   BoxDecoration(
+              borderRadius: const BorderRadiusDirectional.only(
+                topStart: Radius.circular(
+                  15.0,
+                ),
+                topEnd: Radius.circular(
+                  15.0,
+                ),
+                bottomStart: Radius.circular(
+                  15.0,
+                ),
+              ),
+              color: Colors.blue.shade400,
+            ),
+            child: Text(
+              model.message,
+              style:  const TextStyle(
+                color: Colors.white,
+                fontFamily: 'jannah',
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class buildMyMessage extends StatelessWidget {
+  final MessageModel model;
+
+  const buildMyMessage({
+    super.key,
+    required this.model,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
         Expanded(
           child: Container(
             padding: const EdgeInsets.symmetric(
@@ -166,60 +230,18 @@ class buildMessage extends StatelessWidget {
                 topEnd: Radius.circular(
                   15.0,
                 ),
-                bottomStart: Radius.circular(
+                bottomEnd: Radius.circular(
                   15.0,
                 ),
               ),
-              color: Colors.teal,
+              color: Colors.grey,
             ),
             child: Text(
               model.message,
               style: const TextStyle(
                 color: Colors.white,
+                fontFamily: 'jannah',
               ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class buildMyMessage extends StatelessWidget {
-  final MessageModel model;
-
-  const buildMyMessage({
-    Key? key,
-    required this.model,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10.0,
-              vertical: 10.0,
-            ),
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadiusDirectional.only(
-                topStart: Radius.circular(
-                  15.0,
-                ),
-                topEnd: Radius.circular(
-                  15.0,
-                ),
-                bottomEnd: Radius.circular(
-                  15.0,
-                ),
-              ),
-              color: Colors.grey[200],
-            ),
-            child: Text(
-              model.message,
-              style: const TextStyle(),
             ),
           ),
         ),

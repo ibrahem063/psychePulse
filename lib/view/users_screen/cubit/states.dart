@@ -2,6 +2,8 @@ abstract class psychepulStates {}
 
 class psychepulInitialState extends psychepulStates {}
 
+class modileMainButtonNavState extends psychepulStates {}
+
 class psychepulGetUserLoadingState extends psychepulStates {}
 
 class psychepulGetUserSuccessState extends psychepulStates {}
@@ -115,3 +117,46 @@ class psychepulUpdateDatabaseState extends psychepulStates {}
 class psychepulDeleteDatabaseState extends psychepulStates {}
 
 class psychepulChangeBottomSheetState extends psychepulStates {}
+
+class LoginLoadingState extends psychepulStates {}
+
+class LoginSuccessState extends psychepulStates
+{
+  final String uId;
+
+  LoginSuccessState(this.uId);
+}
+
+class LoginErrorState extends psychepulStates
+{
+  final String error;
+
+  LoginErrorState(this.error);
+}
+
+class SocialChangePasswordVisibilityState extends psychepulStates {}
+class ShowSpinState extends psychepulStates {}
+
+class RegisterLoadingState extends psychepulStates {}
+
+class RegisterSuccessState extends psychepulStates {}
+
+class RegisterErrorState extends psychepulStates
+{
+  final String error;
+
+  RegisterErrorState(this.error);
+}
+
+class CreateUserSuccessState extends psychepulStates {}
+
+class CreateUserErrorState extends psychepulStates
+{
+  final String error;
+
+  CreateUserErrorState(this.error);
+}
+
+class RegisterChangePasswordVisibilityState extends psychepulStates {}
+
+class ShowSpinStat extends psychepulStates {}

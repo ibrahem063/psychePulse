@@ -1,5 +1,3 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:psychepulse/model/post_model.dart';
 import 'package:psychepulse/view/users_screen/cubit/cubit.dart';
@@ -20,6 +18,7 @@ class PostWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.white,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       elevation: 0.0,
       margin: const EdgeInsets.symmetric(
@@ -35,7 +34,7 @@ class PostWidget extends StatelessWidget {
                 CircleAvatar(
                   radius: 25.0,
                   backgroundImage: NetworkImage(
-                    '${model.image}',
+                    model.image,
                   ),
                 ),
                 const SizedBox(
@@ -47,24 +46,22 @@ class PostWidget extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Expanded(
-                            child: TextButton(
-                              onPressed: (){
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const ProfileScreen(),
-                                    ));
-                              },
-                              child: Text('${model.name}',
-                              style: const TextStyle(
-                                height: 1.4,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                                fontFamily: 'jannah',
-                              ),
-                              ),
+                          TextButton(
+                            onPressed: (){
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const ProfileScreen(),
+                                  ));
+                            },
+                            child: Text(truncateString(),
+                            style: const TextStyle(
+                              height: 1.4,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              fontFamily: 'jannah',
+                            ),
                             ),
                           ),
                           const SizedBox(
@@ -78,7 +75,7 @@ class PostWidget extends StatelessWidget {
                         ],
                       ),
                       Text(
-                        '${model.dateTime}',
+                        model.dateTime.substring(0,16),
                         // style: Theme.of(context).textTheme.caption?.copyWith(
                         //   height: 1.4,
                         // ),
@@ -109,7 +106,7 @@ class PostWidget extends StatelessWidget {
               ),
             ),
             Text(
-              '${model.text}',
+              model.text,
               // style: Theme.of(context).textTheme.subtitle1,
 
             ),
@@ -168,19 +165,19 @@ class PostWidget extends StatelessWidget {
                   ),
                   Expanded(
                     child: InkWell(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(
                           vertical: 5.0,
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            const Icon(
-                              IconBroken.Message,
+                            Icon(
+                              IconBroken.Chat,
                               size: 16.0,
                               color: Colors.amber,
                             ),
-                            const SizedBox(
+                            SizedBox(
                               width: 5.0,
                             ),
                             Text(
@@ -215,7 +212,7 @@ class PostWidget extends StatelessWidget {
                         CircleAvatar(
                           radius: 18.0,
                           backgroundImage: NetworkImage(
-                            '${model.image}',
+                            model.image,
                           ),
                         ),
                         const SizedBox(
@@ -232,14 +229,14 @@ class PostWidget extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                  child: Row(
+                  child: const Row(
                     children: [
-                      const Icon(
+                      Icon(
                         IconBroken.Heart,
                         size: 16.0,
                         color: Colors.red,
                       ),
-                      const SizedBox(
+                      SizedBox(
                         width: 5.0,
                       ),
                       Text(
@@ -259,5 +256,12 @@ class PostWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+  String truncateString() {
+    if (model.name.length <= 15) {
+      return model.name;
+    } else {
+      return '${model.name.substring(0, 15)}...';
+    }
   }
 }

@@ -4,7 +4,6 @@ import 'package:psychepulse/view/widget/compoents/components.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:psychepulse/view/widget/styles/icon_broken.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-
 import '../DrawerItems/Subcription.dart';
 import '../DrawerItems/consultations_screen.dart';
 import '../DrawerItems/drug_screen.dart';

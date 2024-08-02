@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:psychepulse/view/widget/compoents/components.dart';
 import '../../../widget/styles/icon_broken.dart';
 import '../../cubit/cubit.dart';
 import '../../cubit/states.dart';
@@ -10,12 +10,14 @@ import '../search_screen.dart';
 
 class HomeLayout extends StatelessWidget {
   const HomeLayout({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<psychepulseCubit,psychepulStates>(
-      builder:(context, state) {
+    return BlocConsumer<psychepulseCubit, psychepulStates>(
+      builder: (context, state) {
         var cubit = psychepulseCubit.get(context);
         return Scaffold(
+          backgroundColor: Colors.white,
           appBar: AppBar(
             flexibleSpace: Container(
               decoration: BoxDecoration(
@@ -26,26 +28,36 @@ class HomeLayout extends StatelessWidget {
                       color: Colors.black.withOpacity(0.2),
                       spreadRadius: 0.3,
                       blurRadius: 5,
-                      offset: const Offset(0,1),
+                      offset: const Offset(0, 1),
                     ),
-                  ]
-              ),
+                  ]),
             ),
             actions: [
-              IconButton(onPressed: () {
-
-              }, icon: Icon(IconBroken.Notification)),
-              IconButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchScreen(),));
-              }, icon:Icon(IconBroken.Search,),
+              IconButton(onPressed: () {}, icon: const Icon(IconBroken.Notification)),
+              IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SearchScreen(),
+                      ));
+                },
+                icon: const Icon(
+                  IconBroken.Search,
+                ),
               ),
             ],
-            systemOverlayStyle:SystemUiOverlayStyle(statusBarColor: Colors.grey.shade400),
+            systemOverlayStyle:
+                SystemUiOverlayStyle(statusBarColor: Colors.grey.shade400),
             title: Center(
               child: ShaderMask(
                 shaderCallback: (Rect bounds) {
                   return LinearGradient(
-                    colors: [const Color(0xFFFDCCC5),Colors.pink.shade200, Colors.deepPurple.shade200],
+                    colors: [
+                      const Color(0xFFFDCCC5),
+                      Colors.pink.shade200,
+                      Colors.deepPurple.shade200
+                    ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ).createShader(bounds);
@@ -55,128 +67,106 @@ class HomeLayout extends StatelessWidget {
                   style: TextStyle(
                       fontFamily: 'jannah',
                       fontSize: 24,
-                      color:Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.w900
-                  ),
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.w900),
                 ),
               ),
             ),
           ),
-          drawer:  DrawerScreen(),
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+          drawer: DrawerScreen(),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
           floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
-          floatingActionButton:  Padding(
+          floatingActionButton: Padding(
             padding: const EdgeInsets.only(top: 10.0),
             child: Container(
+              height: widthOrHeight0(context, 1) * 0.07,
+              width: widthOrHeight0(context, 0) * 0.07,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
-                border: Border.all(color: Colors.white,width: 1,),
+                border: Border.all(
+                  color: Colors.white,
+                  width: 1,
+                ),
                 gradient: LinearGradient(
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
-                  colors: [const Color(0xFFFDCCC5),Colors.pink.shade200, Colors.deepPurple.shade200], // Colors to blend
+                  colors: [
+                    const Color(0xFFFDCCC5),
+                    Colors.pink.shade200,
+                    Colors.deepPurple.shade200
+                  ], // Colors to blend
                 ),
               ),
               child: CircleAvatar(
                 radius: 30,
                 backgroundColor: Colors.transparent,
-                child: IconButton(
+                child: TextButton(
                   onPressed: () {
                     cubit.showdialogonbuttonpress(context);
                   },
-                  icon:const Icon(
-                    Icons.perm_phone_msg,
-                    color: Colors.white,
+                  child: const Text(
+                    'Ai',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20
+                    ),
                   ),
+
                 ),
               ),
             ),
           ),
           bottomNavigationBar: Container(
+            height: widthOrHeight0(context, 1)*0.078,
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.4),
-                  spreadRadius: 0.5,
-                  blurRadius: 10,
-                  offset: const Offset(0, 5),
+                  color: Colors.black.withOpacity(0.2),
+                  spreadRadius: 0.3,
+                  blurRadius: 9,
+                  offset: const Offset(0,3),
                 ),
               ],
             ),
             child: ClipRRect(
               borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-              child: BottomNavigationBar(
-                selectedFontSize: 20,
-                showSelectedLabels: false,
-                elevation: 0,
-                currentIndex:cubit.currentIndex,
-                onTap: (index) {
-                    cubit.changeBottomNav(index);
-                },
-                items: [
-                  BottomNavigationBarItem(
-                    icon: Icon(
-                      IconBroken.Home,
-                      size: 40,
-                      color: cubit.currentIndex == 0
-                          ? Colors.pink.shade200
-                          : Colors.grey.shade300,
+                  topLeft: Radius.circular(30), topRight: Radius.circular(30)
+              ),
+              child: BottomAppBar(
+                color: Colors.white,
+                notchMargin: 9.0,
+                shape: const CircularNotchedRectangle(),
+                height: 80,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    ...List.generate(
+                      cubit.bottomItem.length,
+                      (index) => Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: IconButton(
+                          color: cubit.currentIndex==index?Colors.pink.shade200:Colors.grey,
+                          icon: cubit.bottomItem[index],
+                          onPressed: () {
+                            if (index != 2) {
+                              cubit.changeIndex(index);
+                            }
+                          },
+                        ),
+                      ),
                     ),
-                    label: 'Home',
-
-                  ),
-                  BottomNavigationBarItem(
-                    icon:  Icon(
-                      size: 40,
-                      IconBroken.Bookmark,
-                      color: cubit.currentIndex == 1
-                          ? Colors.pink.shade200
-                          : Colors.grey.shade300,
-                    ),
-                    label: 'content',
-                  ),
-                  BottomNavigationBarItem(
-                    icon:  SvgPicture.asset(
-                      '',
-                      color: cubit.currentIndex == 2
-                          ?Colors.pink.shade200
-                          : Colors.grey.shade300,
-                    ),
-                    label: '',
-                  ),
-                  BottomNavigationBarItem(
-                    icon:  SvgPicture.asset(
-                      'assets/icons/icons8-doctor-50.svg',
-                      height: 40,
-                      color: cubit.currentIndex== 3
-                          ? Colors.pink.shade200
-                          : Colors.grey.shade300,
-                    ),
-                    label: 'Doctor',
-                  ),
-                  BottomNavigationBarItem(
-                    icon:  Icon(
-                      size: 40,
-                      IconBroken.Chat,
-                      color: cubit.currentIndex == 4
-                          ? Colors.pink.shade200
-                          : Colors.grey.shade300,
-                    ),
-                    label: 'Chats',
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
-          body: cubit.screens[cubit.currentIndex],
+          body: cubit.screen[cubit.currentIndex],
         );
       },
-      listener: (context, state) {
-
-
-      },
+      listener: (context, state) {},
     );
   }
 }
-
